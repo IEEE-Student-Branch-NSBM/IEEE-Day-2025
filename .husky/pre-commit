@@ -1,1 +1,7 @@
-bun test
+
+# Check if there are any test files before running bun test (POSIX shell for Husky)
+if git ls-files | grep -E '\.(test|spec)\.(ts|js|tsx|jsx)$' > /dev/null; then
+  bun test
+else
+  echo "No test files found. Skipping bun test."
+fi

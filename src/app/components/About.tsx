@@ -4,6 +4,7 @@ import { Orbitron , Inter} from "next/font/google";
 
 const orbitron = Orbitron({
   subsets: ["latin"],
+  weight: "700",
 });
 
 const inter = Inter({
@@ -25,7 +26,7 @@ const About = () => {
     <div className="grid grid-cols-2 gap-8 p-40 ">
       {details.map((detail, index) => (
         <div key={index} className='bg-black/25 rounded-[20px] p-10'>
-          <div className={`${orbitron.className} font-bold text-[20px] text-[#F57C00]`}>
+          <div className={`${orbitron.className} font-bold text-[20px] mb-4 text-[#F57C00]`}>
             {detail.title}
           </div>
           <div className={`${inter.className} font-bold text-[13px] text-[#999999]`}>
