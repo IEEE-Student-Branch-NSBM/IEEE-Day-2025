@@ -6,9 +6,9 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 
-import IEEECsLogo from "../../public/ieee-cs-logo.png";
-import IEEESbLogo from "../../public/ieee-sb-logo.png";
-import IEEEWieLogo from "../../public/ieee-wie-logo.png";
+import IEEECsLogo from "../../public/ieee-cs-logo.webp";
+import IEEESbLogo from "../../public/ieee-sb-logo.webp";
+import IEEEWieLogo from "../../public/ieee-wie-logo.webp";
 import Link from "next/link";
 
 const Footer = () => {

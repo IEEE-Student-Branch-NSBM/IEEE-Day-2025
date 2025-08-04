@@ -1,5 +1,5 @@
 import Image from "next/image";
-import IEEEBg from "../../public/hero-bg.png";
+import IEEEBg from "../../public/hero-bg.webp";
 import IeeeText from "./IeeeText";
 
 const Hero = () => {

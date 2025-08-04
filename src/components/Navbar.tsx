@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import IEEELogo from "../../public/ieee-sb-logo.png";
+import IEEELogo from "../../public/ieee-sb-logo.webp";
 
 const Navbar = () => {
   return (

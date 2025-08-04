@@ -1,8 +1,8 @@
 import HeaderText from "./HeaderText";
-import Journey1 from "../../public/journey-1.jpg"
-import Journey2 from "../../public/journey-2.jpg"
-import Journey3 from "../../public/journey-3.jpg"
-import Journey4 from "../../public/journey-4.jpg"
+import Journey1 from "../../public/journey-1.webp"
+import Journey2 from "../../public/journey-2.webp"
+import Journey3 from "../../public/journey-3.webp"
+import Journey4 from "../../public/journey-4.webp"
 
 const img = [
   {
