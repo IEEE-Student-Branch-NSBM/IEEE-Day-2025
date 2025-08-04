@@ -1,20 +1,24 @@
 import HeaderText from "./HeaderText";
+import Journey1 from "../../public/journey-1.jpg"
+import Journey2 from "../../public/journey-2.jpg"
+import Journey3 from "../../public/journey-3.jpg"
+import Journey4 from "../../public/journey-4.jpg"
 
 const img = [
   {
-    src: "/journey-1.jpg",
+    src: Journey1,
     alt: "Journey Image 1",
   },
   {
-    src: "/journey-2.jpg",
+    src: Journey2,
     alt: "Journey Image 2",
   },
   {
-    src: "/journey-3.jpg",
+    src: Journey3,
     alt: "Journey Image 3",
   },
   {
-    src: "/journey-4.jpg",
+    src: Journey4,
     alt: "Journey Image 4",
   },
 ];
@@ -29,7 +33,7 @@ const Journey = () => {
           {img.map((image, index) => (
             <div key={index} className="relative">
               <img
-                src={image.src}
+                src={image.src.src}
                 alt={image.alt}
                 className="w-full h-full rounded-lg shadow-lg"
               />
