@@ -5,3 +5,18 @@
   --font-inter: var(--font-inter);
   --font-orbitron: var(--font-orbitron);
 }
+
+@layer base {
+  :root {
+    --font-audiowide: 'Audiowide';
+    --font-poppins: 'Poppins';
+  }
+}
+
+.font-audiowide {
+  font-family: var(--font-audiowide), sans-serif;
+}
+
+.font-poppins {
+  font-family: var(--font-poppins), sans-serif;
+}

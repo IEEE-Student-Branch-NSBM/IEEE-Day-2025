@@ -2,7 +2,8 @@ import About from "@/components/About";
 import Countdown from "@/components/countdown/Countdown";
 import Hero from "@/components/Hero";
 import Journey from "@/components/Journey";
-import Milestones from "@/components/Milestones";
+import Sponsor from "@/components/Sponsor";
+import ContactUs from "@/components/ContactUs";
 
 const HomePage = () => {
   return (
@@ -11,7 +12,8 @@ const HomePage = () => {
       <Countdown />
       <About />
       <Journey />
-      <Milestones />
+      <Sponsor />
+      <ContactUs />
     </div>
   );
 };

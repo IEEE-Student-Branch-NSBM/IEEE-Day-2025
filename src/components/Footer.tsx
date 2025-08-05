@@ -62,9 +62,6 @@ const Footer = () => {
               <FaFacebook />
             </Link>
           </div>
-          <p className="text-[10px] md:text-sm text-center font-orbitron tracking-wider">
-            Powered by IEEE Computer Society
-          </p>
         </div>
       </div>
     </footer>

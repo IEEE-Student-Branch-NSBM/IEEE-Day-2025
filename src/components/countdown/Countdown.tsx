@@ -16,11 +16,11 @@ const Countdown = () => {
 
     return difference > 0
       ? {
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / (1000 * 60)) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        }
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / (1000 * 60)) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      }
       : { days: 0, hours: 0, minutes: 0, seconds: 0 };
   };
 
@@ -79,9 +79,9 @@ const Countdown = () => {
       className="flex items-center py-10 md:py-20 justify-center"
     >
       <div className="w-11/12 flex gap-8 flex-col items-center py-5 sm:w-4/5">
-        <HeaderText title="Countdown Timeline" />
+        <HeaderText title="Coming Soon" />
 
-        <div className="grid w-full text-center grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-4">
+        <div className="grid w-full text-center grid-cols-4 md:grid-cols-4 gap-x-2 sm:gap-x-4 md:gap-x-8 gap-y-4">
           <CountdownCard time={timeLeft.days} type="Days" />
           <CountdownCard time={timeLeft.hours} type="Hours" />
           <CountdownCard time={timeLeft.minutes} type="Minutes" />
