@@ -1,3 +1,6 @@
+import Sponsors from "@/component/Sponsors";
 export default function Home() {
-	return <div></div>;
+	return <div>
+		<Sponsors/>
+	</div>;
 }
