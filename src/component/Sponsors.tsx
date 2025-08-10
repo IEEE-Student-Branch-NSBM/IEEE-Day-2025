@@ -6,36 +6,52 @@ import VirtusaLogo from "../../public/sponsors/virtusa.webp";
 import NsbmLogo from "../../public/sponsors/nsbm.webp";
 import Image from "next/image";
 import { gsap } from "gsap";
-import { useRef } from 'react';
-import { useGSAP } from '@gsap/react';
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(useGSAP); // register the hook to avoid React version discrepancies 
-
-
-
+gsap.registerPlugin(useGSAP);
 
 const sponsors = [
-	{ name: "aeturnum", logo: AesturnumLogo },
-	{ name: "nescafe", logo: NescafeLogo },
-	{ name: "nsbm", logo: NsbmLogo },
-	{ name: "orelit", logo: OrelitLogo },
-	{ name:"virtusa",logo: VirtusaLogo},
+  { name: "aeturnum", logo: AesturnumLogo, duration: 2, x: 110 },
+  { name: "nescafe", logo: NescafeLogo, duration: 2, y: -100 },
+  { name: "nsbm", logo: NsbmLogo, duration: 2, x: 100 },
+  { name: "orelit", logo: OrelitLogo, duration: 2, y: 100 },
+  { name: "virtusa", logo: VirtusaLogo, duration: 2, x: -100 },
 ];
 
 const Sponsors = () => {
-	useGSAP(() => {
-	// gsap code here...
-	gsap.to('.logo', { x: 360 }); // <-- automatically reverted
-},{ }); // <-- scope is for selector text (optional)
+  const logoRefs = useRef([]);
 
-	return <div className = "bg-black">
-		{sponsors.map((sponsor, index)=>(
-			<div>
+  useGSAP(() => {
+    sponsors.forEach((sponsor, index) => {
+      gsap.to(logoRefs.current[index], {
+        x: sponsor.x || 0,
+		y: sponsor.y || 0,
+		yoyo:true,
+		repeat: -1,
+        duration: sponsor.duration || 1.5,
+        ease: "power2.inOut",
+      });
+    });
+  }, []);
 
-				<Image src ={sponsor.logo} alt={sponsor.name} className="logo"/>
-			</div>
-		))}
-	</div>;
+  return (
+    <div className="bg-black flex gap-6 p-6">
+      {sponsors.map((sponsor, index) => (
+        <div key={index} className="overflow-hidden">
+			
+          <Image
+            ref={(el) => (logoRefs.current[index] = el)}
+            src={sponsor.logo}
+            alt={sponsor.name}
+            className="logo"
+			width={100}
+			height={100}
+          />
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default Sponsors;
