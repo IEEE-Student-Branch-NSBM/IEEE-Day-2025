@@ -12,7 +12,6 @@ const links = [
 ];
 
 function Navbar() {
-
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     const scrollToSection = (id: string) => {
@@ -23,13 +22,8 @@ function Navbar() {
         setMobileMenuOpen(false);
     };
 
-
     return (
-
-        <header
-            
-            className="bg-black/80 fixed top-0 left-0 right-0 z-50 shadow-lg backdrop-blur-xl transition-all duration-300"
-        >
+        <header className="bg-black/80 fixed top-0 left-0 right-0 z-50 shadow-lg backdrop-blur-xl transition-all duration-300">
             <div className="max-w-[1440px] mx-auto px-4 py-3">
                 <nav className="flex items-center justify-between">
                     {/* Logo */}
@@ -37,33 +31,36 @@ function Navbar() {
                         <Image
                             src={logo}
                             alt="IEEE Logo"
-                            className="w-[100px] md:w-[160px] object-contain"
+                            className="w-[100px] md:w-[250px] object-contain"
                             priority
                         />
                     </button>
 
                     {/* Desktop Menu */}
-                    <ul className="hidden lg:flex gap-10 text-sm font-semibold">
-                        {links.map((link, idx) => (
-                            <li key={idx}>
-                                <button
-                                    onClick={() => scrollToSection(link.href)}
-                                    className="hover:text-orange-500 transition duration-300"
-                                >
-                                    {link.name}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
+                    <div className="hidden lg:flex items-center gap-6 relative w-full">
+                        {/* Centered Links */}
+                        <ul className="flex gap-10 text-sm font-semibold bg-white rounded-full px-6 py-2 shadow absolute left-3/8 -translate-x-1/2">
+                            {links.map((link, idx) => (
+                                <li key={idx}>
+                                    <button
+                                        onClick={() => scrollToSection(link.href)}
+                                        className="text-black hover:text-orange-500 transition duration-300"
+                                    >
+                                        {link.name}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
 
-                    {/* Desktop Right Buttons */}
-                    <div className="hidden lg:flex gap-4">
-                        <button className="bg-white text-black rounded-lg px-4 py-2 hover:bg-gray-200 transition">
-                            Register
-                        </button>
-                        <button className="bg-white text-black rounded-lg px-4 py-2 hover:bg-gray-200 transition">
-                            Sign Up
-                        </button>
+                        {/* Right Buttons */}
+                        <div className="ml-auto flex gap-4">
+                            <button className="border border-white text-white rounded-full px-4 py-2 hover:bg-white hover:text-black transition">
+                                Register
+                            </button>
+                            <button className="bg-[#b39ddb] text-black rounded-full px-4 py-2 hover:opacity-90 transition">
+                                Sign Up
+                            </button>
+                        </div>
                     </div>
 
                     {/* Mobile Menu Toggle */}
@@ -105,7 +102,5 @@ function Navbar() {
         </header>
     );
 }
-
-
 
 export default Navbar;
