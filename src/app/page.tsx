@@ -1,11 +1,11 @@
-import Navbar from "@/component/navbar";
 
+import Navbar from "@/component/navbar";
+import Sponsors from "@/component/Sponsors";
 export default function Home() {
 	return (
-		<div>
-			<Navbar />
-		</div>
-
-	);
-
+    <div>
+    	<Navbar />
+		   <Sponsors/>
+	 </div>
+  );
 }
