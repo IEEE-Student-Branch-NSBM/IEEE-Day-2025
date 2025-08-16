@@ -3,4 +3,9 @@
 @theme inline {
   --spacing-nav: calc(100vh - 5rem);
   --font-sans: var(--font-poppins);
+
+  --color-darkteal: #003c43;
+  --color-greenteal: #135d66;
+  --color-pastelteal: #77b0aa;
+  --color-mintwhite: #e3fef7;
 }

@@ -39,7 +39,7 @@ const Sponsors = () => {
   }, []);
 
   return (
-    <div className="bg-black flex flex-wrap justify-center items-center gap-6 p-6">
+    <div className="bg-darkteal flex flex-wrap justify-center items-center gap-6 p-6">
       {sponsors.map((sponsor, index) => (
         <div
           key={sponsor.name}

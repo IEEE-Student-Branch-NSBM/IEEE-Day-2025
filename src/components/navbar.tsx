@@ -91,7 +91,7 @@ function Navbar() {
               <button
                 className={`px-4 py-2 rounded-full transition-all duration-300 ${
                   scrolled
-                    ? "bg-gray-900 text-white"
+                    ? "bg-darkteal text-white"
                     : "bg-transparent text-black border border-white"
                 }`}
               >
