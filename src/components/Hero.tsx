@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import { LogoSVG } from "@/constants/images";
+import MainDayLogo from "../../public/ieee-logo.svg";
 
 const Hero = () => {
   const imageRef = useRef<HTMLImageElement>(null);
@@ -58,10 +58,10 @@ const Hero = () => {
     <div className="min-h-nav overflow-hidden relative">
       <Image
         ref={imageRef}
-        src={LogoSVG}
+        src={MainDayLogo}
         width={750}
         height={100}
-        alt="IEEE Logo"
+        alt="Main IEEE Day Logo"
         className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-4/9"
       />
     </div>

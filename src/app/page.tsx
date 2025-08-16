@@ -1,12 +1,9 @@
 import Hero from "@/components/Hero";
 
-const HomePage = () => {
+export default function Home() {
   return (
-    <div className="flex flex-col">
+    <div>
       <Hero />
-      <div className="h-[50vh]"></div>
     </div>
   );
-};
-
-export default HomePage;
+}
