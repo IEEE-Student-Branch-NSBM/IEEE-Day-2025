@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+@theme inline {
   --spacing-nav: calc(100vh - 5rem);
+  --font-sans: var(--font-poppins);
 }
