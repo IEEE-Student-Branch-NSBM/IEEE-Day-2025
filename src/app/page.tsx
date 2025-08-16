@@ -1,9 +1,10 @@
-import Hero from "@/components/Hero";
-
+import Hero from "@/components/hero";
+import Sponsors from "@/components/sponsors";
 export default function Home() {
-  return (
-    <div>
-      <Hero />
-    </div>
-  );
+	return (
+		<div>
+			<Hero />
+			<Sponsors />
+		</div>
+	)
 }
