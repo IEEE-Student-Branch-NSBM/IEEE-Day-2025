@@ -1,27 +1,29 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/navbar";
 
 const poppins = Poppins({
-	subsets: ["latin"],
-	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
-	title: "IEEE Day 2025",
-	description: "NSBM Green University",
+  title: "IEEE Day 2025",
+  description: "NSBM Green University",
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html lang="en">
-			<body className={`${poppins.className} antialiased`}>
-				{children}
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en">
+      <body className={`${poppins.className} antialiased`}>
+        <Navbar />
+        {children}
+      </body>
+    </html>
+  );
 }
