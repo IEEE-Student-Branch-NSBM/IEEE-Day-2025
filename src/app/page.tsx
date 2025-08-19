@@ -5,9 +5,9 @@ import Sponsors from "@/components/sponsors";
 const HomePage = () => {
   return (
     <section>
-      <Memories />
       <Hero />
       <Sponsors />
+       <Memories />
     </section>
   );
 };
