@@ -1,62 +1,87 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { useRef } from "react";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-import AesturnumLogo from "../../public/sponsors/Aeturnum.webp";
-import NescafeLogo from "../../public/sponsors/nescafe.webp";
-import OrelitLogo from "../../public/sponsors/orelit.webp";
-import VirtusaLogo from "../../public/sponsors/virtusa.webp";
-import NsbmLogo from "../../public/sponsors/nsbm.webp";
+import gsap from "gsap";
 
-gsap.registerPlugin(useGSAP);
-
-const sponsors = [
-  { name: "Aeturnum", logo: AesturnumLogo, x: 200 },
-  { name: "Nescafe", logo: NescafeLogo, y: -100 },
-  { name: "NSBM", logo: NsbmLogo, x: 200 },
-  { name: "Orelit", logo: OrelitLogo, y: 100 },
-  { name: "Virtusa", logo: VirtusaLogo, x: -200 },
-];
+import nescafe from "../../public/sponsors/nescafe.webp";
 
 const Sponsors = () => {
-  const logoRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const logoRefs = useRef<HTMLDivElement[]>([]);
 
-  useGSAP(() => {
-    sponsors.forEach((sponsor, index) => {
-      const element = logoRefs.current[index];
-      if (!element) return;
+  const logos = [nescafe, nescafe, nescafe, nescafe, nescafe];
 
-      gsap.from(element, {
-        x: sponsor.x || 0,
-        y: sponsor.y || 0,
-        defaultDuration: 1.5,
-        ease: "power2.inOut",
-        duration: 2,
+  useEffect(() => {
+    const enter = (el: HTMLDivElement, fromVars: gsap.TweenVars) =>
+      gsap.fromTo(
+        el,
+        { ...fromVars, opacity: 0 },
+        { x: 0, y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
+      );
+
+    const wait = (duration = 2) => gsap.to({}, { duration });
+
+    const exit = (el: HTMLDivElement, exitVars: gsap.TweenVars) =>
+      gsap.to(el, {
+        ...exitVars,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.in",
       });
+
+    const animateLogo = (
+      el: HTMLDivElement,
+      fromVars: gsap.TweenVars,
+      exitVars: gsap.TweenVars,
+      delay = 0
+    ) => {
+      const tl = gsap.timeline({ repeat: -1, delay });
+      tl.add(enter(el, fromVars)).add(wait(2)).add(exit(el, exitVars));
+    };
+
+    // Function to pick direction based on id % 4
+    const getDirection = (id: number) => {
+      switch (id % 4) {
+        case 0: // Left → Right
+          return { from: { x: -150 }, exit: { x: 150 } };
+        case 1: // Top → Bottom
+          return { from: { y: -150 }, exit: { y: 150 } };
+        case 2: // Right → Left
+          return { from: { x: 150 }, exit: { x: -150 } };
+        case 3: // Bottom → Top
+        default:
+          return { from: { y: 150 }, exit: { y: -150 } };
+      }
+    };
+
+    logoRefs.current.forEach((el, i) => {
+      if (el) {
+        const id = i; // use i directly for mod
+        const dir = getDirection(id);
+        const delay = i * 0.3; // stagger each logo
+        animateLogo(el, dir.from, dir.exit, delay);
+      }
     });
-  }, []);
+  }, [logos.length]);
 
   return (
-    <div className="bg-white/5 backdrop-blur-lg flex flex-wrap justify-center items-center gap-6 p-6 z-50 relative">
-      {sponsors.map((sponsor, index) => (
-        <div
-          key={sponsor.name}
-          className="overflow-hidden p-4"
-        >
-          <Image
-            ref={(el) => {
-              logoRefs.current[index] = el;
-            }}
-            src={sponsor.logo}
-            alt={`${sponsor.name} logo`}
-            className="object-contain"
-            width={180}
-            height={180}
-          />
-        </div>
-      ))}
+    <div className="min-h-nav w-full flex items-center justify-center">
+      <div className="grid bg-white/5 py-10 backdrop-blur-lg grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 w-full justify-items-center">
+        {logos.map((logo, i) => (
+          <div
+            key={i}
+            className="w-fit flex items-center justify-center overflow-hidden"
+          >
+            <div
+              ref={(el) => {
+                logoRefs.current[i] = el!;
+              }}
+            >
+              <Image src={logo} alt={`logo-${i}`} width={120} height={120} />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
