@@ -1,68 +1,48 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import MainDayLogo from "../../public/ieee-logo.svg";
+import { useGSAP } from '@gsap/react';
+import ScrollTrigger from "gsap/ScrollTrigger";
+import PrimaryDayLogo from "../../public/ieee-logo.svg";
+import SecondaryDayLogo from "../../public/logo/day-logo.webp"
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const imageRef = useRef<HTMLImageElement>(null);
-  const scrollCount = useRef(0);
-  const rotationRef = useRef(0);
-  const [unlocked, setUnlocked] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleScroll = (e: WheelEvent) => {
-      if (!unlocked) {
-        e.preventDefault();
-
-        const direction = e.deltaY > 0 ? 1 : -1;
-
-        if (direction > 0) {
-          scrollCount.current += 1;
-          rotationRef.current += 60;
-
-          if (imageRef.current) {
-            gsap.to(imageRef.current, {
-              rotation: rotationRef.current,
-              duration: 0.6,
-              ease: "power2.out",
-            });
-          }
-
-          if (scrollCount.current >= 6) {
-            setUnlocked(true);
-          }
-        }
+  useGSAP(() => {
+    gsap.to(imageRef.current, {
+      rotate: 720,
+      ease: "none",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 2,
       }
-    };
-
-    const preventOtherScroll = (e: Event) => {
-      if (!unlocked) e.preventDefault();
-    };
-
-    window.addEventListener("wheel", handleScroll, { passive: false });
-    window.addEventListener("touchmove", preventOtherScroll, {
-      passive: false,
-    });
-    window.addEventListener("keydown", preventOtherScroll);
-
-    return () => {
-      window.removeEventListener("wheel", handleScroll);
-      window.removeEventListener("touchmove", preventOtherScroll);
-      window.removeEventListener("keydown", preventOtherScroll);
-    };
-  }, [unlocked]);
+    })
+  }, { scope: containerRef });
 
   return (
-    <div className="min-h-nav overflow-hidden relative">
+    <div ref={containerRef} className="h-screen overflow-hidden relative z-50">
       <Image
         ref={imageRef}
-        src={MainDayLogo}
+        src={PrimaryDayLogo}
         width={750}
         height={100}
         alt="Main IEEE Day Logo"
-        className="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-4/9"
+        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2"
+      />
+      <Image
+        src={SecondaryDayLogo}
+        width={400}
+        height={100}
+        alt="Secondary IEEE Day Logo"
+        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2"
       />
     </div>
   );
