@@ -1,11 +1,13 @@
 import Hero from "@/components/hero";
 import Sponsors from "@/components/sponsors";
+import RoadMap from "@/components/roadmap";
 
 const HomePage = () => {
   return (
     <section>
-      <Hero />
-      <Sponsors />
+      {/* <Hero />
+      <Sponsors /> */}
+      <RoadMap />
     </section>
   );
 };
