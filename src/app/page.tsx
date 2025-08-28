@@ -14,7 +14,7 @@ const HomePage = () => {
       <div className="px-40 flex flex-col gap-10">
         <Sponsors />
         <Memories />
-        <About />
+        {/* <About /> */}
         <People />
       </div>
     </section>

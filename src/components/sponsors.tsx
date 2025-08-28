@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import VevoLogo from "../../public/sponsors/vevo-logo.png";
+import { MainTitle, SubTitle } from "./titles";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -69,11 +70,11 @@ const Sponsors = () => {
 
   return (
     <div className="relative z-50 mb-20 text-white">
-      <div className="text-4xl mb-4">Sponsors</div>
-      <div className="max-w-3xl text-xl mb-4">
+      <MainTitle>Sponsors</MainTitle>
+      <SubTitle>
         <div>Our event won't be as wonderful without our sponsors,</div>
         <div>This is our tribute to them.</div>
-      </div>
+      </SubTitle>
       <div
         ref={containerRef}
         className="grid bg-white/5 p-10 backdrop-blur-lg grid-cols-5 gap-10 w-full justify-items-center"
