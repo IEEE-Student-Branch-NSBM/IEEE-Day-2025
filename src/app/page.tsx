@@ -1,10 +1,10 @@
 "use client";
 import Hero from "@/components/hero";
-// import Memories from "@/components/memories";
 import Sponsors from "@/components/sponsors";
 import ParticlesComponent from "@/components/particles-bg";
 import About from "@/components/about";
 import People from "@/components/people";
+import Memories from "@/components/memories";
 
 const HomePage = () => {
   return (
@@ -13,7 +13,7 @@ const HomePage = () => {
       <ParticlesComponent />
       <div className="px-40 flex flex-col gap-10">
         <Sponsors />
-        {/* <Memories /> */}
+        <Memories />
         <About />
         <People />
       </div>
