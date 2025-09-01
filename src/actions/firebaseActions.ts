@@ -1,8 +1,8 @@
 "use server";
 
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../firebase.config";
-import { User } from "@/types/zod";
+import { db } from "../config/firebase";
+import { User } from "@/types/userSchema";
 import { saltAndHashPassword, verifyPassword } from "@/utils/bcrypt";
 
 //user reading and verification function
