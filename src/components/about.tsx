@@ -76,7 +76,7 @@ const About = () => {
     }, []);
 
     return (
-        <div className="relative z-50 mb-20 text-white">
+        <section id="about" className="relative z-50 mb-20 text-white">
             <div className="text-4xl mb-4">About</div>
             <div className="max-w-3xl text-xl mb-4">
                 <div>
@@ -110,7 +110,7 @@ const About = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

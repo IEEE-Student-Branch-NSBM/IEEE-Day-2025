@@ -86,7 +86,7 @@ const People = () => {
     }, [currentPerson]);
 
     return (
-        <div ref={containerRef} className="relative text-white mb-20 z-50">
+        <section id="people" ref={containerRef} className="relative text-white mb-20 z-50">
             <div className="text-4xl mb-4">People</div>
             <div className="max-w-3xl text-xl mb-4">
                 <div>
@@ -147,7 +147,7 @@ const People = () => {
                     )
                 )}
             </div>
-        </div>
+        </section>
     );
 
 }
