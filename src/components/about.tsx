@@ -5,87 +5,85 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import SplitText from "gsap/SplitText";
+import { MainTitle, SubTitle } from "./titles";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const About = () => {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const leftDivRef = useRef<HTMLDivElement>(null);
-    const rightDivRef = useRef<HTMLDivElement>(null);
-    const leftTextRef = useRef<HTMLDivElement>(null);
-    const rightTextRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const leftDivRef = useRef<HTMLDivElement>(null);
+  const rightDivRef = useRef<HTMLDivElement>(null);
+  const leftTextRef = useRef<HTMLDivElement>(null);
+  const rightTextRef = useRef<HTMLDivElement>(null);
 
-    useGSAP(() => {
-        const slideAnimationConfig = {
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: containerRef.current,
-                start: "top 80%",
-                end: "bottom 20%",
-                scrub: 1,
-                toggleActions: "play reverse play reverse"
-            }
-        };
+  useGSAP(() => {
+    const slideAnimationConfig = {
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        end: "bottom 20%",
+        scrub: 1,
+        toggleActions: "play reverse play reverse",
+      },
+    };
 
-        const textAnimationConfig = {
-            y: 100,
-            autoAlpha: 0,
-            stagger: 0.05,
-            scrollTrigger: {
-                start: "top 80%",
-                end: "bottom 20%",
-                toggleActions: "play reverse play reverse"
-            }
-        };
+    const textAnimationConfig = {
+      y: 100,
+      autoAlpha: 0,
+      stagger: 0.05,
+      scrollTrigger: {
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play reverse play reverse",
+      },
+    };
 
-        const textSplits = [
-            { ref: leftTextRef, split: null as any },
-            { ref: rightTextRef, split: null as any }
-        ];
+    const textSplits = [
+      { ref: leftTextRef, split: null as any },
+      { ref: rightTextRef, split: null as any },
+    ];
 
-        textSplits.forEach(item => {
-            item.split = SplitText.create(item.ref.current, { type: "words" });
-        });
+    textSplits.forEach((item) => {
+      item.split = SplitText.create(item.ref.current, { type: "words" });
+    });
 
-        const slideAnimations = [
-            { ref: leftDivRef, fromX: "-100%" },
-            { ref: rightDivRef, fromX: "100%" }
-        ];
+    const slideAnimations = [
+      { ref: leftDivRef, fromX: "-100%" },
+      { ref: rightDivRef, fromX: "100%" },
+    ];
 
-        slideAnimations.forEach(({ ref, fromX }) => {
-            gsap.fromTo(ref.current,
-                { x: fromX, opacity: 0 },
-                { x: "0%", opacity: 1, ...slideAnimationConfig }
-            );
-        });
+    slideAnimations.forEach(({ ref, fromX }) => {
+      gsap.fromTo(
+        ref.current,
+        { x: fromX, opacity: 0 },
+        { x: "0%", opacity: 1, ...slideAnimationConfig }
+      );
+    });
 
-        textSplits.forEach(({ split }, index) => {
-            const triggerRef = index === 0 ? leftDivRef : rightDivRef;
-            gsap.from(split.words, {
-                ...textAnimationConfig,
-                scrollTrigger: {
-                    ...textAnimationConfig.scrollTrigger,
-                    trigger: triggerRef.current
-                }
-            });
-        });
+    textSplits.forEach(({ split }, index) => {
+      const triggerRef = index === 0 ? leftDivRef : rightDivRef;
+      gsap.from(split.words, {
+        ...textAnimationConfig,
+        scrollTrigger: {
+          ...textAnimationConfig.scrollTrigger,
+          trigger: triggerRef.current,
+        },
+      });
+    });
 
-        return () => {
-            textSplits.forEach(({ split }) => split.revert());
-        };
-    }, []);
-
+    return () => {
+      textSplits.forEach(({ split }) => split.revert());
+    };
+  }, []);
+  
     return (
         <section id="about" className="relative z-50 mb-20 text-white">
-            <div className="text-4xl mb-4">About</div>
-            <div className="max-w-3xl text-xl mb-4">
-                <div>
-                    Maybe you're wondereing what all of these means,
-                </div>
-                <div>
-                    Don't worry we got you.
-                </div>
-            </div>
+            <MainTitle>About</MainTitle>
+            <SubTitle>
+              <div>Maybe you're wondereing what all of these means,</div>
+              <div>Don't worry we got you.</div>
+            </SubTitle>
             <div ref={containerRef} className='w-full flex gap-10 items-center justify-center'>
                 <div ref={leftDivRef} className='bg-white/5 backdrop-blur-lg h-160 w-full flex flex-col items-center justify-center p-10'>
                     <div className="text-4xl mb-4">What is IEEE?</div>
@@ -114,4 +112,4 @@ const About = () => {
     )
 }
 
-export default About
+export default About;

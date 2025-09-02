@@ -1,10 +1,11 @@
-"use client"
+"use client";
 
 import { useState, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { MainTitle, SubTitle } from "./titles";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -87,18 +88,14 @@ const People = () => {
 
     return (
         <section id="people" ref={containerRef} className="relative text-white mb-20 z-50">
-            <div className="text-4xl mb-4">People</div>
-            <div className="max-w-3xl text-xl mb-4">
-                <div>
-                    Organizing a event of this scale is no small feet,
-                </div>
-                <div>
-                    A lot of people spent their time to make this event a success,
-                </div>
-                <div>
-                    These are some of them.
-                </div>
-            </div>
+            <MainTitle>People</MainTitle>
+            <SubTitle>
+              <div>Organizing a event of this scale is no small feet,</div>
+              <div>
+                A lot of people spent their time to make this event a success,
+              </div>
+              <div>These are some of them.</div>
+            </SubTitle>
             <div ref={cardsContainerRef} className="flex !h-[600px] gap-4 overflow-hidden">
                 {people.map((person, index) =>
                     currentPerson === index ? (

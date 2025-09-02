@@ -32,17 +32,13 @@ const Hero = () => {
       <Image
         ref={imageRef}
         src={IeeeDayLogo}
-        width={750}
-        height={100}
         alt="Main IEEE Day Logo"
-        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2"
+        className="absolute w-[300] md:w-[550] h-auto left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2"
       />
       <Image
         src={IeeeDayLogo2025}
-        width={400}
-        height={100}
         alt="Secondary IEEE Day Logo"
-        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2"
+        className="absolute w-[150] md:w-[250] h-auto left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2"
       />
     </div>
   );
