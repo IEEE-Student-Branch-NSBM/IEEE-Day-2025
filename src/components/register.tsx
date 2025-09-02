@@ -169,7 +169,7 @@ const Register = () => {
             console.log(data);
             const result = await createUser(data);
             if (result) {
-                setSubmitMessage({ type: 'success', message: 'Registration successful! Welcome to IEEE Day 2025!' });
+                setSubmitMessage({ type: 'success', message: 'Registration successful! Use the credentials to login to the platform.' });
             } else {
                 setSubmitMessage({ type: 'error', message: 'Registration failed. Please try again.' });
             }
@@ -386,15 +386,7 @@ const Register = () => {
                 </div>
             </div>
             <div className="flex items-start justify-center gap-8">
-                <div className="bg-white/5 text-white backdrop-blur-lg flex flex-col p-6">
-                    {/* {submitMessage.type && (
-                        <div className={`p-4 mb-6 ${submitMessage.type === 'success'
-                            ? 'bg-teal-500/20'
-                            : 'bg-red-500/20'
-                            }`}>
-                            {submitMessage.message}
-                        </div>
-                    )} */}
+                <div className="bg-white/5 text-white backdrop-blur-lg flex flex-col p-6 h-[700px]">
                     <form onSubmit={handleSubmit(onSubmit)} ref={containerFormRef} className="flex-1">
                         <div className="flex gap-6">
                             <div className="flex-1">
@@ -419,6 +411,14 @@ const Register = () => {
                             )}
                         </button>
                     </form>
+                    {submitMessage.type && (
+                        <div className={`absolute bottom-0 translate-x-1/2 p-4 mb-6 ${submitMessage.type === 'success'
+                            ? 'bg-teal-500/20'
+                            : 'bg-red-500/20'
+                            }`}>
+                            {submitMessage.message}
+                        </div>
+                    )}
                 </div>
                 <div className="flex items-center justify-center">
                     <div className="h-[700px] w-full flex">
