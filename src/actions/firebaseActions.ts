@@ -1,8 +1,8 @@
 "use server";
 
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../firebase.config";
-import { User } from "@/types/zod";
+import { db } from "../config/firebase";
+import { User } from "@/types/userSchema";
 import { saltAndHashPassword, verifyPassword } from "@/utils/bcrypt";
 
 //user reading and verification function
@@ -27,8 +27,19 @@ export async function readUser(
     }
 
     return {
+      id: userDoc.id,
+      full_name: userData.full_name,
       email: userData.email,
       password: userData.password,
+      phone_number: userData.phone_number,
+      food_preference: userData.food_preference,
+      gender: userData.gender,
+      nic: userData.nic,
+      university_name: userData.university_name,
+      ieee_membership_id: userData.ieee_membership_id,
+      preferred_track_based_session: userData.preferred_track_based_session,
+      github_profile: userData.github_profile,
+      linkedin_profile: userData.linkedin_profile,
     };
   } catch (e) {
     console.error(e);

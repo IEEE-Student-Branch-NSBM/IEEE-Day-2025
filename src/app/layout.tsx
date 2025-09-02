@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { poppins } from "@/utils/fonts";
+import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
 
@@ -15,8 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable}`}>
+    <html lang="en" className={`${poppins.variable} scroll-smooth select-none`}>
       <body className="flex flex-col min-h-screen antialiased bg-mintwhite">
+        <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
       </body>

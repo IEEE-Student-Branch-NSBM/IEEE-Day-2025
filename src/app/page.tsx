@@ -1,21 +1,25 @@
 "use client";
 import Hero from "@/components/hero";
 import Sponsors from "@/components/sponsors";
-import ParticlesComponent from "@/components/particles-bg";
 import About from "@/components/about";
 import People from "@/components/people";
+import Chat from "@/components/chat";
+import Register from "@/components/register";
+import ParticlesBg from "@/components/particlesBg";
 import Memories from "@/components/memories";
 
 const HomePage = () => {
   return (
-    <section>
+    <section id="home">
       <Hero />
-      <ParticlesComponent />
+      <ParticlesBg />
       <div className="px-40 flex flex-col gap-10">
         <Sponsors />
         <Memories />
-        {/* <About /> */}
+        <About />
         <People />
+        <Chat />
+        <Register />
       </div>
     </section>
   );

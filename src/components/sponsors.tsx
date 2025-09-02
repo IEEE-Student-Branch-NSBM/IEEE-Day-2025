@@ -69,7 +69,7 @@ const Sponsors = () => {
   }, [logos.length]);
 
   return (
-    <div className="relative z-50 mb-20 text-white">
+    <section id="sponsors" className="relative z-50 mb-20 text-white">
       <MainTitle>Sponsors</MainTitle>
       <SubTitle>
         <div>Our event won't be as wonderful without our sponsors,</div>
@@ -94,7 +94,7 @@ const Sponsors = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
