@@ -161,7 +161,7 @@ const Hero = () => {
   ]
 
   return (
-    <div ref={containerRef} className="h-screen overflow-hidden relative z-50">
+    <div id="home" ref={containerRef} className="h-screen overflow-hidden relative z-50">
       <Image
         ref={imageRef}
         src={IeeeDayLogoOuter}
