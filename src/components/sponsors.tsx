@@ -1,63 +1,103 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
-import { gsap } from "gsap";
+import Image from "next/image";
+import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import AesturnumLogo from "../../public/sponsors/Aeturnum.webp";
-import NescafeLogo from "../../public/sponsors/nescafe.webp";
-import OrelitLogo from "../../public/sponsors/orelit.webp";
-import VirtusaLogo from "../../public/sponsors/virtusa.webp";
-import NsbmLogo from "../../public/sponsors/nsbm.webp";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import VevoLogo from "../../public/sponsors/vevo-logo.png";
 
-gsap.registerPlugin(useGSAP);
-
-const sponsors = [
-  { name: "Aeturnum", logo: AesturnumLogo, x: 200 },
-  { name: "Nescafe", logo: NescafeLogo, y: -100 },
-  { name: "NSBM", logo: NsbmLogo, x: 200 },
-  { name: "Orelit", logo: OrelitLogo, y: 100 },
-  { name: "Virtusa", logo: VirtusaLogo, x: -200 },
-];
+gsap.registerPlugin(ScrollTrigger);
 
 const Sponsors = () => {
-  const logoRefs = useRef<(HTMLImageElement | null)[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const logoRefs = useRef<HTMLDivElement[]>([]);
+
+  const logos = [VevoLogo, VevoLogo, VevoLogo, VevoLogo, VevoLogo];
 
   useGSAP(() => {
-    sponsors.forEach((sponsor, index) => {
-      const element = logoRefs.current[index];
-      if (!element) return;
+    const animationConfig = {
+      duration: 2,
+      ease: "power3.out",
+      repeat: -1,
+      yoyo: true,
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play reverse play reverse",
+      },
+    };
 
-      gsap.from(element, {
-        x: sponsor.x || 0,
-        y: sponsor.y || 0,
-        defaultDuration: 1.5,
-        ease: "power2.inOut",
-        duration: 2,
-      });
+    const getDirection = (id: number) => {
+      switch (id % 4) {
+        case 0:
+          return { x: -150, y: 0 };
+        case 1:
+          return { x: 0, y: -150 };
+        case 2:
+          return { x: 150, y: 0 };
+        case 3:
+        default:
+          return { x: 0, y: 150 };
+      }
+    };
+
+    logoRefs.current.forEach((el, i) => {
+      if (el) {
+        const direction = getDirection(i);
+        const delay = i * 0.3;
+
+        gsap.fromTo(
+          el,
+          {
+            x: direction.x,
+            y: direction.y,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            y: 0,
+            opacity: 1,
+            delay,
+            ...animationConfig,
+          }
+        );
+      }
     });
-  }, []);
+  }, [logos.length]);
 
   return (
-    <div className="bg-darkteal flex flex-wrap justify-center items-center gap-6 p-6">
-      {sponsors.map((sponsor, index) => (
-        <div
-          key={sponsor.name}
-          className="overflow-hidden p-4"
-        >
-          <Image
-            ref={(el) => {
-              logoRefs.current[index] = el;
-            }}
-            src={sponsor.logo}
-            alt={`${sponsor.name} logo`}
-            className="object-contain"
-            width={180}
-            height={180}
-          />
+    <section id="sponsor" className="relative z-50 mb-20 text-white">
+      <div className="text-4xl mb-4">Sponsors</div>
+      <div className="max-w-3xl text-xl mb-4">
+        <div>
+          Our event won't be as wonderful without our sponsors,
         </div>
-      ))}
-    </div>
+        <div>
+          This is our tribute to them.
+        </div>
+      </div>
+      <div
+        ref={containerRef}
+        className="grid bg-white/5 p-10 backdrop-blur-lg grid-cols-5 gap-10 w-full justify-items-center"
+      >
+        {logos.map((logo, i) => (
+          <div
+            key={i}
+            className="w-fit p-4 flex items-center justify-center overflow-hidden"
+          >
+            <div
+              ref={(el) => {
+                logoRefs.current[i] = el!;
+              }}
+            >
+              <Image src={logo} alt={`logo-${i}`} width={200} height={200} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 
