@@ -68,7 +68,7 @@ const Sponsors = () => {
   }, [logos.length]);
 
   return (
-    <section id="sponsors" className="relative z-50 mb-20 text-white">
+    <section id="sponsor" className="relative z-50 mb-20 text-white">
       <div className="text-4xl mb-4">Sponsors</div>
       <div className="max-w-3xl text-xl mb-4">
         <div>

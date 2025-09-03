@@ -22,7 +22,6 @@ const About = () => {
                 trigger: containerRef.current,
                 start: "top 80%",
                 end: "bottom 20%",
-                scrub: 1,
                 toggleActions: "play reverse play reverse"
             }
         };
@@ -54,8 +53,8 @@ const About = () => {
 
         slideAnimations.forEach(({ ref, fromX }) => {
             gsap.fromTo(ref.current,
-                { x: fromX, opacity: 0 },
-                { x: "0%", opacity: 1, ...slideAnimationConfig }
+                { transform: `translateX(${fromX})`, opacity: 0 },
+                { transform: "translateX(0)", opacity: 1, ...slideAnimationConfig }
             );
         });
 
@@ -86,10 +85,10 @@ const About = () => {
                     Don't worry we got you.
                 </div>
             </div>
-            <div ref={containerRef} className='w-full flex gap-10 items-center justify-center'>
-                <div ref={leftDivRef} className='bg-white/5 backdrop-blur-lg h-160 w-full flex flex-col items-center justify-center p-10'>
-                    <div className="text-4xl mb-4">What is IEEE?</div>
-                    <div ref={leftTextRef} className="text-justify text-xl ">
+            <div ref={containerRef} className='flex gap-6 overflow-hidden'>
+                <div ref={leftDivRef} className='bg-white/5 backdrop-blur-lg min-h-96 w-full flex flex-col justify-start p-10'>
+                    <div className="text-4xl mb-4 text-center">What is IEEE?</div>
+                    <div ref={leftTextRef} className="text-justify text-xl leading-relaxed">
                         IEEE Student Branch of NSBM Green University is on a mission to
                         inspire and empower students in 2024! We're pushing the boundaries
                         of innovation and personal growth, collaborating with the IEEE
@@ -98,9 +97,9 @@ const About = () => {
                         the way for future leaders in technology.
                     </div>
                 </div>
-                <div ref={rightDivRef} className='bg-white/5 backdrop-blur-lg h-160 w-full flex flex-col items-center justify-center p-10'>
-                    <div className="text-4xl mb-4">What is IEEE Day?</div>
-                    <div ref={rightTextRef} className="text-justify text-xl ">
+                <div ref={rightDivRef} className='bg-white/5 backdrop-blur-lg min-h-96 w-full flex flex-col justify-start p-6 lg:p-10'>
+                    <div className="text-4xl mb-4 text-center">What is IEEE Day?</div>
+                    <div ref={rightTextRef} className="text-justify text-xl leading-relaxed">
                         Since 2018, IEEE Day has united the community with events starting
                         with lectures on IoT and Data-Driven Civilization. In 2019 and
                         2020, it transitioned to a virtual format due to the pandemic. In

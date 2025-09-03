@@ -52,9 +52,8 @@ const People = () => {
             ease: "power2.out",
             scrollTrigger: {
                 trigger: containerRef.current,
-                start: "top 80%",
-                end: "bottom 20%",
-                scrub: 1,
+                start: "top 90%",
+                end: "bottom 10%",
                 toggleActions: "play reverse play reverse"
             }
         };
@@ -76,7 +75,7 @@ const People = () => {
                         ease: "power2.out",
                         scrollTrigger: {
                             trigger: cardsContainerRef.current,
-                            start: "top 80%",
+                            start: "top 90%",
                             toggleActions: "play reverse play reverse"
                         }
                     }

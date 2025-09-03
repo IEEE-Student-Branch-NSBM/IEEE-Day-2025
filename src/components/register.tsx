@@ -375,7 +375,7 @@ const Register = () => {
 
 
     return (
-        <div className="relative z-50 p-4 text-white h-screen">
+        <div id="register" className="relative z-50 p-4 text-white h-screen">
             <div className="text-4xl mb-4">Register</div>
             <div className="max-w-3xl text-xl mb-4">
                 <div>
