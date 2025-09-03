@@ -1,163 +1,115 @@
 "use client";
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import SplitText from "gsap/SplitText";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const RoadMap = () => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  //dummy data
-  const contactUsData = [
+  const flow = [
     {
       id: 1,
-      name: "john doe",
-      title: "Development team lead",
-      imgUrl: "https://via.placeholder.com/150",
-      linkedin: "https://www.linkedin.com/in/johndoe",
-      email: "john.doe@example.com",
-      phone: "+1 (555) 123-4567",
+      name: "",
+      description: "",
     },
     {
       id: 2,
-      name: "jane smith",
-      title: "Marketing Specialist",
-      imgUrl: "https://via.placeholder.com/150",
-      linkedin: "https://www.linkedin.com/in/janesmith",
-      email: "jane.smith@example.com",
-      phone: "+1 (555) 987-6543",
+      name: "",
+      description: "",
     },
     {
       id: 3,
-      name: "alice johnson",
-      title: "UX/UI Designer",
-      imgUrl: "https://via.placeholder.com/150",
-      linkedin: "https://www.linkedin.com/in/alicejohnson",
-      email: "alice.johnson@example.com",
-      phone: "+1 (555) 555-5555",
+      name: "",
+      description: "",
     },
     {
       id: 4,
-      name: "bob brown",
-      title: "Data Scientist",
-      imgUrl: "https://via.placeholder.com/150",
-      linkedin: "https://www.linkedin.com/in/bobbrown",
-      email: "bob.brown@example.com",
-      phone: "+1 (555) 111-2222",
+      name: "",
+      description: "",
     },
   ];
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      cardRefs.current.forEach((card, i) => {
-        if (!card) return;
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 80%",
-            },
-          }
-        );
+  useGSAP(() => {
+    cardRefs.current.forEach((card, i) => {
+      if (!card) return;
 
-        gsap.fromTo(
-          card,
-          { x: 0 },
-          {
-            x: i % 2 === 0 ? -150 : 150,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: "top 5%",
-            },
-          }
-        );
-      });
-    }, containerRef);
+      gsap.fromTo(
+        card,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
 
-    return () => ctx.revert();
+      gsap.fromTo(
+        card,
+        { x: 0 },
+        {
+          x: i % 2 === 0 ? -150 : 150,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+    });
   }, []);
 
   return (
     <section
       ref={containerRef}
-      className="h-screen flex flex-row items-center justify-center bg-gray-50 overflow-hidden"
+      className="flex flex-row items-center justify-center overflow-hidden text-white"
     >
       <div className="w-3/7 h-150 flex mx-auto">
         <div className="w-full flex items-center justify-center">
-          {contactUsData.slice(0, 2).map((person, i) => (
+          {flow.slice(0, 2).map((person, i) => (
             <div
               key={person.id}
               ref={(el) => { cardRefs.current[i] = el; }}
               className={`absolute ${i === 0 ? "z-10" : "z-5"}`}
             >
-              <div className="w-sm h-120 rounded-2xl bg-purple-200 flex flex-col items-center justify-center shadow-lg">
-                <div className="mb-4">
-                  <img
-                    src={person.imgUrl}
-                    alt={person.name}
-                    className="w-24 h-24 object-cover"
-                  />
+              <div className="w-sm h-120 bg-white/5 backdrop-blur-lg flex flex-col items-center justify-center">
+                <div className="">
                 </div>
-                <h1 className="text-xl font-semibold">{person.title}</h1>
-                <p className="text-xl font-semibold">{person.name}</p>
-                <div>
-                  <p className="text-sm">Email: {person.email}</p>
-                  <p className="text-sm">Phone: {person.phone}</p>
-                  <a
-                    href={person.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 underline"
-                  >
-                    LinkedIn
-                  </a>
-                </div>
+                <div className="">{person.description}</div>
+                <div className="">{person.name}</div>
               </div>
             </div>
           ))}
         </div>
       </div>
-
       <div className="w-3/7 h-150 flex mx-auto">
         <div className="w-full flex items-center justify-center">
-          {contactUsData.slice(2, 4).map((person, i) => (
+          {flow.slice(2, 4).map((person, i) => (
             <div
               key={person.id}
               ref={(el) => { cardRefs.current[i + 2] = el; }}
               className={`absolute ${i === 0 ? "z-10" : "z-5"}`}
             >
-              <div className="w-sm h-120 rounded-2xl bg-purple-200 flex flex-col items-center justify-center shadow-lg">
-                <div className="mb-4">
-                  <img
-                    src={person.imgUrl}
-                    alt={person.name}
-                    className="w-24 h-24 object-cover"
-                  />
+              <div className="w-sm h-120 bg-white/5 backdrop-blur-lg flex flex-col items-center justify-center">
+                <div className="">
                 </div>
-                <h1 className="text-xl font-semibold">{person.title}</h1>
-                <p className="text-xl font-semibold">{person.name}</p>
-                <div>
-                  <p className="text-sm">Email: {person.email}</p>
-                  <p className="text-sm">Phone: {person.phone}</p>
-                  <a
-                    href={person.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 underline"
-                  >
-                    LinkedIn
-                  </a>
-                </div>
+                <div className="">{person.description}</div>
+                <div className="">{person.name}</div>
               </div>
             </div>
           ))}
