@@ -10,15 +10,15 @@ const Footer = () => {
     const logos = [SbLogo, CsLogo, WieLogo];
 
     return (
-        <div className="w-full h-80 bg-white/5 backdrop-blur-lg z-50 overflow-hidden">
+        <div className="w-full h-40 bg-white/5 backdrop-blur-lg z-50 overflow-hidden">
             <div className="flex items-center justify-center h-full gap-40">
                 {logos.map((logo, index) => (
                     <Image
                         key={index}
                         src={logo}
                         alt={`IEEE Logo ${index + 1}`}
-                        width={400}
-                        height={400}
+                        width={200}
+                        height={200}
                         className="object-contain"
                     />
                 ))}
