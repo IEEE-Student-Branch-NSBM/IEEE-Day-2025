@@ -76,9 +76,9 @@ const ParticlesBg = () => {
                         "mode": "push"
                     },
                     "onDiv": {
-                        "selectors": {},
+                        "selectors": undefined,
                         "enable": false,
-                        "mode": {},
+                        "mode": undefined,
                         "type": "circle"
                     },
                     "onHover": {
@@ -261,9 +261,9 @@ const ParticlesBg = () => {
                     "close": true,
                     "fill": true,
                     "options": {},
-                    "type": {}
+                    "type": undefined
                 },
-                "groups": [],
+                "groups": {},
                 "move": {
                     "angle": {
                         "offset": 0,
