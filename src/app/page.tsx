@@ -1,13 +1,28 @@
+"use client";
 import Hero from "@/components/hero";
-import Memories from "@/components/memories";
+// import Memories from "@/components/memories";
 import Sponsors from "@/components/sponsors";
+import About from "@/components/about";
+import People from "@/components/people";
+import Chat from "@/components/chat";
+import Register from "@/components/register";
+import ParticlesBg from "@/components/particlesBg";
+import RoadMap from "@/components/roadmap";
 
 const HomePage = () => {
   return (
-    <section>
+    <section id="home">
       <Hero />
-      <Sponsors />
-       <Memories />
+      <ParticlesBg />
+      <div className="px-40 flex flex-col gap-10">
+        <Sponsors />
+        {/* <Memories /> */}
+        <About />
+        <People />
+        <RoadMap />
+        <Chat />
+        <Register />
+      </div>
     </section>
   );
 };

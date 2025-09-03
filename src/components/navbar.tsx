@@ -1,152 +1,59 @@
-"use client";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef, useState } from "react";
-import { HiMenu, HiX } from "react-icons/hi";
-import Image from "next/image";
-import dayLogo from "../../public/logo/day-logo.webp";
+'use client'
 
-gsap.registerPlugin(ScrollTrigger);
+import Link from 'next/link'
+import { useState, useEffect } from 'react'
 
-const links = [
-  { name: "Home", href: "home" },
-  { name: "Contact Us", href: "contact" },
-  { name: "Sponsors", href: "sponsors" },
-  { name: "Memories", href: "memories" },
-];
-
-function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // const navRef = useRef(null);
-  const [scrolled, setScrolled] = useState(false);
+const Navbar = () => {
+  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+      const sections = ['home', 'sponsor', 'about', 'people', 'chat', 'register']
+      let currentSection = 'home'
 
-  const scrollToSection = (id: string) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      // checks which section is mostly within the viewport
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          if (rect.top <= window.innerHeight / 2) {
+            currentSection = section
+          }
+        }
+      }
+
+      setActiveSection(currentSection)
     }
-    setMobileMenuOpen(false);
-  };
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const navItems = [
+    { href: '#home', label: 'Home', section: 'home' },
+    { href: '#sponsor', label: 'Sponsor', section: 'sponsor' },
+    { href: '#about', label: 'About', section: 'about' },
+    { href: '#people', label: 'People', section: 'people' },
+    { href: '#chat', label: 'Chat', section: 'chat' },
+    { href: '#register', label: 'Register', section: 'register' },
+  ]
 
   return (
-    <header
-      className={`sticky top-0 left-0 w-full transition-colors duration-300 z-[999] ${
-        scrolled ? "bg-white shadow-md" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-[1440px] mx-auto px-4 py-3 ">
-        <nav className="flex items-center justify-between">
-          {/* Logo */}
-          <button onClick={() => scrollToSection("home")} className="z-20">
-            <Image
-              src={dayLogo}
-              alt="IEEE Logo"
-              className="w-[100px] md:w-[250px] object-contain"
-              priority
-            />
-          </button>
-
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-6 relative w-full">
-            <ul
-              className={`flex gap-14 text-base font-semibold rounded-full px-10 py-4 absolute left-1/2 -translate-x-1/2 transition-all duration-300
-                              ${
-                                scrolled
-                                  ? "bg-white shadow-none"
-                                  : "bg-white shadow"
-                              }`}
-            >
-              {links.map((link, idx) => (
-                <li key={idx}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className={`transition duration-300
-                                        ${
-                                          scrolled
-                                            ? "hover:text-blue-500"
-                                            : "hover:text-blue-500"
-                                        }`}
-                  >
-                    {link.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-
-            {/* Right Buttons */}
-            <div className="ml-auto flex gap-4">
-              <button
-                className={`px-4 py-2 rounded-full transition-all duration-300 ${
-                  scrolled
-                    ? "bg-darkteal text-white"
-                    : "bg-transparent text-black border border-white"
-                }`}
-              >
-                Register
-              </button>
-              <button className="bg-[#b39ddb] text-black rounded-full px-4 py-2 hover:opacity-90 transition">
-                Sign Up
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden z-20"
-          >
-            {mobileMenuOpen ? (
-              <HiX
-                size={28}
-                className={scrolled ? "text-black" : "text-white"}
-              />
-            ) : (
-              <HiMenu
-                size={28}
-                className={scrolled ? "text-black" : "text-white"}
-              />
-            )}
-          </button>
-        </nav>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden flex flex-col items-center gap-4 py-4 bg-black/90">
-            {links.map((link, idx) => (
-              <button
-                key={idx}
-                onClick={() => scrollToSection(link.href)}
-                className="text-white hover:text-blue-500 transition duration-300"
-              >
-                {link.name}
-              </button>
-            ))}
-            <div className="flex gap-4 mt-4">
-              <button className="bg-white text-black rounded-lg px-4 py-2 hover:bg-gray-200 transition">
-                Register
-              </button>
-              <button className="bg-white text-black rounded-lg px-4 py-2 hover:bg-gray-200 transition">
-                Sign Up
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-    </header>
-  );
+    <div className="fixed bg-white/5 backdrop-blur-lg top-0 right-1/2 translate-x-1/2 z-100 flex gap-12 text-white transition-all duration-300 p-8">
+      {navItems.map((item) => (
+        <Link
+          key={item.section}
+          href={item.href}
+          className={`m-auto hover:scale-110 transition-all duration-300 ${activeSection === item.section
+            ? 'font-semibold text-2xl'
+            : 'text-xl'
+            }`}
+        >
+          {item.label}
+        </Link>
+      ))}
+    </div>
+  )
 }
 
-export default Navbar;
+export default Navbar

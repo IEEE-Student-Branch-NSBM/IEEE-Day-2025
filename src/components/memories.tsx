@@ -135,6 +135,7 @@ function Memories() {
     });
   };
 
+
   const renderSection = (
     title: string,
     description: string,
