@@ -1,16 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import NsbmLogo from "../../public/logos/nsbm-logo.png"
 import SbLogo from "../../public/logos/ieee-nsbm-sb-logo.png"
 import CsLogo from "../../public/logos/ieee-nsbm-cs-logo.png"
 import WieLogo from "../../public/logos/ieee-nsbm-wie-logo.png"
 
 const Footer = () => {
 
-    const logos = [SbLogo, CsLogo, WieLogo];
+    const logos = [SbLogo, CsLogo, WieLogo, NsbmLogo ];
 
     return (
-        <div className="w-full h-40 bg-white/5 backdrop-blur-lg z-50 overflow-hidden">
+        <div className="relative z-50 w-full h-40 bg-white/5 backdrop-blur-lg overflow-hidden">
             <div className="flex items-center justify-center h-full gap-40">
                 {logos.map((logo, index) => (
                     <Image

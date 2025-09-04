@@ -42,7 +42,7 @@ export const UserSchema = z.object({
     .or(z.literal("")),
   ieee_membership_id: z
     .string()
-    .regex(/^[0-9]{8}$/, "IEEE Membership ID must be 8 digits")
+    .regex(/^[0-9]{8,10}$/, "IEEE Membership ID must be 8-10 digits")
     .optional()
     .or(z.literal("")),
   preferred_track_based_session: z

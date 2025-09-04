@@ -17,7 +17,7 @@ const Hero = () => {
 
   useGSAP(() => {
     gsap.to(imageRef.current, {
-      rotate: 720,
+      rotate: 360,
       ease: "none",
       scrollTrigger: {
         trigger: containerRef.current,

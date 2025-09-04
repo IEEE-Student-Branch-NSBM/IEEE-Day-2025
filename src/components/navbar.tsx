@@ -8,7 +8,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'sponsor', 'about', 'people', 'chat', 'register']
+      const sections = ['home', 'sponsor', 'about', 'memories', 'roadmap', 'people', 'chat', 'register']
       let currentSection = 'home'
 
       // checks which section is mostly within the viewport
@@ -33,6 +33,8 @@ const Navbar = () => {
     { href: '#home', label: 'Home', section: 'home' },
     { href: '#sponsor', label: 'Sponsor', section: 'sponsor' },
     { href: '#about', label: 'About', section: 'about' },
+    { href: '#memories', label: 'Memories', section: 'memories' },
+    { href: '#roadmap', label: 'Roadmap', section: 'roadmap' },
     { href: '#people', label: 'People', section: 'people' },
     { href: '#chat', label: 'Chat', section: 'chat' },
     { href: '#register', label: 'Register', section: 'register' },

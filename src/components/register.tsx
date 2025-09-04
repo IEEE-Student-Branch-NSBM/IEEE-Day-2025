@@ -256,7 +256,7 @@ const Register = () => {
                         )}
                         {fieldName === 'ieee_membership_id' && !error && (
                             <div className="text-white text-sm">
-                                8-digit IEEE membership number (optional)
+                                8-10 digit IEEE membership number (optional)
                             </div>
                         )}
                         {fieldName === 'nic' && !error && (
@@ -358,7 +358,7 @@ const Register = () => {
 
                 <div className="bg-white/10 p-3">
                     <div className="text-xs uppercase tracking-wide">IEEE Member ID</div>
-                    <div className="text-sm font-mono">
+                    <div className="text-sm">
                         {ieee_membership_id || 'XXXXXXXX (Optional)'}
                     </div>
                 </div>

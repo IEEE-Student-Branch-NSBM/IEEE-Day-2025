@@ -16,10 +16,10 @@ const HomePage = () => {
       <ParticlesBg />
       <div className="px-40 flex flex-col gap-10">
         <Sponsors />
-        <Memories />
         <About />
-        <People />
+        <Memories />
         <RoadMap />
+        <People />
         <Chat />
         <Register />
       </div>

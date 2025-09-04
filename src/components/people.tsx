@@ -18,33 +18,54 @@ const People = () => {
         {
             name: "Sithum Sankajith",
             contribution:
-                "Chair Person",
+                "IEEE Day 2025 - Ambassador",
             image: null,
         },
         {
             name: "Udara Rathnapala",
             contribution:
-                "Program Team Lead",
+                "Program Team",
             image: null,
+        },
+        {
+            name: "Benoli Senanayake",
+            contribution:
+                "Finance Team",
+            image: null,
+        },
+        {
+            name: "Isunima Yalindi",
+            contribution:
+                "Secretary Team",
+            image: null,
+        },
+        {
+            name: "Maleesha Wickramanayake",
+            contribution:
+                "Logistic Team",
+            image: null,
+        },
+        {
+            name: "Akila Lakshitha",
+            contribution:
+                "Design Team",
+            image: null,
+        },
+        {
+            name: "Mahen Sandeepa",
+            contribution: "",
+            image: null
         },
         {
             name: "Akash De Silva",
-            contribution:
-                "Development Team Lead",
-            image: null,
+            contribution: "Development Team",
+            image: null
         },
         {
-            name: "Benoli Siriwardana",
-            contribution:
-                "Publicity Team Lead",
-            image: null,
-        },
-        {
-            name: "Isunima Fernando",
-            contribution:
-                "Secretary Team Lead",
-            image: null,
-        },
+            name: "Methmi Savindya",
+            contribution: "",
+            image: null
+        }
     ];
 
     useGSAP(() => {
@@ -82,7 +103,7 @@ const People = () => {
                 );
             });
         }
-    }, [currentPerson]);
+    }, []);
 
     return (
         <section id="people" ref={containerRef} className="relative text-white mb-20 z-50">
@@ -133,7 +154,7 @@ const People = () => {
                     ) : (
                         <div
                             key={index}
-                            className="bg-white/5 w-40 cursor-pointer hover:scale-105 transition-all duration-300"
+                            className="bg-white/5 w-20 cursor-pointer hover:scale-105 transition-all duration-300"
                             onClick={() => {
                                 setCurrentPerson(index);
                                 setIsShown(!isShown);
