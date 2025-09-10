@@ -8,12 +8,15 @@ interface Message {
 }
 
 const Chat = () => {
+    //state variables
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+
+    //ref for scrolling 
     const containerRef = useRef<HTMLDivElement | null>(null);
 
-    // auto scroll to the bottom
+    // auto scroll to the bottom when messages update
     useEffect(() => {
         if (containerRef.current) {
             containerRef.current.scrollTop = containerRef.current.scrollHeight;
@@ -31,7 +34,7 @@ const Chat = () => {
         };
 
         setMessages(prev => [...prev, userMessage]);
-        setInputValue('');
+        setInputValue(''); 
         setIsLoading(true);
 
         try {
@@ -72,19 +75,15 @@ const Chat = () => {
     };
 
     return (
-        <div id="chat" className='relative z-50 text-white mb-20'>
-            <div className="text-4xl mb-4">Chat</div>
-            <div className="max-w-3xl text-xl mb-4">
-                <div>
-                    Have questions?
-                </div>
-                <div>
-                    Type what's on your mind into our chatbot.
-                </div>
-                <div>
-                    You'll find your answers right here.
-                </div>
+        <div id="chat" className="relative z-50 text-white mb-20 px-2 sm:px-4">
+            <div className="text-3xl sm:text-4xl mb-4 text-center sm:text-left">Chat</div>
+            <div className="w-full sm:max-w-3xl text-sm sm:text-xl mb-4 mx-auto sm:mx-0 text-center sm:text-left">
+                <div>Have questions?</div>
+                <div>Type what's on your mind into our chatbot.</div>
+                <div>You'll find your answers right here.</div>
             </div>
+           
+           
             <div className="flex flex-col h-160 w-5xl mx-auto bg-white/5 backdrop-blur-lg">
                 <div ref={containerRef} className="flex-1 overflow-y-auto p-4 space-y-4">
                     {messages.length === 0 && (
