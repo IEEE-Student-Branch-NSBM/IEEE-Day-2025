@@ -17,25 +17,27 @@ const RoadMap = () => {
       id: 1,
       name: "Registrations + Introduction",
       time: "8:30 am - 10:30 am",
-      details: "Based on the details you provided during registration, we will issue you a passport. After the welcome speech and a brief introduction, we will move on to the track-based sessions."
+      details:
+        "Based on the details you provided during registration, we will issue you a passport. After the welcome speech and a brief introduction, we will move on to the track-based sessions.",
     },
     {
       id: 2,
       name: "Track Sessions + Lunch Break",
       time: "10:35 am - 1:00 pm",
-      details: "There will be five track-based sessions running simultaneously; you will attend the one that matches your registration preference."
+      details:
+        "There will be five track-based sessions running simultaneously; you will attend the one that matches your registration preference.",
     },
     {
       id: 3,
       name: "Panel Discussion",
       time: "1:00 pm - 3:00 pm",
-      details: ""
+      details: "",
     },
     {
       id: 4,
       name: "Entertainment Programme",
       time: "3:30 pm - 5:30 pm",
-      details: ""
+      details: "",
     },
   ];
 
@@ -52,9 +54,8 @@ const RoadMap = () => {
           duration: 1,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: containerRef.current,
+            trigger: card,
             start: "top 80%",
-            end: "bottom 20%",
             toggleActions: "play reverse play reverse",
           },
         }
@@ -64,13 +65,12 @@ const RoadMap = () => {
         card,
         { x: 0 },
         {
-          x: i % 2 === 0 ? -170 : 170,
+          x: i % 2 === 0 ? -50 : 50, // smaller x movement for responsive
           duration: 1,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: containerRef.current,
+            trigger: card,
             start: "top 80%",
-            end: "bottom 20%",
             toggleActions: "play reverse play reverse",
           },
         }
@@ -82,7 +82,7 @@ const RoadMap = () => {
     <section
       id="roadmap"
       ref={containerRef}
-      className="relative z-50 flex flex-col overflow-hidden text-white px-4 py-12 "
+      className="relative z-50 flex flex-col items-center px-4 py-12 text-white"
     >
       <h2 className="text-4xl font-bold mb-6 text-center">Roadmap</h2>
       <p className="max-w-3xl text-xl text-center mb-12">
@@ -107,21 +107,9 @@ const RoadMap = () => {
             )}
           </div>
         ))}
-      </div> 
+      </div>
     </section>
   );
 };
 
 export default RoadMap;
-
-
-
-
-
-
-
-
-
-
-
-
