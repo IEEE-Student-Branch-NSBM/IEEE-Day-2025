@@ -34,7 +34,7 @@ const Chat = () => {
         };
 
         setMessages(prev => [...prev, userMessage]);
-        setInputValue(''); 
+        setInputValue('');
         setIsLoading(true);
 
         try {
@@ -82,13 +82,24 @@ const Chat = () => {
                 <div>Type what's on your mind into our chatbot.</div>
                 <div>You'll find your answers right here.</div>
             </div>
-           
-           
-            <div className="flex flex-col h-160 w-5xl mx-auto bg-white/5 backdrop-blur-lg">
-                <div ref={containerRef} className="flex-1 overflow-y-auto p-4 space-y-4">
+
+            {/* Chat Container */}
+            <div
+                className="flex flex-col w-full max-w-full sm:max-w-3xl md:max-w-4xl lg:max-w-5xl 
+             mx-auto bg-white/5 backdrop-blur-lg rounded-2xl shadow-lg
+             h-[calc(100vh-8rem)]"
+            >
+                {/* Messages */}
+                <div
+                    ref={containerRef}
+                    aria-live="polite"
+                    className="flex-grow overflow-y-auto p-2 sm:p-4 space-y-4"
+                >
                     {messages.length === 0 && (
-                        <div className='flex items-center justify-center h-full'>
-                            <div className='text-3xl block'>Ask anything about the Event</div>
+                        <div className="flex items-center justify-center h-full">
+                            <div className="text-base sm:text-2xl block text-center">
+                                Ask anything about the Event
+                            </div>
                         </div>
                     )}
                     {messages.map((message) => (
@@ -96,12 +107,17 @@ const Chat = () => {
                             key={message.id}
                             className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                         >
-                            <div className={`max-w-md lg:max-w-md px-4 py-2 ${message.role === 'user' ? 'bg-teal-500/50' : 'bg-white/10'}`}>
-                                <div className='text-lg whitespace-pre-wrap'>{message.content}</div>
-                                <div className='text-xs'>
+                            <div
+                                className={`max-w-[90%] sm:max-w-md px-4 py-2 rounded-xl break-words ${message.role === 'user' ? 'bg-teal-500/50' : 'bg-white/10'
+                                    }`}
+                            >
+                                <div className="text-sm sm:text-lg whitespace-pre-wrap break-words">
+                                    {message.content}
+                                </div>
+                                <div className="text-[10px] sm:text-xs mt-1 opacity-70">
                                     {new Date(message.timestamp).toLocaleTimeString([], {
                                         hour: '2-digit',
-                                        minute: '2-digit'
+                                        minute: '2-digit',
                                     })}
                                 </div>
                             </div>
@@ -109,38 +125,53 @@ const Chat = () => {
                     ))}
                     {isLoading && (
                         <div className="flex justify-start">
-                            <div className="bg-white/10 px-4 py-2 max-w-xs">
+                            <div className="bg-white/10 px-4 py-2 rounded-xl max-w-xs">
                                 <div className="flex items-center space-x-2">
                                     <div className="flex space-x-1">
                                         <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
-                                        <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                                        <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                                        <div
+                                            className="w-2 h-2 bg-white rounded-full animate-bounce"
+                                            style={{ animationDelay: '0.1s' }}
+                                        ></div>
+                                        <div
+                                            className="w-2 h-2 bg-white rounded-full animate-bounce"
+                                            style={{ animationDelay: '0.2s' }}
+                                        ></div>
                                     </div>
-                                    <span className="text-sm">Searching...</span>
+                                    <span className="text-xs sm:text-sm">Searching...</span>
                                 </div>
                             </div>
                         </div>
                     )}
                 </div>
-                <div>
-                    <div className="flex space-x-2 m-4">
+
+                {/* Input Area */}
+                <div className="border-t border-white/10">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 m-4">
                         <textarea
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyPress}
                             placeholder="Start typing..."
-                            className="flex-1 bg-white/10 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#008080] focus:border-transparent resize-none h-12"
+                            className="flex-1 bg-white/10 px-3 py-2 rounded-lg 
+                   focus:outline-none focus:ring-2 focus:ring-[#008080] 
+                   focus:border-transparent resize-y min-h-[3rem] 
+                   text-sm sm:text-base w-full"
                             disabled={isLoading}
                             aria-label="Chat message input"
+                            rows={1}
                         />
                         <button
                             onClick={sendMessage}
                             disabled={!inputValue.trim() || isLoading}
-                            className="bg-teal-500/50 text-white px-4 py-2 hover:bg-teal-600/50 focus:outline-none focus:ring-2 focus:ring-teal-700/50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            className="w-full sm:w-auto bg-teal-500/70 text-white px-4 py-2 rounded-lg 
+                   hover:bg-teal-600/70 focus:outline-none focus:ring-2 
+                   focus:ring-teal-700/50 disabled:opacity-50 
+                   disabled:cursor-not-allowed transition-colors"
                             aria-label="Send message"
                         >
                             {isLoading ? (
-                                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto sm:mx-0"></div>
                             ) : (
                                 'Send'
                             )}
@@ -148,8 +179,11 @@ const Chat = () => {
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };
 
 export default Chat;
+
+
