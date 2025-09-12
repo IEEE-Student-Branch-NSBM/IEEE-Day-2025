@@ -21,8 +21,8 @@ const HomePage = () => {
         <RoadMap />
         <People />
         <Chat />
-        <Register />
       </div>
+      <Register />
     </section>
   );
 };
