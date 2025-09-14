@@ -165,26 +165,26 @@ const Hero = () => {
       <Image
         ref={imageRef}
         src={IeeeDayLogoOuter}
-        width={750}
-        height={100}
         alt="IEEE Day Logo Outer"
-        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2"
+        height={760}
+        width={760}
+        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2 scale-90 sm:scale-90 md:scale-100"
       />
       <Image
         src={IeeeDayLogoInner}
-        width={400}
-        height={100}
         alt="IEEE Day Logo Inner"
-        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2"
+        height={400}
+        width={400}
+        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2 scale-[48%] sm:scale-[48%] md:scale-100"
       />
       {testimonials.map((testimonial, index) =>
         <div
           key={testimonial.id}
           ref={(el) => { cardsRef.current[index] = el }}
-          className="absolute bg-white/5 backdrop-blur-lg text-white py-4 px-5 max-w-xs transform -translate-x-1/2 -translate-y-1/2"
+          className="absolute bg-white/5 backdrop-blur-lg text-white py-2 sm:py-2 md:py-4 px-3 sm:px-3 md:px-5 max-w-xs transform -translate-x-1/2 -translate-y-1/2"
         >
-          <div className="text-center font-bold text-xl mb-2">{testimonial.name}</div>
-          <div className="text-center text-lg">{testimonial.description}</div>
+          <div className="text-center font-semibold sm:font-semibold md:font-bold text-base sm:text-base md:text-xl mb-1 sm:mb-1 md:mb-2">{testimonial.name}</div>
+          <div className="text-center text-sm sm:text-sm md:text-lg">{testimonial.description}</div>
         </div>
       )}
     </div>

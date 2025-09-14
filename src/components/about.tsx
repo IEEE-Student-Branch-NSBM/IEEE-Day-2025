@@ -75,9 +75,9 @@ const About = () => {
     }, []);
 
     return (
-        <section id="about" className="relative z-50 mb-20 text-white">
-            <div className="text-4xl mb-4">About</div>
-            <div className="max-w-3xl text-xl mb-4">
+        <section id="about" className="relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left">
+            <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-4 md:mb-4">About</div>
+            <div className="md:max-w-3xl text-lg sm:text-lg md:text-xl mb-4 sm:mb-4 md:mb-4">
                 <div>
                     Maybe you're wondereing what all of these means,
                 </div>
@@ -85,10 +85,10 @@ const About = () => {
                     Don't worry we got you.
                 </div>
             </div>
-            <div ref={containerRef} className='flex gap-6 overflow-hidden'>
-                <div ref={leftDivRef} className='bg-white/5 backdrop-blur-lg w-full flex flex-col justify-start p-10'>
-                    <div className="text-3xl mb-4">What is IEEE?</div>
-                    <div ref={leftTextRef} className="text-justify text-xl leading-relaxed">
+            <div ref={containerRef} className='flex flex-col sm:flex-col md:flex-row gap-6'>
+                <div ref={leftDivRef} className='bg-white/5 backdrop-blur-lg w-full flex flex-col justify-start p-6 sm:p-6 md:p-10'>
+                    <div className="text-2xl sm:text-2xl md:text-3xl mb-2 sm:mb-2 md:mb-4">What is IEEE?</div>
+                    <div ref={leftTextRef} className="text-justify text-base sm:text-base md:text-xl leading-relaxed">
                         IEEE Student Branch of NSBM Green University is on a mission to
                         inspire and empower students in 2024! We're pushing the boundaries
                         of innovation and personal growth, collaborating with the IEEE
@@ -98,8 +98,8 @@ const About = () => {
                     </div>
                 </div>
                 <div ref={rightDivRef} className='bg-white/5 backdrop-blur-lg w-full flex flex-col justify-start p-6 lg:p-10'>
-                    <div className="text-3xl mb-4">What is IEEE Day?</div>
-                    <div ref={rightTextRef} className="text-justify text-xl leading-relaxed">
+                    <div className="text-2xl sm:text-2xl md:text-3xl mb-2 sm:mb-2 md:mb-4">What is IEEE Day?</div>
+                    <div ref={rightTextRef} className="text-justify text-base sm:text-base md:text-xl leading-relaxed">
                         Since 2018, IEEE Day has united the community with events starting
                         with lectures on IoT and Data-Driven Civilization. In 2019 and
                         2020, it transitioned to a virtual format due to the pandemic. In
