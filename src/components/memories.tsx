@@ -1,106 +1,78 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import image1 from "../../public/ieee-day-2022-1.jpg"
+import image2 from "../../public/ieee-day-2022-2.jpg"
+import image3 from "../../public/ieee-day-2022-3.jpg"
+import image4 from "../../public/ieee-day-2023-1.jpg"
+import image5 from "../../public/ieee-day-2023-2.jpg"
+import image6 from "../../public/ieee-day-2024-1.jpg"
+import image7 from "../../public/ieee-day-2024-2.jpg"
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Memories() {
-  const [isMounted, setIsMounted] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const image1Ref = useRef<HTMLImageElement>(null);
+  const image2Ref = useRef<HTMLImageElement>(null);
+  const image3Ref = useRef<HTMLImageElement>(null);
+  const image5Ref = useRef<HTMLImageElement>(null);
+  const image6Ref = useRef<HTMLImageElement>(null);
+  const image7Ref = useRef<HTMLImageElement>(null);
 
-  const images = [
-    "/memories/2023/image1.jpg",
-    "/memories/2023/image2.jpg",
-    "/memories/2023/image3.jpg",
-    "/memories/2023/image4.jpg",
-    "/memories/2023/image5.jpg",
-    "/memories/2023/image6.jpg",
-    "/memories/2023/image7.jpg",
-    "/memories/2023/image8.jpg",
-    "/memories/2024/day1.jpg",
-    "/memories/2024/day2.jpg",
-    "/memories/2024/day3.jpg",
-    "/memories/2024/day4.jpg",
-    "/memories/2024/day5.jpg",
-    "/memories/2024/day6.jpg",
-    "/memories/2024/day7.jpg",
-    "/memories/2024/day9.jpg",
-  ];
 
-  const imagePositions = [
-    { top: 5, left: 0, rotation: -5, zIndex: 3 },
-    { top: 15, left: 55, rotation: 8, zIndex: 1 },
-    { top: 50, left: 10, rotation: -8, zIndex: 5 },
-    { top: 35, left: 65, rotation: 3, zIndex: 2 },
-    { top: 60, left: 35, rotation: -3, zIndex: 4 },
-    { top: 10, left: 30, rotation: 6, zIndex: 6 },
-    { top: 70, left: 5, rotation: -7, zIndex: 1 },
-    { top: 25, left: 70, rotation: 4, zIndex: 3 },
-    { top: 45, left: 25, rotation: -2, zIndex: 7 },
-    { top: 0, left: 50, rotation: 9, zIndex: 2 },
-    { top: 65, left: 60, rotation: -4, zIndex: 5 },
-    { top: 30, left: 15, rotation: 2, zIndex: 8 },
-    { top: 55, left: 75, rotation: 7, zIndex: 4 },
-    { top: 20, left: 45, rotation: -6, zIndex: 6 },
-    { top: 75, left: 30, rotation: 1, zIndex: 9 },
-    { top: 40, left: 0, rotation: 5, zIndex: 3 },
-  ];
+  useGSAP(() => {
+    const spreadAnimationConfig = {
+      ease: "power2.out",
+      stagger: 0.5,
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play reverse play reverse"
+      }
+    };
 
-  useEffect(() => {
-    setIsMounted(true);
+    const images = [
+      { ref: image1Ref, x: 200, y: 200 },
+      { ref: image2Ref, x: -200, y: 200 },
+      { ref: image3Ref, x: 200, y: -200 },
+      { ref: image5Ref, x: -200, y: -200 },
+      { ref: image6Ref, x: 200, y: 0 },
+      { ref: image7Ref, x: -200, y: 0 },
+    ]
+
+    images.forEach(({ ref, x, y }) => {
+      gsap.from(ref.current, { x: y, y: x, ...spreadAnimationConfig })
+    })
   }, []);
-
-  const renderImages = (images: string[]) => {
-    if (!isMounted) return null;
-
-    return images.map((src, i) => {
-      const position = imagePositions[i] || { top: 50, left: 50, rotation: 0, zIndex: 1 };
-
-      return (
-        <Image
-          key={i}
-          src={src}
-          alt={`memory-${i}`}
-          width={200}
-          height={150}
-          className="absolute object-cover"
-          style={{
-            top: `${position.top}%`,
-            left: `${position.left}%`,
-            transform: `rotate(${position.rotation}deg)`,
-            zIndex: position.zIndex,
-            width: '40vw',
-            height: 'auto',
-            maxWidth: '400px',
-            minWidth: '240px',
-          }}
-        />
-      );
-    });
-  };
-
   return (
     <section id="memories" className="relative z-50 min-h-screen flex flex-col text-white">
 
       <div className="text-4xl mb-4">Memories</div>
       <div className="max-w-3xl text-xl mb-4">
         <div>
-        This is not the first time we are doing this,
+          This is not the first time we are doing this,
         </div>
         <div>
-        Here are some of the wonderful memories from our past events.
+          Here are some of the wonderful memories from our past events.
         </div>
       </div>
       <div
-        className="h-200 w-full mx-auto relative bg-white/5"
+        ref={containerRef}
+        className="relative h-200 w-full mx-auto bg-white/5"
       >
-        <div className="absolute inset-0 z-10">{renderImages(images)}</div>
-
-        <div className="flex flex-col p-6 text-center">
-          <div
-            className=""
-          >
-          </div>
-          <div className=""></div>
-        </div>
+        <Image ref={image1Ref} src={image1} alt="" height={600} width={600} className="absolute top-0 -left-10" />
+        <Image ref={image2Ref} src={image2} alt="" height={600} width={600} className="absolute bottom-0 left-0" />
+        <Image ref={image3Ref} src={image3} alt="" height={600} width={600}  className="absolute top-0 -right-10"/>
+        <Image src={image4} alt="" height={600} width={600}  className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
+        <Image ref={image5Ref} src={image5} alt="" height={600} width={600} className="absolute bottom-0 right-0" />
+        <Image ref={image6Ref} src={image6} alt="" height={600} width={600} className="absolute -top-10 left-1/2 -translate-x-1/2" />
+        <Image ref={image7Ref} src={image7} alt="" height={600} width={600} className="absolute -bottom-20 left-1/2 -translate-x-1/2" />
       </div>
     </section>
   );
