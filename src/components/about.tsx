@@ -26,24 +26,13 @@ const About = () => {
             }
         };
 
-        const textAnimationConfig = {
-            y: 100,
-            autoAlpha: 0,
-            stagger: 0.05,
-            scrollTrigger: {
-                start: "top 80%",
-                end: "bottom 20%",
-                toggleActions: "play reverse play reverse"
-            }
-        };
-
         const textSplits = [
             { ref: leftTextRef, split: null as any },
             { ref: rightTextRef, split: null as any }
         ];
 
         textSplits.forEach(item => {
-            item.split = SplitText.create(item.ref.current, { type: "words" });
+            item.split = SplitText.create(item.ref.current, { type: "chars" });
         });
 
         const slideAnimations = [
@@ -58,13 +47,24 @@ const About = () => {
             );
         });
 
+        // Typing animation for text
         textSplits.forEach(({ split }, index) => {
             const triggerRef = index === 0 ? leftDivRef : rightDivRef;
-            gsap.from(split.words, {
-                ...textAnimationConfig,
+
+            // Initially hide all characters
+            gsap.set(split.chars, { opacity: 0 });
+
+            // Create typing animation
+            gsap.to(split.chars, {
+                opacity: 1,
+                duration: 0.02,
+                stagger: 0.02,
+                ease: "none",
                 scrollTrigger: {
-                    ...textAnimationConfig.scrollTrigger,
-                    trigger: triggerRef.current
+                    trigger: triggerRef.current,
+                    start: "top 70%",
+                    end: "bottom 30%",
+                    toggleActions: "play reverse play reverse"
                 }
             });
         });
@@ -86,8 +86,8 @@ const About = () => {
                 </div>
             </div>
             <div ref={containerRef} className='flex gap-6 overflow-hidden'>
-                <div ref={leftDivRef} className='bg-white/5 backdrop-blur-lg min-h-96 w-full flex flex-col justify-start p-10'>
-                    <div className="text-4xl mb-4 text-center">What is IEEE?</div>
+                <div ref={leftDivRef} className='bg-white/5 backdrop-blur-lg w-full flex flex-col justify-start p-10'>
+                    <div className="text-3xl mb-4">What is IEEE?</div>
                     <div ref={leftTextRef} className="text-justify text-xl leading-relaxed">
                         IEEE Student Branch of NSBM Green University is on a mission to
                         inspire and empower students in 2024! We're pushing the boundaries
@@ -97,8 +97,8 @@ const About = () => {
                         the way for future leaders in technology.
                     </div>
                 </div>
-                <div ref={rightDivRef} className='bg-white/5 backdrop-blur-lg min-h-96 w-full flex flex-col justify-start p-6 lg:p-10'>
-                    <div className="text-4xl mb-4 text-center">What is IEEE Day?</div>
+                <div ref={rightDivRef} className='bg-white/5 backdrop-blur-lg w-full flex flex-col justify-start p-6 lg:p-10'>
+                    <div className="text-3xl mb-4">What is IEEE Day?</div>
                     <div ref={rightTextRef} className="text-justify text-xl leading-relaxed">
                         Since 2018, IEEE Day has united the community with events starting
                         with lectures on IoT and Data-Driven Civilization. In 2019 and
