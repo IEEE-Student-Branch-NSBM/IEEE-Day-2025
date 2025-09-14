@@ -1,4 +1,12 @@
+"use client";
+
 import { useState, useEffect, useRef } from 'react';
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import SplitText from "gsap/SplitText";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 interface Message {
     id: string;
@@ -7,16 +15,29 @@ interface Message {
     timestamp: string;
 }
 
+const exampleMessages = [
+    "Who made this website?",
+    "What even are these track based sessions?",
+    "Give me more information about the Panel Discussion.",
+    "Is coming to IEEE Day at NSBM even worth it?",
+    "Who is Sithum Sankajith?",
+    "What's up with this event passport thingy?",
+    "Will the participant get free food?",
+    "What is the best University in Sri Lanka?"
+]
+
 const Chat = () => {
-    //state variables
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-
-    //ref for scrolling 
     const containerRef = useRef<HTMLDivElement | null>(null);
+    const mainMessageRef = useRef<HTMLDivElement>(null);
 
-    // auto scroll to the bottom when messages update
+    useGSAP(() => {
+
+    }, []);
+
+    // auto scroll to the bottom
     useEffect(() => {
         if (containerRef.current) {
             containerRef.current.scrollTop = containerRef.current.scrollHeight;
@@ -75,31 +96,24 @@ const Chat = () => {
     };
 
     return (
-        <div id="chat" className="relative z-50 text-white mb-20 px-2 sm:px-4">
-            <div className="text-3xl sm:text-4xl mb-4 text-center sm:text-left">Chat</div>
-            <div className="w-full sm:max-w-3xl text-sm sm:text-xl mb-4 mx-auto sm:mx-0 text-center sm:text-left">
-                <div>Have questions?</div>
-                <div>Type what's on your mind into our chatbot.</div>
-                <div>You'll find your answers right here.</div>
+        <div id="chat" className='relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left'>
+            <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Chat</div>
+            <div className="md:max-w-3xl text-lg sm:text-lg md:text-xl mb-4 sm:mb-4 md:mb-4">
+                <div>
+                    Have questions?
+                </div>
+                <div>
+                    Type what's on your mind into our chatbot.
+                </div>
+                <div>
+                    You'll find your answers right here.
+                </div>
             </div>
-
-            {/* Chat Container */}
-            <div
-                className="flex flex-col w-full max-w-full sm:max-w-3xl md:max-w-4xl lg:max-w-5xl 
-             mx-auto bg-white/5 backdrop-blur-lg rounded-2xl shadow-lg
-             h-[calc(100vh-8rem)]"
-            >
-                {/* Messages */}
-                <div
-                    ref={containerRef}
-                    aria-live="polite"
-                    className="flex-grow overflow-y-auto p-2 sm:p-4 space-y-4"
-                >
+            <div className="flex flex-col h-120 sm:h-120 md:h-160 w-xs sm:w-xs md:w-5xl mx-auto bg-white/5 backdrop-blur-lg">
+                <div ref={containerRef} className="flex-1 overflow-y-auto p-4 space-y-4">
                     {messages.length === 0 && (
-                        <div className="flex items-center justify-center h-full">
-                            <div className="text-base sm:text-2xl block text-center">
-                                Ask anything about the Event
-                            </div>
+                        <div className='flex items-center justify-center h-full'>
+                            <div ref={mainMessageRef} className='text-xl sm:text-xl md:text-3xl block'>Ask anything about the Event</div>
                         </div>
                     )}
                     {messages.map((message) => (
@@ -107,17 +121,12 @@ const Chat = () => {
                             key={message.id}
                             className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                         >
-                            <div
-                                className={`max-w-[90%] sm:max-w-md px-4 py-2 rounded-xl break-words ${message.role === 'user' ? 'bg-teal-500/50' : 'bg-white/10'
-                                    }`}
-                            >
-                                <div className="text-sm sm:text-lg whitespace-pre-wrap break-words">
-                                    {message.content}
-                                </div>
-                                <div className="text-[10px] sm:text-xs mt-1 opacity-70">
+                            <div className={`max-w-xs sm:max-w-xs md:max-w-md px-2 sm:px-2 md:px-4 py-1 sm:py-1 md:py-2 text-left ${message.role === 'user' ? 'bg-teal-500/50' : 'bg-white/10'}`}>
+                                <div className='text-sm sm:text-sm md:text-lg whitespace-pre-wrap'>{message.content}</div>
+                                <div className='text-xs'>
                                     {new Date(message.timestamp).toLocaleTimeString([], {
                                         hour: '2-digit',
-                                        minute: '2-digit',
+                                        minute: '2-digit'
                                     })}
                                 </div>
                             </div>
@@ -125,53 +134,38 @@ const Chat = () => {
                     ))}
                     {isLoading && (
                         <div className="flex justify-start">
-                            <div className="bg-white/10 px-4 py-2 rounded-xl max-w-xs">
+                            <div className="bg-white/10 px-2 sm:px-2 md:px-4 py-1 sm:py-1 md:py-2 max-w-xs">
                                 <div className="flex items-center space-x-2">
                                     <div className="flex space-x-1">
-                                        <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
-                                        <div
-                                            className="w-2 h-2 bg-white rounded-full animate-bounce"
-                                            style={{ animationDelay: '0.1s' }}
-                                        ></div>
-                                        <div
-                                            className="w-2 h-2 bg-white rounded-full animate-bounce"
-                                            style={{ animationDelay: '0.2s' }}
-                                        ></div>
+                                        <div className="w-1 sm:w-1 md:w-2 h-1 sm:h-1 md:h-2 bg-white rounded-full animate-bounce"></div>
+                                        <div className="w-1 sm:w-1 md:w-2 h-1 sm:h-1 md:h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                                        <div className="w-1 sm:w-1 md:w-2 h-1 sm:h-1 md:h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                                     </div>
-                                    <span className="text-xs sm:text-sm">Searching...</span>
+                                    <span className="text-xs sm:text-xs md:text-sm">Searching...</span>
                                 </div>
                             </div>
                         </div>
                     )}
                 </div>
-
-                {/* Input Area */}
-                <div className="border-t border-white/10">
-                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 m-4">
+                <div>
+                    <div className="flex space-x-2 m-4">
                         <textarea
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyPress}
-                            placeholder="Start typing..."
-                            className="flex-1 bg-white/10 px-3 py-2 rounded-lg 
-                   focus:outline-none focus:ring-2 focus:ring-[#008080] 
-                   focus:border-transparent resize-y min-h-[3rem] 
-                   text-sm sm:text-base w-full"
+                            placeholder="What is IEEE Day?"
+                            className="flex-1 bg-white/10 text-sm sm:text-sm md:text-base px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#008080] focus:border-transparent resize-none h-10 sm:h-10 md:h-12"
                             disabled={isLoading}
                             aria-label="Chat message input"
-                            rows={1}
                         />
                         <button
                             onClick={sendMessage}
                             disabled={!inputValue.trim() || isLoading}
-                            className="w-full sm:w-auto bg-teal-500/70 text-white px-4 py-2 rounded-lg 
-                   hover:bg-teal-600/70 focus:outline-none focus:ring-2 
-                   focus:ring-teal-700/50 disabled:opacity-50 
-                   disabled:cursor-not-allowed transition-colors"
+                            className="bg-teal-500/50 text-white w-14 sm:w-14 md:w-20 text-sm sm:text-sm md:text-base px-2 sm:px-2 md:px-4 py-1 sm:py-1 md:py-2 hover:bg-teal-600/50 focus:outline-none focus:ring-2 focus:ring-teal-700/50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                             aria-label="Send message"
                         >
                             {isLoading ? (
-                                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto sm:mx-0"></div>
+                                <div className="w-3 sm:w-3 md:w-5 h-3 sm:h-3 md:h-5 border-2 border-white border-t-transparent rounded-full animate-spin m-auto"></div>
                             ) : (
                                 'Send'
                             )}
@@ -179,11 +173,8 @@ const Chat = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };
 
 export default Chat;
-
-

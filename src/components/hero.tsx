@@ -181,7 +181,7 @@ const Hero = () => {
         <div
           key={testimonial.id}
           ref={(el) => { cardsRef.current[index] = el }}
-          className="absolute bg-white/5 backdrop-blur-lg text-white py-2 sm:py-2 md:py-4 px-3 sm:px-3 md:px-5 max-w-xs transform -translate-x-1/2 -translate-y-1/2"
+          className="hidden sm:hidden md:block absolute bg-white/5 backdrop-blur-lg text-white py-2 sm:py-2 md:py-4 px-3 sm:px-3 md:px-5 max-w-xs transform -translate-x-1/2 -translate-y-1/2"
         >
           <div className="text-center font-semibold sm:font-semibold md:font-bold text-base sm:text-base md:text-xl mb-1 sm:mb-1 md:mb-2">{testimonial.name}</div>
           <div className="text-center text-sm sm:text-sm md:text-lg">{testimonial.description}</div>
