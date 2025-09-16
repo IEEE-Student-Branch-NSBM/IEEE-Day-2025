@@ -22,8 +22,6 @@ const Sponsors = () => {
     const animationConfig = {
       duration: 2,
       ease: "power3.out",
-      repeat: -1,
-      yoyo: true,
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top 80%",

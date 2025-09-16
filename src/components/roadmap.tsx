@@ -29,7 +29,7 @@ const Flow = () => {
       id: 3,
       name: "Panel Discussion",
       time: "1:00 pm - 3:00 pm",
-      details: ""
+      details: "A panel discussion titled 'AI Beyond the Hype' will be held, and everyone is welcome to join"
     },
     {
       id: 4,
@@ -93,7 +93,7 @@ const Flow = () => {
           These are some of them.
         </div>
       </div>
-      <div className="flex flex-col sm:flex-col md:flex-row items-center justify-center gap-4 sm:gap-4 md:gap-22">
+      <div className="flex flex-col sm:flex-col md:flex-row items-center justify-center gap-4 sm:gap-4 md:gap-22 md:mt-24">
         <div className="md:w-3/7 h-80 flex">
           <div className="w-full flex items-center justify-center">
             {flow.slice(0, 2).map((flowItem, i) => (

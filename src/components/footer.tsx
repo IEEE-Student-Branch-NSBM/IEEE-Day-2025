@@ -6,7 +6,7 @@ import WieLogo from "../../public/logos/ieee-nsbm-wie-logo.png"
 
 const Footer = () => {
 
-    const logos = [SbLogo, CsLogo, WieLogo, NsbmLogo];
+    const logos = [NsbmLogo, SbLogo, CsLogo, WieLogo];
 
     return (
         <div className="relative z-50 w-full h-auto min-h-32 bg-white/5 backdrop-blur-lg overflow-hidden py-6">
