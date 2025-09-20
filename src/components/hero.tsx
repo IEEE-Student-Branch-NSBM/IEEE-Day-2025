@@ -7,16 +7,18 @@ import { useGSAP } from '@gsap/react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 import IeeeDayLogoInner from "../../public/logos/ieee-day-logo-inner.svg";
 import IeeeDayLogoOuter from "../../public/logos/ieee-day-logo-outer.svg";
+import Countdown from "./countdown";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
-  const imageRef = useRef<HTMLImageElement>(null);
+  const outerImageRef = useRef<HTMLImageElement>(null);
+  const innerImageRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useGSAP(() => {
-    gsap.to(imageRef.current, {
+    gsap.to(outerImageRef.current, {
       rotate: 360,
       ease: "none",
       scrollTrigger: {
@@ -26,6 +28,21 @@ const Hero = () => {
         scrub: 2,
       }
     })
+
+    gsap.to(innerImageRef.current, {
+      opacity: 0,
+      delay: 2,
+      duration: 2,
+      ease: "none",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        toggleActions: "play reverse play reverse"
+      }
+    })
+
+
 
     gsap.set(cardsRef.current, { opacity: 0 });
 
@@ -163,14 +180,16 @@ const Hero = () => {
   return (
     <div id="home" ref={containerRef} className="h-screen overflow-hidden relative z-50">
       <Image
-        ref={imageRef}
+        ref={outerImageRef}
         src={IeeeDayLogoOuter}
         alt="IEEE Day Logo Outer"
         height={760}
         width={760}
         className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2 scale-90 sm:scale-90 md:scale-100"
       />
+      <Countdown />
       <Image
+        ref={innerImageRef}
         src={IeeeDayLogoInner}
         alt="IEEE Day Logo Inner"
         height={400}
@@ -181,7 +200,7 @@ const Hero = () => {
         <div
           key={testimonial.id}
           ref={(el) => { cardsRef.current[index] = el }}
-          className="hidden sm:hidden md:block absolute bg-white/5 backdrop-blur-lg text-white py-2 sm:py-2 md:py-4 px-3 sm:px-3 md:px-5 max-w-xs transform -translate-x-1/2 -translate-y-1/2"
+          className="z-50 hidden sm:hidden md:block absolute bg-white/5 backdrop-blur-lg text-white py-2 sm:py-2 md:py-4 px-3 sm:px-3 md:px-5 max-w-xs transform -translate-x-1/2 -translate-y-1/2"
         >
           <div className="text-center font-semibold sm:font-semibold md:font-bold text-base sm:text-base md:text-xl mb-1 sm:mb-1 md:mb-2">{testimonial.name}</div>
           <div className="text-center text-sm sm:text-sm md:text-lg">{testimonial.description}</div>
