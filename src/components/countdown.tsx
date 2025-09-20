@@ -1,8 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Countdown = () => {
+    const countdownRef = useRef<HTMLDivElement>(null);
+
     const eventDate = new Date("2025-10-07T00:00:00Z");
 
     const [timeLeft, setTimeLeft] = useState(() => {
@@ -22,6 +29,15 @@ const Countdown = () => {
         }, 1000);
 
         return () => clearInterval(interval);
+    }, []);
+
+    useGSAP(() => {
+        gsap.from(countdownRef.current, {
+            opacity: 0,
+            delay: 3,
+            duration: 2,
+            ease: "none",
+        })
     }, []);
 
     const formatTime = (time: number) => {
@@ -44,7 +60,7 @@ const Countdown = () => {
 
     return (
         <div className="relative text-white h-screen">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div ref={countdownRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div>
                     <h1 className="text-3xl sm:text-3xl md:text-6xl font-semibold">
                         {formatTime(timeLeft)}

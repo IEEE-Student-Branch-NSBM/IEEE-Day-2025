@@ -8,6 +8,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import geeth from "../../public/people/chair.png"
 import jayasanka from "../../public/people/vice-chair.png"
 import sithum from "../../public/people/ambassador.png"
+import pasindi from "../../public/people/chair-wie.png"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,7 +18,7 @@ const People = () => {
 
     const people = [
         {
-            name: "Geeth Indurawa",
+            name: "Geeth Induwara",
             contribution:
                 "Chair - IEEE Student Branch NSBM",
             image: geeth,
@@ -35,12 +36,21 @@ const People = () => {
             }
         },
         {
+            name: "Pasandi Samarasinghe",
+            contribution:
+                "Chair - IEEE Women In Engineering NSBM",
+            image: pasindi,
+            animations: {
+                y: 400,
+            }
+        },
+        {
             name: "Sithum Sankajith",
             contribution:
                 "Ambassador - IEEE Day 2025 NSBM",
             image: sithum,
             animations: {
-                y: 400,
+                y: -400,
             }
         },
     ];
@@ -81,7 +91,7 @@ const People = () => {
                 </div>
             </div>
             <div className="flex flex-col items-center justify-center ">
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3  gap-4 sm:gap-4 md:gap-10">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 gap-4 sm:gap-4 md:gap-10">
                     {people.map((person, index) => <div key={index}>
                         <div ref={(element) => { cardRefs.current[index] = element }} className="relative w-xs sm:w-xs md:w-sm h-80 sm:h-80 md:h-120">
                             <Image
