@@ -5,110 +5,71 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import geeth from "../../public/people/chair.png"
+import jayasanka from "../../public/people/vice-chair.png"
+import sithum from "../../public/people/ambassador.png"
 
 gsap.registerPlugin(ScrollTrigger);
 
 const People = () => {
-    const [currentPerson, setCurrentPerson] = useState(1);
-    const [isShown, setIsShown] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
-    const cardsContainerRef = useRef<HTMLDivElement>(null);
+    const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     const people = [
         {
+            name: "Geeth Indurawa",
+            contribution:
+                "Chair - IEEE Student Branch NSBM",
+            image: geeth,
+            animations: {
+                y: 400,
+            }
+        },
+        {
+            name: "Jayasanka Ariyarathna",
+            contribution:
+                "Vice Chair - IEEE Student Branch NSBM",
+            image: jayasanka,
+            animations: {
+                y: -400,
+            }
+        },
+        {
             name: "Sithum Sankajith",
             contribution:
-                "IEEE Day 2025 - Ambassador",
-            image: null,
+                "Ambassador - IEEE Day 2025 NSBM",
+            image: sithum,
+            animations: {
+                y: 400,
+            }
         },
-        {
-            name: "Udara Rathnapala",
-            contribution:
-                "Program Team",
-            image: null,
-        },
-        {
-            name: "Benoli Senanayake",
-            contribution:
-                "Finance Team",
-            image: null,
-        },
-        {
-            name: "Isunima Yalindi",
-            contribution:
-                "Secretary Team",
-            image: null,
-        },
-        {
-            name: "Maleesha Wickramanayake",
-            contribution:
-                "Logistic Team",
-            image: null,
-        },
-        {
-            name: "Akila Lakshitha",
-            contribution:
-                "Design Team",
-            image: null,
-        },
-        {
-            name: "Mahen Sandeepa",
-            contribution: "",
-            image: null
-        },
-        {
-            name: "Akash De Silva",
-            contribution: "Development Team",
-            image: null
-        },
-        {
-            name: "Methmi Savindya",
-            contribution: "",
-            image: null
-        }
     ];
 
     useGSAP(() => {
-        const slideAnimationConfig = {
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: containerRef.current,
-                start: "top 90%",
-                end: "bottom 10%",
-                toggleActions: "play reverse play reverse"
-            }
-        };
+        cardRefs.current.forEach((card, i) => {
+            if (!card) return;
 
-        gsap.fromTo(cardsContainerRef.current,
-            { y: "100%", opacity: 0 },
-            { y: "0%", opacity: 1, ...slideAnimationConfig }
-        );
-
-        const cards = cardsContainerRef.current?.children;
-        if (cards) {
-            Array.from(cards).forEach((card, index) => {
-                gsap.fromTo(card,
-                    { y: 50, opacity: 0 },
-                    {
-                        y: 0,
-                        opacity: 1,
-                        duration: 1,
-                        ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: cardsContainerRef.current,
-                            start: "top 90%",
-                            toggleActions: "play reverse play reverse"
-                        }
+            gsap.from(
+                card,
+                {
+                    ...people[i].animations,
+                    opacity: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play reverse play reverse",
                     }
-                );
-            });
-        }
+                });
+        });
     }, []);
 
     return (
-        <section id="people" ref={containerRef} className="relative text-white mb-20 z-50">
-            <div className="text-4xl mb-4">People</div>
-            <div className="max-w-3xl text-xl mb-4">
+        <section id="people" ref={containerRef} className="relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left">
+            <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-4 md:mb-4">People</div>
+            <div className="md:max-w-3xl text-lg sm:text-lg md:text-xl mb-4 sm:mb-4 md:mb-4">
                 <div>
                     Organizing a event of this scale is no small feet,
                 </div>
@@ -119,57 +80,26 @@ const People = () => {
                     These are some of them.
                 </div>
             </div>
-            <div ref={cardsContainerRef} className="flex !h-[600px] gap-4 overflow-hidden">
-                {people.map((person, index) =>
-                    currentPerson === index ? (
-                        <div
-                            key={index}
-                            className="relative bg-white/5 w-4xl flex flex-col items-baseline justify-between"
-                        >
-                            <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-                                {person.image && (
-                                    <>
-                                        <Image
-                                            src={person.image}
-                                            alt={person.name}
-                                            fill
-                                            className="object-cover"
-                                        />
-                                        <div
-                                            className="absolute inset-0"
-                                            style={{
-                                                boxShadow: "inset 0 0 200px 50px rgba(0,0,0,0.6)",
-                                            }}
-                                        ></div>
-                                    </>
-                                )}
-                            </div>
-                            <div className="absolute top-4 left-4 text-3xl">
-                                {people[currentPerson].name}
-                            </div>
-                            <div className="absolute bottom-4 left-4 text-xl">
-                                {people[currentPerson].contribution}
+            <div className="flex flex-col items-center justify-center ">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3  gap-4 sm:gap-4 md:gap-10">
+                    {people.map((person, index) => <div key={index}>
+                        <div ref={(element) => { cardRefs.current[index] = element }} className="relative w-xs sm:w-xs md:w-sm h-80 sm:h-80 md:h-120">
+                            <Image
+                                src={person.image.src}
+                                alt=""
+                                fill
+                                className="brightness-90 object-cover"
+                            />
+                            <div className="absolute inset-0 flex flex-col self-end p-4 z-10 text-center bg-black/20 backdrop-blur-lg">
+                                <div className="text-lg sm:text-lg md:text-2xl">{person.name}</div>
+                                <div className="text-sm sm:text-sm md:text-base">{person.contribution}</div>
                             </div>
                         </div>
-                    ) : (
-                        <div
-                            key={index}
-                            className="bg-white/5 w-20 cursor-pointer hover:scale-105 transition-all duration-300"
-                            onClick={() => {
-                                setCurrentPerson(index);
-                                setIsShown(!isShown);
-                            }}
-                        >
-                            <div className="flex items-center justify-center text-2xl text-center rotate-90 h-full w-full whitespace-nowrap">
-                                {person.name}
-                            </div>
-                        </div>
-                    )
-                )}
+                    </div>)}
+                </div>
             </div>
         </section>
     );
+};
 
-}
-
-export default People
+export default People;
