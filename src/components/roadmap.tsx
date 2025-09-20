@@ -43,13 +43,11 @@ const Flow = () => {
     cardRefs.current.forEach((card, i) => {
       if (!card) return;
 
-      gsap.fromTo(
+      gsap.from(
         card,
-        { opacity: 0, y: 50 },
         {
-          opacity: 1,
-          y: 0,
-          duration: 1,
+          y: 800,
+          duration: 2,
           ease: "power3.out",
           scrollTrigger: {
             trigger: containerRef.current,
@@ -60,21 +58,38 @@ const Flow = () => {
         }
       );
 
-      gsap.fromTo(
-        card,
-        { x: 0 },
-        {
-          x: i % 2 === 0 ? -170 : 170,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      );
+      // gsap.fromTo(
+      //   card,
+      //   { opacity: 0, y: 50 },
+      //   {
+      //     opacity: 1,
+      //     y: 0,
+      //     duration: 1,
+      //     ease: "power3.out",
+      //     scrollTrigger: {
+      //       trigger: containerRef.current,
+      //       start: "top 80%",
+      //       end: "bottom 20%",
+      //       toggleActions: "play reverse play reverse",
+      //     },
+      //   }
+      // );
+
+      // gsap.fromTo(
+      //   card,
+      //   { x: 0 },
+      //   {
+      //     x: i % 2 === 0 ? -170 : 170,
+      //     duration: 1,
+      //     ease: "power3.out",
+      //     scrollTrigger: {
+      //       trigger: containerRef.current,
+      //       start: "top 80%",
+      //       end: "bottom 20%",
+      //       toggleActions: "play reverse play reverse",
+      //     },
+      //   }
+      // );
     });
   }, []);
 
@@ -93,7 +108,7 @@ const Flow = () => {
           These are some of them.
         </div>
       </div>
-      <div className="flex flex-col sm:flex-col md:flex-row items-center justify-center gap-4 sm:gap-4 md:gap-22 md:mt-24">
+      {/* <div className="grid grid-cols-4 gap-4 sm:gap-4 md:gap-22 md:mt-24">
         <div className="md:w-3/7 h-80 flex">
           <div className="w-full flex items-center justify-center">
             {flow.slice(0, 2).map((flowItem, i) => (
@@ -131,6 +146,18 @@ const Flow = () => {
               </div>
             ))}
           </div>
+        </div>
+      </div> */}
+      <div className="flex items-center justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 text-center gap-4 sm:gap-4 md:gap-8">
+          {flow.map((flowItem, i) => (<div key={flowItem.id}
+            className="flex flex-col items-center justify-center bg-white/5 backdrop-blur-lg h-80 sm:h-80 md:h-100 w-xs sm:w-xs md:w-sm"
+            ref={(el) => { cardRefs.current[i] = el; }}
+          >
+            <div className="text-lg sm:text-lg md:text-xl font-semibold mb-2">{flowItem.name}</div>
+            <div className="text-xs sm:text-xs md:text-sm">{flowItem.time}</div>
+            <div className="text-base sm:text-base md:text-lg text-center p-2 sm:p-2 md:p-6">{flowItem.details}</div>
+          </div>))}
         </div>
       </div>
     </section>
