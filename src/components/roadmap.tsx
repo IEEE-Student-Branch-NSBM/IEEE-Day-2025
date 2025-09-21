@@ -50,7 +50,6 @@ const Flow = () => {
         {
           y: 800,
           opacity: 0,
-          duration: 2,
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
