@@ -64,15 +64,23 @@ function Memories() {
       </div>
       <div
         ref={containerRef}
-        className="relative h-140 sm:h-140 md:h-180 w-full mx-auto bg-white/5 md:my-10"
+        className="hidden sm:hidden md:block relative h-140 sm:h-140 md:h-180 w-full mx-auto bg-white/5 md:my-10"
       >
-        <Image ref={image1Ref} src={image1} alt="" height={540} width={540} className="absolute top-10 sm:top-10 md:top-0 -left-20 sm:-left-20 md:left-0 scale-[60%] sm:scale-[60%] md:scale-100" />
-        <Image ref={image2Ref} src={image2} alt="" height={540} width={540} className="absolute z-10 sm:z-10 md:z-0 bottom-20 sm:bottom-20 md:bottom-0 -left-20 sm:-left-20 md:left-0 scale-[60%] sm:scale-[60%] md:scale-100" />
-        <Image ref={image3Ref} src={image3} alt="" height={540} width={540} className="absolute z-10 sm:z-10 md:z-0 top-0 -right-20 sm:-right-20 md:right-0 scale-[60%] sm:scale-[60%] md:scale-100" />
-        <Image src={image4} alt="" height={540} width={540} className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-[60%] sm:scale-[60%] md:scale-100" />
-        <Image ref={image5Ref} src={image5} alt="" height={540} width={540} className="absolute bottom-0 -right-20 sm:-right-20 md:right-0 scale-[60%] sm:scale-[60%] md:scale-100" />
-        <Image ref={image6Ref} src={image6} alt="" height={540} width={540} className="absolute -top-10 left-1/2 -translate-x-1/2 scale-[60%] sm:scale-[60%] md:scale-100" />
-        <Image ref={image7Ref} src={image7} alt="" height={540} width={540} className="absolute -bottom-20 left-1/2 -translate-x-1/2 scale-[60%] sm:scale-[60%] md:scale-100" />
+        <Image ref={image1Ref} src={image1} alt="" height={540} width={540} className="absolute top-0 left-0" />
+        <Image ref={image2Ref} src={image2} alt="" height={540} width={540} className="absolute z-0 bottom-0 left-0" />
+        <Image ref={image3Ref} src={image3} alt="" height={540} width={540} className="absolute z-0 top-0 right-0" />
+        <Image src={image4} alt="" height={540} width={540} className="absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+        <Image ref={image5Ref} src={image5} alt="" height={540} width={540} className="absolute bottom-0 right-0" />
+        <Image ref={image6Ref} src={image6} alt="" height={540} width={540} className="absolute -top-10 left-1/2 -translate-x-1/2" />
+        <Image ref={image7Ref} src={image7} alt="" height={540} width={540} className="absolute -bottom-20 left-1/2 -translate-x-1/2" />
+      </div>
+      <div className="md:hidden grid grid-cols-2">
+        <Image src={image1} alt="" height={540} width={540} />
+        <Image src={image2} alt="" height={540} width={540} />
+        <Image src={image3} alt="" height={540} width={540} />
+        <Image src={image4} alt="" height={540} width={540} />
+        <Image src={image6} alt="" height={540} width={540} />
+        <Image src={image7} alt="" height={540} width={540} />
       </div>
     </section>
   );

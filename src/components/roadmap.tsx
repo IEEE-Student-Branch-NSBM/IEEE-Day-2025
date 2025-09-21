@@ -80,12 +80,12 @@ const Flow = () => {
       <div className="flex items-center justify-center">
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 text-center gap-4 sm:gap-4 md:gap-8">
           {flow.map((flowItem, i) => (<div key={flowItem.id}
-            className={`flex flex-col items-center justify-center bg-white/5 backdrop-blur-lg transition-all duration-500 ease-in-out ${hoveredCard === i ? "h-120 sm:h-120 md:h-140 w-md z-10" : "h-80 sm:h-80 md:h-100 w-xs"} ${hoveredCard !== i && "opacity-50"} ${hoveredCard === null && "opacity-100"}`}
+            className={`flex flex-col items-center justify-center bg-white/5 backdrop-blur-lg transition-all duration-500 ease-in-out ${hoveredCard === i ? "h-80 sm:h-80 w-xs md:h-140 md:w-md md:z-10" : "h-80 sm:h-80 md:h-100 w-xs"} ${hoveredCard !== i && "md:opacity-50"} ${hoveredCard === null && "md:opacity-100"}`}
             ref={(el) => { cardRefs.current[i] = el; }}
             onMouseEnter={() => setHoveredCard(i)}
             onMouseLeave={() => setHoveredCard(null)}
           >
-            <div>
+            <div className={`${hoveredCard === i && "hidden"}`}>
               <div className="text-lg sm:text-lg md:text-xl font-semibold mb-2">{flowItem.name}</div>
               <div className="text-xs sm:text-xs md:text-sm">{flowItem.time}</div>
               <div className="text-base sm:text-base md:text-lg text-center p-2 sm:p-2 md:p-6">{flowItem.details}</div>

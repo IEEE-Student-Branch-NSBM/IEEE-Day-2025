@@ -5,10 +5,10 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import geeth from "../../public/people/chair.png"
-import jayasanka from "../../public/people/vice-chair.png"
-import sithum from "../../public/people/ambassador.png"
-import pasindi from "../../public/people/chair-wie.png"
+import geeth from "../../public/people/chair.jpg"
+import jayasanka from "../../public/people/vice-chair.jpg"
+import sithum from "../../public/people/ambassador.jpg"
+import pasindi from "../../public/people/wie-chair.jpg"
 
 gsap.registerPlugin(ScrollTrigger);
 
