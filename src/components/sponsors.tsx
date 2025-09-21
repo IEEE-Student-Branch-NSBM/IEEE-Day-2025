@@ -9,6 +9,7 @@ import VevoLogo from "../../public/sponsors/vevo-logo.png";
 import DimoLogo from "../../public/sponsors/dimo-logo.png";
 import KotmaleLogo from "../../public/sponsors/kotmale-logo.png";
 import AfsaanLogo from "../../public/sponsors/afsaan-logo.png";
+import NsbmLogo from "../../public/logos/nsbm-logo.png"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +17,7 @@ const Sponsors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const logoRefs = useRef<HTMLDivElement[]>([]);
 
-  const logos = [DimoLogo, KotmaleLogo, AfsaanLogo, VevoLogo, VevoLogo];
+  const logos = [DimoLogo, KotmaleLogo, AfsaanLogo, NsbmLogo, VevoLogo];
 
   useGSAP(() => {
     const animationConfig = {
