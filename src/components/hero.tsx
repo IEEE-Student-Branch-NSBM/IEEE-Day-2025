@@ -46,42 +46,25 @@ const Hero = () => {
 
     gsap.set(cardsRef.current, { opacity: 0 });
 
-    // Generate random positions for each card, avoiding the center area where logos are and other cards
+    const predefinedPositions: { x: number; y: number }[] = [
+      { x: 15, y: 20 },
+      { x: 85, y: 15 },
+      { x: 10, y: 45 },
+      { x: 90, y: 40 },
+      { x: 20, y: 75 },
+      { x: 80, y: 80 },
+      { x: 15, y: 60 },
+      { x: 85, y: 65 },
+      { x: 12, y: 30 },
+      { x: 88, y: 25 },
+    ];
+
     const positions: { x: number; y: number }[] = [];
-    const minDistance = 20; // Minimum distance between cards (in percentage)
-
-    testimonials.forEach(() => {
-      let x: number, y: number;
-      let attempts = 0;
-      const maxAttempts = 100;
-
-      do {
-        x = Math.random() * 80 + 10; // 10% to 90% from left
-        y = Math.random() * 80 + 10; // 10% to 90% from top
-        attempts++;
-
-        // Check if position is in the center area (logo zone) - make it larger
-        // The logos are centered and quite large, so avoid a bigger area
-        const inLogoZone = (x >= 25 && x <= 75) && (y >= 30 && y <= 70);
-
-        // Check if position is too close to existing cards
-        const tooCloseToOthers = positions.some(pos => {
-          const distance = Math.sqrt(Math.pow(x - pos.x, 2) + Math.pow(y - pos.y, 2));
-          return distance < minDistance;
-        });
-
-        if (!inLogoZone && !tooCloseToOthers) break;
-
-        // If we can't find a good position after many attempts, accept a less ideal one
-        if (attempts >= maxAttempts) {
-          if (!inLogoZone) break;
-        }
-      } while (true);
-
-      positions.push({ x, y });
+    testimonials.forEach((_, index) => {
+      const positionIndex = index % predefinedPositions.length;
+      positions.push(predefinedPositions[positionIndex]);
     });
 
-    // Set random positions for all cards
     cardsRef.current.forEach((card, index) => {
       if (card) {
         gsap.set(card, {
@@ -91,7 +74,6 @@ const Hero = () => {
       }
     });
 
-    // Create timeline for testimonial cards - one at a time
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.5 });
 
     let visibleCards: number[] = [];
@@ -122,7 +104,7 @@ const Hero = () => {
           });
         }
       })
-        .to({}, { duration: 4 }); // Wait 4 seconds before next card
+        .to({}, { duration: 4 }); 
     });
 
     // At the end, hide all remaining visible cards
