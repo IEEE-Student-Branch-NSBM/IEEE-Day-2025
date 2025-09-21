@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -11,6 +11,8 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 const Flow = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const flow = [
     {
@@ -47,8 +49,9 @@ const Flow = () => {
         card,
         {
           y: 800,
+          opacity: 0,
           duration: 2,
-          ease: "power3.out",
+          ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 80%",
@@ -57,39 +60,6 @@ const Flow = () => {
           },
         }
       );
-
-      // gsap.fromTo(
-      //   card,
-      //   { opacity: 0, y: 50 },
-      //   {
-      //     opacity: 1,
-      //     y: 0,
-      //     duration: 1,
-      //     ease: "power3.out",
-      //     scrollTrigger: {
-      //       trigger: containerRef.current,
-      //       start: "top 80%",
-      //       end: "bottom 20%",
-      //       toggleActions: "play reverse play reverse",
-      //     },
-      //   }
-      // );
-
-      // gsap.fromTo(
-      //   card,
-      //   { x: 0 },
-      //   {
-      //     x: i % 2 === 0 ? -170 : 170,
-      //     duration: 1,
-      //     ease: "power3.out",
-      //     scrollTrigger: {
-      //       trigger: containerRef.current,
-      //       start: "top 80%",
-      //       end: "bottom 20%",
-      //       toggleActions: "play reverse play reverse",
-      //     },
-      //   }
-      // );
     });
   }, []);
 
@@ -97,7 +67,7 @@ const Flow = () => {
     <section
       id="flow"
       ref={containerRef}
-      className="relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left overflow-hidden"
+      className="relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left"
     >
       <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Flow</div>
       <div className="md:max-w-3xl text-lg sm:text-lg md:text-xl mb-4 sm:mb-4 md:mb-4">
@@ -108,55 +78,19 @@ const Flow = () => {
           These are some of them.
         </div>
       </div>
-      {/* <div className="grid grid-cols-4 gap-4 sm:gap-4 md:gap-22 md:mt-24">
-        <div className="md:w-3/7 h-80 flex">
-          <div className="w-full flex items-center justify-center">
-            {flow.slice(0, 2).map((flowItem, i) => (
-              <div
-                key={flowItem.id}
-                ref={(el) => { cardRefs.current[i] = el; }}
-                className={`absolute ${i === 0 ? "z-10" : "z-5"}`}
-              >
-                <div className="w-xs h-80 sm:h-80 md:h-120 bg-white/5 backdrop-blur-lg flex flex-col items-center justify-center">
-                  <div className="">
-                  </div>
-                  <div className="text-lg sm:text-lg md:text-xl font-semibold mb-2">{flowItem.name}</div>
-                  <div className="text-xs sm:text-xs md:text-sm">{flowItem.time}</div>
-                  <div className="text-base sm:text-base md:text-lg text-center p-2 sm:p-2 md:p-6">{flowItem.details}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="md:w-3/7 h-80 flex">
-          <div className="w-full flex items-center justify-center">
-            {flow.slice(2, 4).map((flowItem, i) => (
-              <div
-                key={flowItem.id}
-                ref={(el) => { cardRefs.current[i + 2] = el; }}
-                className={`absolute ${i === 0 ? "z-10" : "z-5"}`}
-              >
-                <div className="w-xs h-80 sm:h-80 md:h-120 bg-white/5 backdrop-blur-lg flex flex-col items-center justify-center">
-                  <div className="">
-                  </div>
-                  <div className="text-lg sm:text-lg md:text-xl font-semibold mb-2">{flowItem.name}</div>
-                  <div className="text-xs sm:text-xs md:text-sm">{flowItem.time}</div>
-                  <div className="text-base sm:text-base md:text-lg text-center p-2 sm:p-2 md:p-6">{flowItem.details}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div> */}
       <div className="flex items-center justify-center">
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 text-center gap-4 sm:gap-4 md:gap-8">
           {flow.map((flowItem, i) => (<div key={flowItem.id}
-            className="flex flex-col items-center justify-center bg-white/5 backdrop-blur-lg h-80 sm:h-80 md:h-100 w-xs sm:w-xs md:w-sm"
+            className={`flex flex-col items-center justify-center bg-white/5 backdrop-blur-lg transition-all duration-500 ease-in-out ${hoveredCard === i ? "h-120 sm:h-120 md:h-140 w-md z-10" : "h-80 sm:h-80 md:h-100 w-xs"} ${hoveredCard !== i && "opacity-50"} ${hoveredCard === null && "opacity-100"}`}
             ref={(el) => { cardRefs.current[i] = el; }}
+            onMouseEnter={() => setHoveredCard(i)}
+            onMouseLeave={() => setHoveredCard(null)}
           >
-            <div className="text-lg sm:text-lg md:text-xl font-semibold mb-2">{flowItem.name}</div>
-            <div className="text-xs sm:text-xs md:text-sm">{flowItem.time}</div>
-            <div className="text-base sm:text-base md:text-lg text-center p-2 sm:p-2 md:p-6">{flowItem.details}</div>
+            <div>
+              <div className="text-lg sm:text-lg md:text-xl font-semibold mb-2">{flowItem.name}</div>
+              <div className="text-xs sm:text-xs md:text-sm">{flowItem.time}</div>
+              <div className="text-base sm:text-base md:text-lg text-center p-2 sm:p-2 md:p-6">{flowItem.details}</div>
+            </div>
           </div>))}
         </div>
       </div>

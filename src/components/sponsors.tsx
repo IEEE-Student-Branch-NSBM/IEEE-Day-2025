@@ -17,7 +17,7 @@ const Sponsors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const logoRefs = useRef<HTMLDivElement[]>([]);
 
-  const logos = [DimoLogo, KotmaleLogo, AfsaanLogo, NsbmLogo, VevoLogo];
+  const logos = [NsbmLogo, DimoLogo, KotmaleLogo, AfsaanLogo, VevoLogo];
 
   useGSAP(() => {
     const animationConfig = {

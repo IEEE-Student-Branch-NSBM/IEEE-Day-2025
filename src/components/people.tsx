@@ -101,7 +101,7 @@ const People = () => {
             <div className="flex flex-col items-center justify-center ">
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 gap-4 sm:gap-4 md:gap-10">
                     {people.map((person, index) => <div key={index} className="md:hover:scale-105 transition-transform duration-500">
-                        <div ref={(element) => { cardRefs.current[index] = element }} className="relative w-xs sm:w-xs md:w-sm h-80 sm:h-80 md:h-120">
+                        <div ref={(element) => { cardRefs.current[index] = element }} className="relative w-xs h-80 sm:h-80 md:h-100">
                             <Image
                                 src={person.image.src}
                                 alt=""
