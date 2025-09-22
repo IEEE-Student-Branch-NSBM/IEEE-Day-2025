@@ -59,6 +59,19 @@ const Hero = () => {
       { x: 88, y: 25 },
     ];
 
+    const akshithaPositions: { x: number; y: number }[] = [
+      { x: 12, y: 26 },
+      { x: 82, y: 28 },
+      { x: 16, y: 60 },
+      { x: 90, y: 70 },
+      { x: 20, y: 86 },
+      { x: 14, y: 28 },
+      { x: 15, y: 60 },
+      { x: 85, y: 65 },
+      { x: 12, y: 30 },
+      { x: 88, y: 25 },
+    ];
+
     const mobilePositions: { x: number; y: number }[] = [
       { x: 34, y: 14 },
       { x: 78, y: 82 },
@@ -72,8 +85,10 @@ const Hero = () => {
       { x: 70, y: 15 },
     ];
 
-    const isMobile = window.innerWidth < 768;
-    const predefinedPositions = isMobile ? mobilePositions : desktopPositions;
+    let predefinedPositions
+    if (window.innerWidth < 768) predefinedPositions = mobilePositions
+    else if (window.innerWidth < 1536) predefinedPositions = akshithaPositions
+    else predefinedPositions = desktopPositions
 
     const positions: { x: number; y: number }[] = [];
     testimonials.forEach((_, index) => {
@@ -183,7 +198,7 @@ const Hero = () => {
         alt="IEEE Day Logo Outer"
         height={760}
         width={760}
-        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2 scale-90 sm:scale-90 md:scale-100"
+        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2 scale-90 sm:scale-90 md:scale-80 2xl:scale-100"
       />
       <Countdown />
       <Image
@@ -192,7 +207,7 @@ const Hero = () => {
         alt="IEEE Day Logo Inner"
         height={400}
         width={400}
-        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2 scale-[48%] sm:scale-[48%] md:scale-100"
+        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2 scale-[48%] sm:scale-[48%] md:scale-80 2xl:scale-100"
       />
       {testimonials.map((testimonial, index) =>
         <div
