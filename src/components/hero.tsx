@@ -46,7 +46,7 @@ const Hero = () => {
 
     gsap.set(cardsRef.current, { opacity: 0 });
 
-    const predefinedPositions: { x: number; y: number }[] = [
+    const desktopPositions: { x: number; y: number }[] = [
       { x: 15, y: 20 },
       { x: 85, y: 15 },
       { x: 10, y: 45 },
@@ -58,6 +58,22 @@ const Hero = () => {
       { x: 12, y: 30 },
       { x: 88, y: 25 },
     ];
+
+    const mobilePositions: { x: number; y: number }[] = [
+      { x: 34, y: 14 },
+      { x: 78, y: 82 },
+      { x: 82, y: 14 },
+      { x: 36, y: 25 },
+      { x: 32, y: 82 },
+      { x: 80, y: 88 },
+      { x: 30, y: 10 },
+      { x: 75, y: 85 },
+      { x: 25, y: 92 },
+      { x: 70, y: 15 },
+    ];
+
+    const isMobile = window.innerWidth < 768;
+    const predefinedPositions = isMobile ? mobilePositions : desktopPositions;
 
     const positions: { x: number; y: number }[] = [];
     testimonials.forEach((_, index) => {
@@ -104,7 +120,7 @@ const Hero = () => {
           });
         }
       })
-        .to({}, { duration: 4 }); 
+        .to({}, { duration: 4 });
     });
 
     // At the end, hide all remaining visible cards
@@ -182,7 +198,7 @@ const Hero = () => {
         <div
           key={testimonial.id}
           ref={(el) => { cardsRef.current[index] = el }}
-          className="z-50 hidden sm:hidden md:block absolute bg-white/5 backdrop-blur-lg text-white py-2 sm:py-2 md:py-4 px-3 sm:px-3 md:px-5 max-w-xs transform -translate-x-1/2 -translate-y-1/2"
+          className="z-50 absolute bg-white/5 backdrop-blur-lg text-white py-2 sm:py-2 md:py-4 px-3 sm:px-3 md:px-5 max-w-xs transform -translate-x-1/2 -translate-y-1/2"
         >
           <div className="text-center font-semibold sm:font-semibold md:font-bold text-base sm:text-base md:text-xl mb-1 sm:mb-1 md:mb-2">{testimonial.name}</div>
           <div className="text-center text-sm sm:text-sm md:text-lg">{testimonial.description}</div>
