@@ -31,13 +31,16 @@ export async function readUser(
       full_name: userData.full_name,
       email: userData.email,
       password: userData.password,
+      confirm_password: "", // Not stored in database
       phone_number: userData.phone_number,
       food_preference: userData.food_preference,
       gender: userData.gender,
       nic: userData.nic,
       university_name: userData.university_name,
       ieee_membership_id: userData.ieee_membership_id,
-      preferred_track_based_session: userData.preferred_track_based_session,
+      preferred_track_session_1: userData.preferred_track_session_1,
+      preferred_track_session_2: userData.preferred_track_session_2,
+      preferred_track_session_3: userData.preferred_track_session_3,
       github_profile: userData.github_profile,
       linkedin_profile: userData.linkedin_profile,
     };
@@ -63,8 +66,20 @@ export async function createUser(user: User): Promise<User> {
     }
 
     const docRef = await addDoc(usersRef, {
-      ...user,
+      full_name: user.full_name,
+      email: user.email,
       password: hashedPassword,
+      phone_number: user.phone_number,
+      food_preference: user.food_preference,
+      gender: user.gender,
+      nic: user.nic,
+      university_name: user.university_name,
+      ieee_membership_id: user.ieee_membership_id,
+      preferred_track_session_1: user.preferred_track_session_1,
+      preferred_track_session_2: user.preferred_track_session_2,
+      preferred_track_session_3: user.preferred_track_session_3,
+      github_profile: user.github_profile,
+      linkedin_profile: user.linkedin_profile,
       created_at: new Date(),
     });
 

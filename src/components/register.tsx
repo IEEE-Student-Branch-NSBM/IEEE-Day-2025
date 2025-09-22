@@ -35,13 +35,20 @@ const fields = [
     },
     {
         "id": 4,
+        "field_name": "confirm_password",
+        "type": "password",
+        "optional": false,
+        "label": "Confirm Password"
+    },
+    {
+        "id": 5,
         "field_name": "phone_number",
         "type": "tel",
         "optional": true,
         "label": "Phone Number"
     },
     {
-        "id": 5,
+        "id": 6,
         "field_name": "food_preference",
         "type": "select",
         "optional": false,
@@ -49,7 +56,7 @@ const fields = [
         "options": ["Vegetarian", "Non-vegetarian"]
     },
     {
-        "id": 6,
+        "id": 7,
         "field_name": "gender",
         "type": "select",
         "optional": false,
@@ -57,14 +64,14 @@ const fields = [
         "options": ["Male", "Female"]
     },
     {
-        "id": 7,
+        "id": 8,
         "field_name": "nic",
         "type": "text",
         "optional": false,
         "label": "NIC Number"
     },
     {
-        "id": 8,
+        "id": 9,
         "field_name": "university_name",
         "type": "select",
         "optional": false,
@@ -95,29 +102,45 @@ const fields = [
         ]
     },
     {
-        "id": 9,
+        "id": 10,
+        "field_name": "preferred_track_session_1",
+        "type": "select",
+        "optional": false,
+        "label": "Track Session - Preference 1",
+        "options": ["Quantum Computing", "Data Science & Analytics with AI", "AI & Robotics in Industry 4.0", "AI in Cybersecurity", "AI in Cloud Computing"]
+    },
+    {
+        "id": 11,
+        "field_name": "preferred_track_session_2",
+        "type": "select",
+        "optional": false,
+        "label": "Track Session - Preference 2",
+        "options": ["Quantum Computing", "Data Science & Analytics with AI", "AI & Robotics in Industry 4.0", "AI in Cybersecurity", "AI in Cloud Computing"]
+    },
+    {
+        "id": 12,
+        "field_name": "preferred_track_session_3",
+        "type": "select",
+        "optional": false,
+        "label": "Track Session - Preference 3",
+        "options": ["Quantum Computing", "Data Science & Analytics with AI", "AI & Robotics in Industry 4.0", "AI in Cybersecurity", "AI in Cloud Computing"]
+    },
+    {
+        "id": 13,
         "field_name": "ieee_membership_id",
         "type": "text",
         "optional": true,
         "label": "IEEE Membership ID"
     },
     {
-        "id": 10,
-        "field_name": "preferred_track_based_session",
-        "type": "select",
-        "optional": false,
-        "label": "Preferred Track Session",
-        "options": ["Quantum Computing", "Data Science & Analytics with AI", "AI & Robotics in Industry 4.0", "AI in Cybersecurity", "AI in Cloud Computing"]
-    },
-    {
-        "id": 11,
+        "id": 14,
         "field_name": "github_profile",
         "type": "url",
         "optional": true,
         "label": "GitHub Profile URL"
     },
     {
-        "id": 12,
+        "id": 15,
         "field_name": "linkedin_profile",
         "type": "url",
         "optional": true,
@@ -143,13 +166,16 @@ const Register = () => {
             full_name: "",
             email: "",
             password: "",
+            confirm_password: "",
             phone_number: "",
             food_preference: undefined,
             gender: undefined,
             nic: "",
             university_name: "",
             ieee_membership_id: "",
-            preferred_track_based_session: undefined,
+            preferred_track_session_1: undefined,
+            preferred_track_session_2: undefined,
+            preferred_track_session_3: undefined,
             github_profile: "",
             linkedin_profile: "",
         }
@@ -250,6 +276,11 @@ const Register = () => {
                                 Must contain at least 8 characters, one uppercase, one lowercase, and one number
                             </div>
                         )}
+                        {fieldName === 'confirm_password' && !error && (
+                            <div className="text-white text-xs sm:text-sx md:text-sm">
+                                Re-enter your password to confirm
+                            </div>
+                        )}
                         {fieldName === 'ieee_membership_id' && !error && (
                             <div className="text-white text-xs sm:text-sx md:text-sm">
                                 8-10 digit IEEE membership number (optional)
@@ -310,15 +341,21 @@ const Register = () => {
             <div className="flex justify-center">
                 <div className="bg-white/5 text-white backdrop-blur-lg flex flex-col p-12 sm:p-12 md:p-6">
                     <form onSubmit={handleSubmit(onSubmit)} ref={containerFormRef} className="flex-1">
-                        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 gap-6">
                             <div className="flex-1">
-                                {fields.slice(0, 4).map((field) => renderFormField(field))}
+                                {fields.slice(0, 3).map((field) => renderFormField(field))}
                             </div>
                             <div className="flex-1">
-                                {fields.slice(4, 8).map((field) => renderFormField(field))}
+                                {fields.slice(3, 6).map((field) => renderFormField(field))}
                             </div>
                             <div className="flex-1">
-                                {fields.slice(8).map((field) => renderFormField(field))}
+                                {fields.slice(6, 9).map((field) => renderFormField(field))}
+                            </div>
+                            <div className="flex-1">
+                                {fields.slice(9, 12).map((field) => renderFormField(field))}
+                            </div>
+                            <div className="flex-1">
+                                {fields.slice(12).map((field) => renderFormField(field))}
                             </div>
                         </div>
                         <button
