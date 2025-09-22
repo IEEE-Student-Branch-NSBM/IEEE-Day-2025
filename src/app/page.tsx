@@ -21,8 +21,8 @@ const HomePage = () => {
         <Flow />
         <People />
         <Chat />
+        <Register />
       </div>
-      <Register />
     </section>
   );
 };
