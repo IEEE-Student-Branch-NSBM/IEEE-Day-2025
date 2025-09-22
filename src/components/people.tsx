@@ -108,8 +108,8 @@ const People = () => {
                                 fill
                                 className="brightness-90 object-cover"
                             />
-                            <div className="absolute inset-0 flex flex-col self-end p-4 z-10 text-center bg-black/20 backdrop-blur-lg">
-                                <div className="text-lg sm:text-lg md:text-2xl">{person.name}</div>
+                            <div className="absolute inset-0 flex flex-col self-end z-10 text-center bg-black/20 backdrop-blur-lg h-22 sm:h-22 md:h-26 pt-1">
+                                <div className="text-lg sm:text-lg md:text-xl">{person.name}</div>
                                 <div className="text-sm sm:text-sm md:text-base">{person.contribution}</div>
                                 <div className="m-auto flex gap-1 sm:gap-1 md:gap-2 mt-1 sm:mt-1 md:mt-1">
                                     <a href="">

@@ -9,7 +9,7 @@ const Footer = () => {
     const logos = [NsbmLogo, SbLogo, CsLogo, WieLogo];
 
     return (
-        <div className="relative z-50 w-full h-auto min-h-32 bg-white/5 backdrop-blur-lg overflow-hidden py-6">
+        <div className="relative z-50 w-full h-auto min-h-32 bg-black overflow-hidden py-6">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 items-center justify-items-center h-full gap-6 sm:gap-6 md:gap-12">
                     {logos.map((logo, index) => (
@@ -19,7 +19,7 @@ const Footer = () => {
                                 alt=""
                                 width={200}
                                 height={200}
-                                className="object-contain max-w-full max-h-full w-auto h-auto"
+                                className="object-contain max-w-full max-h-full w-auto h-auto scale-90 sm:scale-90 md:scale-100"
                             />
                         </div>
                     ))}

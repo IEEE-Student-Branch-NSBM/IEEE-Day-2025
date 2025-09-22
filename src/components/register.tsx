@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef } from "react"
-import Image from "next/image";
 import { User, UserSchema } from "@/types/userSchema";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,7 +8,6 @@ import { createUser } from "@/actions/firebaseActions";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import IeeeDayLogo2025 from "../../public/logos/ieee-day-logo-2025.png"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,7 +127,6 @@ const fields = [
 
 const Register = () => {
     const containerFormRef = useRef<HTMLFormElement>(null);
-    const passportRef = useRef<HTMLDivElement>(null);
 
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error' | null, message: string }>({ type: null, message: '' });
@@ -189,8 +186,8 @@ const Register = () => {
 
         if (field.type === 'select') {
             return (
-                <div className="w-64 h-40" key={field.id}>
-                    <label className="text-lg flex flex-col h-full">
+                <div className="w-64 h-28 sm:h-28 md:h-40" key={field.id}>
+                    <label className="text-base sm:text-base md:text-lg flex flex-col h-full">
                         <div className="mb-1 flex items-center justify-between">
                             <div>
                                 {field.label}
@@ -199,7 +196,7 @@ const Register = () => {
                         </div>
                         <select
                             {...register(fieldName)}
-                            className={`bg-white/10 ${error ? 'bg-red-400/50' : hasValue && isValid ? 'bg-teal-400/50' : 'bg-white/10'} p-2 mt-1 focus:outline-none focus:ring-2 ${error ? 'focus:ring-red-400' : 'focus:ring-blue-400'} transition-all duration-200 text-base w-full`}
+                            className={`${error ? 'bg-red-400/10' : hasValue && isValid ? 'bg-teal-400/10' : 'bg-white/10'} p-2 mt-1 focus:outline-none focus:ring-2 ${error ? 'focus:ring-red-400' : 'focus:ring-teal-400'} transition-all duration-200 text-sm sm:text-sm md:text-base w-full`}
                         >
                             <option value="" className="bg-gray-800">Select {field.label}</option>
                             {field.options?.map((option: string) => (
@@ -210,8 +207,8 @@ const Register = () => {
                         </select>
                         <div className="flex-1 mt-1 w-full overflow-hidden flex items-start">
                             {error && (
-                                <span className="text-red-400 text-sm flex items-center">
-                                    <svg className="w-4 h-4 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <span className="text-red-400 text-xs sm:text-xs md:text-sm flex items-center">
+                                    <svg className="w-3 sm:w-3 md:w-4 h-3 sm:h-3 md:h-4 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                         <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                                     </svg>
                                     <span className="truncate">{error.message}</span>
@@ -224,8 +221,8 @@ const Register = () => {
         }
 
         return (
-            <div className="w-64 h-40" key={field.id}>
-                <label className="text-lg flex flex-col h-full">
+            <div className="w-64 h-28 sm:h-28 md:h-40" key={field.id}>
+                <label className="text-base sm:text-base md:text-lg flex flex-col h-full">
                     <div className="mb-1 flex items-center justify-between">
                         <div>
                             {field.label}
@@ -235,13 +232,13 @@ const Register = () => {
                     <input
                         type={field.type}
                         {...register(fieldName)}
-                        className={`${error ? 'bg-red-400/10' : hasValue && isValid ? 'bg-teal-400/10' : 'bg-white/10'} p-2 mt-1 focus:outline-none focus:ring-2 ${error ? 'focus:ring-red-400' : 'focus:ring-teal-400'} transition-all duration-200 text-base w-full`}
+                        className={`${error ? 'bg-red-400/10' : hasValue && isValid ? 'bg-teal-400/10' : 'bg-white/10'} p-2 mt-1 focus:outline-none focus:ring-2 ${error ? 'focus:ring-red-400' : 'focus:ring-teal-400'} transition-all duration-200 text-sm sm:text-sm md:text-base w-full`}
                         placeholder={`Enter your ${field.label.toLowerCase()}`}
                     />
                     <div className="flex-1 mt-1 w-full overflow-hidden flex items-start">
                         {error && (
-                            <span className="text-red-400 text-sm flex items-center">
-                                <svg className="w-4 h-4 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <span className="text-red-400 text-xs sm:text-xs md:text-sm flex items-center">
+                                <svg className="w-3 sm:w-3 md:w-4 h-3 sm:h-3 md:h-4 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                                 </svg>
                                 <span className="truncate">{error.message}</span>
@@ -249,17 +246,17 @@ const Register = () => {
                         )}
 
                         {fieldName === 'password' && !error && (
-                            <div className="text-white text-sm">
+                            <div className="text-white text-xs sm:text-sx md:text-sm">
                                 Must contain at least 8 characters, one uppercase, one lowercase, and one number
                             </div>
                         )}
                         {fieldName === 'ieee_membership_id' && !error && (
-                            <div className="text-white text-sm">
+                            <div className="text-white text-xs sm:text-sx md:text-sm">
                                 8-10 digit IEEE membership number (optional)
                             </div>
                         )}
                         {fieldName === 'nic' && !error && (
-                            <div className="text-white text-sm">
+                            <div className="text-white text-xs sm:text-sx md:text-sm">
                                 Format: 123456789V or 123456789012
                             </div>
                         )}
@@ -296,81 +293,7 @@ const Register = () => {
         }
     });
 
-    const { full_name, email, gender, university_name, phone_number, food_preference, ieee_membership_id, preferred_track_based_session } = watchedValues;
 
-    const Passport = () => (
-        <div ref={passportRef} className="bg-white/5 text-white backdrop-blur-lg h-full w-full flex flex-col justify-between p-6">
-            <div className="flex flex-col items-center mb-4">
-                <Image
-                    src={IeeeDayLogo2025}
-                    width={400}
-                    height={100}
-                    alt="Secondary IEEE Day Logo"
-                />
-                <div className="text-lg">Event Passport</div>
-            </div>
-
-            <div className="space-y-4 flex-1 flex flex-col justify-center">
-                <div className="bg-white/10 p-4">
-                    <div className="text-sm uppercase tracking-wide">Full Name</div>
-                    <div className="text-xl font-semibold">
-                        {full_name || 'Your Name Here'}
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/10 p-3">
-                        <div className="text-xs uppercase tracking-wide">Email</div>
-                        <div className="text-sm truncate">
-                            {email || 'email@example.com'}
-                        </div>
-                    </div>
-                    <div className="bg-white/10 p-3">
-                        <div className="text-xs uppercase tracking-wide">Gender</div>
-                        <div className="text-sm">
-                            {gender || 'Not specified'}
-                        </div>
-                    </div>
-                </div>
-
-                <div className="bg-white/10 p-3">
-                    <div className="text-xs uppercase tracking-wide">University</div>
-                    <div className="text-sm">
-                        {university_name || 'Your University'}
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/10 p-3">
-                        <div className="text-xs uppercase tracking-wide">Phone Number</div>
-                        <div className="text-sm">
-                            {phone_number || '+94 XX XXX XXXX'}
-                        </div>
-                    </div>
-                    <div className="bg-white/10 p-3">
-                        <div className="text-xs uppercase tracking-wide">Food Preference</div>
-                        <div className="text-sm">
-                            {food_preference || 'Not selected'}
-                        </div>
-                    </div>
-                </div>
-
-                <div className="bg-white/10 p-3">
-                    <div className="text-xs uppercase tracking-wide">IEEE Member ID</div>
-                    <div className="text-sm">
-                        {ieee_membership_id || 'XXXXXXXX (Optional)'}
-                    </div>
-                </div>
-
-                <div className="bg-white/10 p-3">
-                    <div className="text-xs uppercase tracking-wide">Preferred Track</div>
-                    <div className="text-sm">
-                        {preferred_track_based_session || 'Track not selected'}
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
 
 
     return (
@@ -384,8 +307,8 @@ const Register = () => {
                     So we know how to contact you.
                 </div>
             </div>
-            <div className="flex items-start justify-center gap-8">
-                <div className="bg-white/5 text-white backdrop-blur-lg flex flex-col p-6">
+            <div className="flex justify-center">
+                <div className="bg-white/5 text-white backdrop-blur-lg flex flex-col p-12 sm:p-12 md:p-6">
                     <form onSubmit={handleSubmit(onSubmit)} ref={containerFormRef} className="flex-1">
                         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6">
                             <div className="flex-1">
@@ -400,7 +323,7 @@ const Register = () => {
                         </div>
                         <button
                             type="submit"
-                            className="absolute right-0 -bottom-16 bg-teal-400/20 hover:bg-teal-400/40 disabled:bg-teal-400/5 disabled:cursor-not-allowed transition-colors duration-200 p-3 text-lg w-40 flex items-center justify-center"
+                            className="absolute right-0 -bottom-16 bg-teal-400/20 hover:bg-teal-400/40 disabled:bg-teal-400/5 disabled:cursor-not-allowed transition-colors duration-200 p-3 text-base sm:text-base md:text-lg w-40 flex items-center justify-center"
                             disabled={isSubmitting}
                         >
                             {isSubmitting ? (
@@ -411,18 +334,13 @@ const Register = () => {
                         </button>
                     </form>
                     {submitMessage.type && (
-                        <div className={`absolute bottom-0 sm:bottom-0 md:bottom-4 left-1/2 -translate-x-1/2 text-center p-1 sm:p-1 md:p-2 ${submitMessage.type === 'success'
+                        <div className={`absolute bottom-2 sm:bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 text-center p-1 sm:p-1 md:p-2 text-sm sm:text-sm md:text-base ${submitMessage.type === 'success'
                             ? 'bg-teal-500/20'
                             : 'bg-red-500/20'
                             }`}>
                             {submitMessage.message}
                         </div>
                     )}
-                </div>
-                <div className="hidden sm:hidden md:block items-center justify-center">
-                    <div className="h-[700px] w-full flex">
-                        <Passport />
-                    </div>
                 </div>
             </div>
         </section>

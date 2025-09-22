@@ -87,10 +87,10 @@ const About = () => {
             </div>
             <div ref={containerRef} className='flex flex-col sm:flex-col md:flex-row gap-6'>
                 <div ref={leftDivRef} className='bg-white/5 backdrop-blur-lg w-full flex flex-col justify-start p-6 sm:p-6 md:p-10'>
-                    <div className="text-2xl sm:text-2xl md:text-3xl mb-2 sm:mb-2 md:mb-4">What is IEEE?</div>
+                    <div className="text-2xl sm:text-2xl md:text-3xl mb-2 sm:mb-2 md:mb-4">Description</div>
                     <div ref={leftTextRef} className="text-justify text-base sm:text-base md:text-xl leading-relaxed">
                         IEEE Student Branch of NSBM Green University is on a mission to
-                        inspire and empower students in 2024! We're pushing the boundaries
+                        inspire and empower students in 2025! We're pushing the boundaries
                         of innovation and personal growth, collaborating with the IEEE
                         Computer Society and IEEE Women in Engineering groups. Join us as
                         we create an energetic tech community, unleash potential, and pave
@@ -98,7 +98,7 @@ const About = () => {
                     </div>
                 </div>
                 <div ref={rightDivRef} className='bg-white/5 backdrop-blur-lg w-full flex flex-col justify-start p-6 lg:p-10'>
-                    <div className="text-2xl sm:text-2xl md:text-3xl mb-2 sm:mb-2 md:mb-4">What is IEEE Day?</div>
+                    <div className="text-2xl sm:text-2xl md:text-3xl mb-2 sm:mb-2 md:mb-4">Our History</div>
                     <div ref={rightTextRef} className="text-justify text-base sm:text-base md:text-xl leading-relaxed">
                         Since 2018, IEEE Day has united the community with events starting
                         with lectures on IoT and Data-Driven Civilization. In 2019 and
