@@ -56,7 +56,7 @@ const fields = [
         "type": "select",
         "optional": false,
         "label": "Gender",
-        "options": ["Male", "Female", "Prefer not to say"]
+        "options": ["Male", "Female"]
     },
     {
         "id": 7,
@@ -129,8 +129,7 @@ const fields = [
 
 const Register = () => {
     const containerFormRef = useRef<HTMLFormElement>(null);
-    const passportRef = useRef<HTMLDivElement>(null);
-    
+
     const [currentStep, setCurrentStep] = useState(0);
     const totalSteps = fields.length;
 
@@ -142,7 +141,7 @@ const Register = () => {
         handleSubmit,
         watch,
         trigger,
-        formState: { errors, isValid },
+        formState: { errors },
     } = useForm<User>({
         resolver: zodResolver(UserSchema),
         mode: "onChange",
@@ -170,12 +169,8 @@ const Register = () => {
 
         try {
             console.log(data);
-            const result = await createUser(data);
-            if (result) {
-                setSubmitMessage({ type: 'success', message: 'Registration successful! Use the credentials to login to the platform.' });
-            } else {
-                setSubmitMessage({ type: 'error', message: 'Registration failed. Please try again.' });
-            }
+            await createUser(data);
+            setSubmitMessage({ type: 'success', message: 'Registration successful! Use the credentials to login to the platform.' });
         } catch (error: any) {
             setSubmitMessage({ type: 'error', message: error.message || 'An error occurred during registration.' });
         } finally {
@@ -186,10 +181,24 @@ const Register = () => {
     const handleNext = async () => {
         const currentField = fields[currentStep];
         const fieldName = currentField.field_name as keyof User;
-        
+
+        // For optional fields, allow proceeding without validation if field is empty
+        if (currentField.optional) {
+            const fieldValue = watchedValues[fieldName];
+            const isEmpty = !fieldValue || (typeof fieldValue === 'string' && fieldValue.trim() === '');
+
+            if (isEmpty) {
+                // Skip validation for empty optional fields
+                if (currentStep < totalSteps - 1) {
+                    setCurrentStep(currentStep + 1);
+                }
+                return;
+            }
+        }
+
         // Trigger validation for current field
         const isCurrentFieldValid = await trigger(fieldName);
-        
+
         if (isCurrentFieldValid && currentStep < totalSteps - 1) {
             setCurrentStep(currentStep + 1);
         }
@@ -206,11 +215,11 @@ const Register = () => {
         const error = errors[fieldName];
         const isRequired = !field.optional;
         const fieldValue = watchedValues[fieldName];
-        const hasValue = fieldValue && (typeof fieldValue === 'string' ? fieldValue.trim() !== '' : true);
-        const isValid = !error && hasValue;
+        const hasValue = fieldValue && (typeof fieldValue === 'string' ? fieldValue.trim() !== '' : fieldValue !== undefined);
+        const isValid = !error && (isRequired ? hasValue : true);
 
-        const baseClasses = isMobile 
-            ? "w-full h-auto" 
+        const baseClasses = isMobile
+            ? "w-full h-auto"
             : "w-64 h-40";
 
         if (field.type === 'select') {
@@ -349,7 +358,7 @@ const Register = () => {
     const { full_name, email, gender, university_name, phone_number, food_preference, ieee_membership_id, preferred_track_based_session } = watchedValues;
 
     const Passport = ({ isMobile = false }) => (
-        <div ref={passportRef} className={`bg-white/5 text-white backdrop-blur-lg h-full w-full flex flex-col justify-between ${isMobile ? 'p-3' : 'p-6'}`}>
+        <div className={`bg-white/5 text-white backdrop-blur-lg h-full w-full flex flex-col justify-between ${isMobile ? 'p-3' : 'p-6'}`}>
             <div className={`flex flex-col items-center ${isMobile ? 'mb-2' : 'mb-4'}`}>
                 <Image
                     src={IeeeDayLogo2025}
@@ -448,7 +457,6 @@ const Register = () => {
                         </form>
                         <button
                             type="submit"
-                            onClick={handleSubmit(onSubmit)}
                             className="absolute right-0 -bottom-16 bg-teal-400/20 hover:bg-teal-400/40 disabled:bg-teal-400/5 disabled:cursor-not-allowed transition-colors duration-200 p-3 text-lg w-40 flex items-center justify-center"
                             disabled={isSubmitting}
                         >
@@ -479,10 +487,10 @@ const Register = () => {
                     <div className="text-sm mb-4 opacity-80">
                         Step {currentStep + 1} of {totalSteps}
                     </div>
-                    
+
                     {/* progress bar */}
                     <div className="w-full bg-white/10 h-1 mb-4">
-                        <div 
+                        <div
                             className="h-full bg-teal-400 transition-all duration-300"
                             style={{ width: `${((currentStep + 1) / totalSteps) * 100}%` }}
                         />
@@ -492,7 +500,7 @@ const Register = () => {
                         <form onSubmit={handleSubmit(onSubmit)} className="flex-1">
                             {renderFormField(fields[currentStep], true)}
                         </form>
-                        
+
                         {/* nav buttons */}
                         <div className="flex justify-between items-center mt-4 gap-4">
                             <button
@@ -503,11 +511,10 @@ const Register = () => {
                             >
                                 Previous
                             </button>
-                            
+
                             {currentStep === totalSteps - 1 ? (
                                 <button
                                     type="submit"
-                                    onClick={handleSubmit(onSubmit)}
                                     disabled={isSubmitting}
                                     className="bg-teal-400/20 hover:bg-teal-400/40 disabled:bg-teal-400/5 disabled:cursor-not-allowed transition-colors duration-200 px-4 py-2 text-sm flex-1 flex items-center justify-center"
                                 >

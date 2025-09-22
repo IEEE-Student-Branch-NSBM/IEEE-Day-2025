@@ -24,36 +24,32 @@ export const UserSchema = z.object({
     .min(10, "Phone number must be at least 10 digits")
     .optional()
     .or(z.literal("")),
-  food_preference: z.enum(["Vegetarian", "Non-vegetarian"]).optional(),
-  gender: z.enum(["Male", "Female", "Prefer not to say"]).optional(),
+  food_preference: z.enum(["Vegetarian", "Non-vegetarian"]),
+  gender: z.enum(["Male", "Female"]),
   nic: z
     .string()
     .regex(
       /^[0-9]{9}[vVxX]$|^[0-9]{12}$/,
       "Please enter a valid NIC number (9 digits + V/X or 12 digits)"
     )
-    .optional()
     .or(z.literal("")),
   university_name: z
     .string()
     .min(2, "University name must be at least 2 characters")
     .max(100, "University name must be less than 100 characters")
-    .optional()
     .or(z.literal("")),
   ieee_membership_id: z
     .string()
     .regex(/^[0-9]{8,10}$/, "IEEE Membership ID must be 8-10 digits")
     .optional()
     .or(z.literal("")),
-  preferred_track_based_session: z
-    .enum([
-      "Quantum Computing",
-      "Data Science & Analytics with AI",
-      "AI & Robotics in Industry 4.0",
-      "AI in Cybersecurity",
-      "AI in Cloud Computing",
-    ])
-    .optional(),
+  preferred_track_based_session: z.enum([
+    "Quantum Computing",
+    "Data Science & Analytics with AI",
+    "AI & Robotics in Industry 4.0",
+    "AI in Cybersecurity",
+    "AI in Cloud Computing",
+  ]),
   github_profile: z
     .string()
     .url("Please enter a valid GitHub URL")

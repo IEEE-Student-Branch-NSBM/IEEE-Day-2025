@@ -48,7 +48,7 @@ export async function readUser(
 }
 
 // user creating function
-export async function createUser(user: User): Promise<User | null> {
+export async function createUser(user: User): Promise<User> {
   try {
     const hashedPassword = saltAndHashPassword(user.password);
     const usersRef = collection(db, "users");
@@ -74,6 +74,6 @@ export async function createUser(user: User): Promise<User | null> {
     };
   } catch (error) {
     console.error("Error creating user:", error);
-    return null;
+    throw error;
   }
 }
