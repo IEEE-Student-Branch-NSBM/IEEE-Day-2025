@@ -29,18 +29,21 @@ const Hero = () => {
       }
     })
 
-    gsap.to(innerImageRef.current, {
-      opacity: 0,
-      delay: 2,
-      duration: 2,
-      ease: "none",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        toggleActions: "play reverse play reverse"
-      }
-    })
+    const innerLogoTl = gsap.timeline({ repeat: -1 });
+
+    innerLogoTl
+      .to(innerImageRef.current, {
+        opacity: 0,
+        duration: 2,
+        ease: "none",
+        delay: 4
+      })
+      .to(innerImageRef.current, {
+        opacity: 1,
+        duration: 2,
+        ease: "none",
+        delay: 4
+      });
 
 
 
@@ -73,13 +76,13 @@ const Hero = () => {
     ];
 
     const mobilePositions: { x: number; y: number }[] = [
-      { x: 34, y: 14 },
+      { x: 36, y: 12 },
       { x: 78, y: 82 },
-      { x: 82, y: 14 },
-      { x: 36, y: 25 },
-      { x: 32, y: 82 },
-      { x: 80, y: 88 },
-      { x: 30, y: 10 },
+      { x: 80, y: 18 },
+      { x: 34, y: 88 },
+      { x: 34, y: 16 },
+      { x: 76, y: 78 },
+      { x: 36, y: 8 },
       { x: 75, y: 85 },
       { x: 25, y: 92 },
       { x: 70, y: 15 },
@@ -108,11 +111,12 @@ const Hero = () => {
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.5 });
 
     let visibleCards: number[] = [];
+    const maxVisibleCards = window.innerWidth < 768 ? 2 : 3;
 
     testimonials.forEach((_, index) => {
       tl.call(() => {
-        // If we have 3 visible cards, remove the oldest one
-        if (visibleCards.length >= 3) {
+        // If we have reached max visible cards, remove the oldest one
+        if (visibleCards.length >= maxVisibleCards) {
           const oldestCard = visibleCards.shift();
           if (oldestCard !== undefined && cardsRef.current[oldestCard]) {
             gsap.to(cardsRef.current[oldestCard], {
@@ -181,7 +185,7 @@ const Hero = () => {
   {
     id: 6,
     name: "Yasmitha Peththanayake",
-    description: "\"Most supporting team I’ve found during my university time. I was lucky enough to interact with seniors to get a professional experience.\"",
+    description: "\"I was lucky enough to interact with seniors to get a professional experience.\"",
   },
   {
     id: 7,

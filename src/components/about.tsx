@@ -79,10 +79,10 @@ const About = () => {
             <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-4 md:mb-4">About</div>
             <div className="md:max-w-3xl text-lg sm:text-lg md:text-xl mb-4 sm:mb-4 md:mb-4">
                 <div>
-                    Maybe you're wondereing what all of these means,
+                    Wondering what this is all about?
                 </div>
                 <div>
-                    Don't worry we got you.
+                    We’ve got you covered.
                 </div>
             </div>
             <div ref={containerRef} className='flex flex-col sm:flex-col md:flex-row gap-6'>

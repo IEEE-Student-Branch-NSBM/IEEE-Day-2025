@@ -212,7 +212,7 @@ const Register = () => {
 
         if (field.type === 'select') {
             return (
-                <div className="w-64 h-28 sm:h-28 md:h-40" key={field.id}>
+                <div className="w-full h-28 sm:h-28 md:h-40" key={field.id}>
                     <label className="text-base sm:text-base md:text-lg flex flex-col h-full">
                         <div className="mb-1 flex items-center justify-between">
                             <div>
@@ -247,7 +247,7 @@ const Register = () => {
         }
 
         return (
-            <div className="w-64 h-28 sm:h-28 md:h-40" key={field.id}>
+            <div className="w-full h-28 sm:h-28 md:h-40" key={field.id}>
                 <label className="text-base sm:text-base md:text-lg flex flex-col h-full">
                     <div className="mb-1 flex items-center justify-between">
                         <div>
@@ -332,29 +332,29 @@ const Register = () => {
             <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Register</div>
             <div className="md:max-w-3xl text-lg sm:text-lg md:text-xl mb-4 sm:mb-4 md:mb-4">
                 <div>
-                    Just fill the below fields with your details,
+                    Fill in your details below to secure your spot.
                 </div>
                 <div>
-                    So we know how to contact you.
+                    We’ll use this information to keep you updated.
                 </div>
             </div>
             <div className="flex justify-center">
-                <div className="bg-white/5 text-white backdrop-blur-lg flex flex-col p-12 sm:p-12 md:p-6">
+                <div className="bg-white/5 text-white backdrop-blur-lg flex flex-col p-8 sm:p-8 md:p-6">
                     <form onSubmit={handleSubmit(onSubmit)} ref={containerFormRef} className="flex-1">
                         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 gap-6">
-                            <div className="flex-1">
+                            <div className="flex-1 items-center justify-center">
                                 {fields.slice(0, 3).map((field) => renderFormField(field))}
                             </div>
-                            <div className="flex-1">
+                            <div className="flex-1 items-center justify-center">
                                 {fields.slice(3, 6).map((field) => renderFormField(field))}
                             </div>
-                            <div className="flex-1">
+                            <div className="flex-1 items-center justify-center">
                                 {fields.slice(6, 9).map((field) => renderFormField(field))}
                             </div>
-                            <div className="flex-1">
+                            <div className="flex-1 items-center justify-center">
                                 {fields.slice(9, 12).map((field) => renderFormField(field))}
                             </div>
-                            <div className="flex-1">
+                            <div className="flex-1 items-center justify-center">
                                 {fields.slice(12).map((field) => renderFormField(field))}
                             </div>
                         </div>

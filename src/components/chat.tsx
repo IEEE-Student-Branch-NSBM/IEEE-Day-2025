@@ -17,25 +17,46 @@ interface Message {
 
 const exampleMessages = [
     "Who made this website?",
-    "What even are these track based sessions?",
-    "Give me more information about the Panel Discussion.",
-    "Is coming to IEEE Day at NSBM even worth it?",
+    "Track based sessions",
+    "More info about the Panel Discussion.",
+    "Is the event even worth it?",
     "Who is Sithum Sankajith?",
-    "What's up with this event passport thingy?",
-    "Will the participant get free food?",
-    "What is the best University in Sri Lanka?"
+    "Will we get free food?",
+    "Best University in Sri Lanka"
 ]
 
 const Chat = () => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [currentPlaceholderIndex, setCurrentPlaceholderIndex] = useState(0);
     const containerRef = useRef<HTMLDivElement | null>(null);
     const mainMessageRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
+        if (mainMessageRef.current) {
+            const split = SplitText.create(mainMessageRef.current, { type: "chars" });
 
-    }, []);
+            gsap.set(split.chars, { opacity: 0 });
+
+            gsap.to(split.chars, {
+                opacity: 1,
+                duration: 0.02,
+                stagger: 0.02,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: mainMessageRef.current,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play reverse play reverse"
+                }
+            });
+
+            return () => {
+                split.revert();
+            };
+        }
+    }, [messages]);
 
     // auto scroll to the bottom
     useEffect(() => {
@@ -43,6 +64,16 @@ const Chat = () => {
             containerRef.current.scrollTop = containerRef.current.scrollHeight;
         }
     }, [messages]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentPlaceholderIndex((prevIndex) =>
+                (prevIndex + 1) % exampleMessages.length
+            );
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, []);
 
     const sendMessage = async () => {
         if (!inputValue.trim() || isLoading) return;
@@ -100,16 +131,16 @@ const Chat = () => {
             <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Chat</div>
             <div className="md:max-w-3xl text-lg sm:text-lg md:text-xl mb-4 sm:mb-4 md:mb-4">
                 <div>
-                    Have questions?
+                    Got questions?
                 </div>
                 <div>
-                    Type what's on your mind into our chatbot.
+                    Ask our chatbot anything about the event.
                 </div>
                 <div>
-                    You'll find your answers right here.
+                    Your answers will appear right here.
                 </div>
             </div>
-            <div className="flex flex-col h-120 sm:h-120 md:h-160 w-xs sm:w-xs md:w-5xl mx-auto bg-white/5 backdrop-blur-lg">
+            <div className="flex flex-col h-120 sm:h-120 md:h-160 w-full mx-auto bg-white/5 backdrop-blur-lg">
                 <div ref={containerRef} className="flex-1 overflow-y-auto p-4 space-y-4">
                     {messages.length === 0 && (
                         <div className='flex items-center justify-center h-full'>
@@ -153,7 +184,7 @@ const Chat = () => {
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={handleKeyPress}
-                            placeholder="What is IEEE Day?"
+                            placeholder={exampleMessages[currentPlaceholderIndex]}
                             className="flex-1 bg-white/10 text-sm sm:text-sm md:text-base px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#008080] focus:border-transparent resize-none h-10 sm:h-10 md:h-12"
                             disabled={isLoading}
                             aria-label="Chat message input"

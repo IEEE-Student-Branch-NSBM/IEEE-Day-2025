@@ -1,17 +1,16 @@
 import Image from "next/image";
-import NsbmLogo from "../../public/logos/nsbm-logo.png"
 import SbLogo from "../../public/logos/ieee-nsbm-sb-logo.png"
 import CsLogo from "../../public/logos/ieee-nsbm-cs-logo.png"
 import WieLogo from "../../public/logos/ieee-nsbm-wie-logo.png"
 
 const Footer = () => {
 
-    const logos = [NsbmLogo, SbLogo, CsLogo, WieLogo];
+    const logos = [SbLogo, CsLogo, WieLogo];
 
     return (
         <div className="relative z-50 w-full h-auto min-h-32 bg-black overflow-hidden py-6">
             <div className="container mx-auto px-4">
-                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 items-center justify-items-center h-full gap-6 sm:gap-6 md:gap-12">
+                <div className="grid grid-cols-3 items-center justify-items-center h-full gap-6 sm:gap-6 md:gap-12">
                     {logos.map((logo, index) => (
                         <div key={index} className="flex items-center justify-center w-full h-16 sm:h-16 md:h-24">
                             <Image
