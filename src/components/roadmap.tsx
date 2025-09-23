@@ -66,22 +66,22 @@ const Flow = () => {
       ref={containerRef}
       className="relative z-50 mb-16 sm:mb-20 md:mb-32 text-white text-center sm:text-center md:text-left"
     >
-      <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Flow</div>
-      <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
+      <div className="text-xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4 font-semibold">Flow</div>
+      <div className="max-w-full md:max-w-3xl text-sm sm:text-base md:text-xl mb-4 sm:mb-6 md:mb-8 opacity-90">
         We’ve lined up an exciting program for the day.
         Here’s a quick look at what’s in store.
       </div>
       <div className="flex items-center justify-center">
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 text-center gap-4 sm:gap-4 md:gap-6 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 text-center gap-4 sm:gap-5 md:gap-6 w-full">
           {flow.map((flowItem, i) => (
             <div key={flowItem.id}
-              className="flex flex-col items-center justify-center bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 h-80 sm:h-80 md:h-100 w-full p-6 sm:p-8 md:p-10"
+              className="flex flex-col items-center justify-center bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 h-64 sm:h-72 md:h-80 lg:h-96 w-full p-4 sm:p-6 md:p-8 lg:p-10"
               ref={(el) => { cardRefs.current[i] = el; }}
             >
               <div>
-                <div className="text-lg sm:text-lg md:text-xl font-semibold mb-2">{flowItem.name}</div>
-                <div className="text-xs sm:text-xs md:text-sm">{flowItem.time}</div>
-                <div className="text-base sm:text-base md:text-lg text-center p-2 sm:p-2 md:p-6">{flowItem.details}</div>
+                <div className="text-base sm:text-lg md:text-xl font-semibold mb-2">{flowItem.name}</div>
+                <div className="text-xs sm:text-sm md:text-base opacity-80">{flowItem.time}</div>
+                <div className="text-sm sm:text-base md:text-lg text-center p-2 sm:p-3 md:p-4 lg:p-6">{flowItem.details}</div>
               </div>
             </div>
           ))}

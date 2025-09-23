@@ -57,15 +57,27 @@ function Memories() {
   return (
     <section id="memories" className="relative z-50 mb-16 sm:mb-20 md:mb-32 flex flex-col text-white text-center sm:text-center md:text-left">
 
-      <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Memories</div>
-      <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
+      <div className="text-xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4 font-semibold">Memories</div>
+      <div className="max-w-full md:max-w-3xl text-sm sm:text-base md:text-xl mb-4 sm:mb-6 md:mb-8 opacity-90">
         This isn’t our first time.
         Take a look back at some unforgettable moments from past events.
       </div>
-      <div ref={containerRef} className="bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 p-6 sm:p-8 md:p-10 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-        {images.map((image, i) => (<div key={i} ref={(el) => { cardRefs.current[i] = el; }} className="rounded-xl overflow-hidden">
-          <Image src={image} alt="" height={400} width={400} className="hover:scale-95 transition-transform duration-500 cursor-pointer w-full h-full object-cover" />
-        </div>))}
+      <div ref={containerRef} className="bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 p-4 sm:p-6 md:p-8 lg:p-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+        {images.map((image, i) => (
+          <div 
+            key={i} 
+            ref={(el) => { cardRefs.current[i] = el; }} 
+            className="rounded-lg sm:rounded-xl overflow-hidden aspect-square"
+          >
+            <Image 
+              src={image} 
+              alt={`IEEE Day memory ${i + 1}`} 
+              height={400} 
+              width={400} 
+              className="hover:scale-95 transition-transform duration-500 cursor-pointer w-full h-full object-cover" 
+            />
+          </div>
+        ))}
       </div>
     </section>
   );

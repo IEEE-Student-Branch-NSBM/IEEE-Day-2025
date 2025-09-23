@@ -329,15 +329,15 @@ const Register = () => {
 
     return (
         <section id="register" className="relative z-50 mb-20 sm:mb-20 md:mb-40 text-white text-center sm:text-center md:text-left">
-            <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Register</div>
-            <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
+            <div className="text-xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4 font-semibold">Register</div>
+            <div className="max-w-full md:max-w-3xl text-sm sm:text-base md:text-xl mb-4 sm:mb-6 md:mb-8 opacity-90">
                 Fill in your details below to secure your spot.
                 We’ll use this information to keep you updated.
             </div>
             <div className="flex justify-center">
-                <div className="bg-white/5 text-white backdrop-blur-lg rounded-2xl flex flex-col p-8 sm:p-8 md:p-6">
+                <div className="bg-white/5 text-white backdrop-blur-lg rounded-2xl flex flex-col p-4 sm:p-6 md:p-8 w-full max-w-7xl">
                     <form onSubmit={handleSubmit(onSubmit)} ref={containerFormRef} className="flex-1">
-                        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 md:gap-6">
                             <div className="flex-1 items-center justify-center">
                                 {fields.slice(0, 3).map((field) => renderFormField(field))}
                             </div>

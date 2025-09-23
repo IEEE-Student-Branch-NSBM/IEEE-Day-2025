@@ -128,14 +128,14 @@ const Chat = () => {
 
     return (
         <div id="chat" className='relative z-50 mb-16 sm:mb-20 md:mb-32 text-white text-center sm:text-center md:text-left'>
-            <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Chat</div>
-            <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
+            <div className="text-xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4 font-semibold">Chat</div>
+            <div className="max-w-full md:max-w-3xl text-sm sm:text-base md:text-xl mb-4 sm:mb-6 md:mb-8 opacity-90">
                 Got questions?
                 Ask our chatbot anything about the event.
                 Your answers will appear right here.
             </div>
-            <div className="flex flex-col h-120 sm:h-120 md:h-160 w-full mx-auto bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10">
-                <div ref={containerRef} className="flex-1 overflow-y-auto p-6 sm:p-8 md:p-10 space-y-4">
+            <div className="flex flex-col h-96 sm:h-120 md:h-160 w-full mx-auto bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10">
+                <div ref={containerRef} className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 lg:p-10 space-y-3 sm:space-y-4">
                     {messages.length === 0 && (
                         <div className='flex items-center justify-center h-full'>
                             <div ref={mainMessageRef} className='text-xl sm:text-xl md:text-3xl block'>Ask anything about the Event</div>

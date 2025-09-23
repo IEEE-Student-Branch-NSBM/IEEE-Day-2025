@@ -14,7 +14,7 @@ const HomePage = () => {
     <section id="home">
       <Hero />
       <ParticlesBg />
-      <div className="px-8 sm:px-8 md:px-4 2xl:px-40 flex flex-col gap-10 overflow-hidden">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24 2xl:px-40 flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-16 overflow-hidden">
         <Sponsors />
         <About />
         <Memories />

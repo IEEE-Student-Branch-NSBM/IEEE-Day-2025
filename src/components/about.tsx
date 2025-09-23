@@ -76,15 +76,15 @@ const About = () => {
 
     return (
         <section id="about" className="relative z-50 mb-16 sm:mb-20 md:mb-32 text-white text-center sm:text-center md:text-left">
-            <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">About</div>
-            <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
+            <div className="text-xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4 font-semibold">About</div>
+            <div className="max-w-full md:max-w-3xl text-sm sm:text-base md:text-xl mb-4 sm:mb-6 md:mb-8 opacity-90">
                 Wondering what this is all about?
                 We’ve got you covered.
             </div>
-            <div ref={containerRef} className='flex flex-col sm:flex-col md:flex-row gap-8 md:gap-10'>
-                <div ref={leftDivRef} className='bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 w-full flex flex-col justify-start p-6 sm:p-8 md:p-10 lg:p-12 hover:bg-white/10 transition-all duration-300'>
-                    <div className="text-2xl sm:text-2xl md:text-3xl mb-2 sm:mb-2 md:mb-4">Description</div>
-                    <div ref={leftTextRef} className="text-justify text-base sm:text-base md:text-xl leading-relaxed">
+            <div ref={containerRef} className='flex flex-col sm:flex-col md:flex-row gap-4 sm:gap-6 md:gap-8 lg:gap-10'>
+                <div ref={leftDivRef} className='bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 w-full flex flex-col justify-start p-4 sm:p-6 md:p-8 lg:p-10 hover:bg-white/10 transition-all duration-300'>
+                    <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-2 sm:mb-3 md:mb-4 font-semibold">Description</div>
+                    <div ref={leftTextRef} className="text-justify text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed">
                         IEEE Student Branch of NSBM Green University is on a mission to
                         inspire and empower students in 2025! We're pushing the boundaries
                         of innovation and personal growth, collaborating with the IEEE
@@ -93,9 +93,9 @@ const About = () => {
                         the way for future leaders in technology.
                     </div>
                 </div>
-                <div ref={rightDivRef} className='bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 w-full flex flex-col justify-start p-6 sm:p-8 md:p-10 lg:p-12 hover:bg-white/10 transition-all duration-300'>
-                    <div className="text-2xl sm:text-2xl md:text-3xl mb-2 sm:mb-2 md:mb-4">Our History</div>
-                    <div ref={rightTextRef} className="text-justify text-base sm:text-base md:text-xl leading-relaxed">
+                <div ref={rightDivRef} className='bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 w-full flex flex-col justify-start p-4 sm:p-6 md:p-8 lg:p-10 hover:bg-white/10 transition-all duration-300'>
+                    <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-2 sm:mb-3 md:mb-4 font-semibold">Our History</div>
+                    <div ref={rightTextRef} className="text-justify text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed">
                         Since 2018, IEEE Day has united the community with events starting
                         with lectures on IoT and Data-Driven Civilization. In 2019 and
                         2020, it transitioned to a virtual format due to the pandemic. In

@@ -86,13 +86,13 @@ const People = () => {
 
     return (
         <section id="people" ref={containerRef} className="relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left">
-            <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">People</div>
-            <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
+            <div className="text-xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4 font-semibold">People</div>
+            <div className="max-w-full md:max-w-3xl text-sm sm:text-base md:text-xl mb-4 sm:mb-6 md:mb-8 opacity-90">
                 Organizing an event of this scale is no small feat.
                 Meet some of the faces behind IEEE Day 2025.
             </div>
             <div className="flex flex-col items-center justify-center ">
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 sm:gap-4 md:gap-6 w-full max-w-[1170px] mx-auto px-5 md:px-0">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6 w-full max-w-[1170px] mx-auto px-4 sm:px-5 md:px-0">
                     {people.map((person, index) => <div key={index} className="md:hover:scale-105 transition-transform duration-500 flex items-center justify-center">
                         <div ref={(element) => { cardRefs.current[index] = element }} className="relative w-full max-w-sm h-80 sm:h-80 md:h-100">
                             <Image

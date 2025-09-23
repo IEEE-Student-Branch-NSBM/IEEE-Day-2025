@@ -84,14 +84,14 @@ const Sponsors = () => {
 
   return (
     <section id="sponsor" className="relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left">
-      <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Sponsors</div>
-      <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
+      <div className="text-xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4 font-semibold">Sponsors</div>
+      <div className="max-w-full md:max-w-3xl text-sm sm:text-base md:text-xl mb-4 sm:mb-6 md:mb-8 opacity-90">
         This event wouldn’t be possible without our sponsors.
         Here’s a spotlight on the organizations powering our event.
       </div>
       <div
         ref={containerRef}
-        className="grid bg-white/5 p-6 sm:p-8 md:p-12 lg:p-16 backdrop-blur-lg rounded-2xl border border-white/10 grid-cols-1 sm:grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full justify-items-center"
+        className="grid bg-white/5 p-4 sm:p-6 md:p-8 lg:p-12 backdrop-blur-lg rounded-2xl border border-white/10 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full justify-items-center"
       >
         {logos.map((logo, i) => (
           <div

@@ -8,6 +8,7 @@ import Footer from "@/components/footer";
 export const metadata: Metadata = {
   title: "IEEE Day 2025",
   description: "NSBM Green University",
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
