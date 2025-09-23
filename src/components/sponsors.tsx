@@ -91,7 +91,7 @@ const Sponsors = () => {
       </div>
       <div
         ref={containerRef}
-        className="grid bg-white/5 p-4 sm:p-4 md:p-10 backdrop-blur-lg grid-cols-1 sm:grid-cols-1 md:grid-cols-4 gap-4 sm:gap-4 md:gap-10 w-full justify-items-center"
+        className="grid bg-white/5 p-6 sm:p-8 md:p-12 lg:p-16 backdrop-blur-lg rounded-2xl border border-white/10 grid-cols-1 sm:grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8 md:gap-10 lg:gap-12 w-full justify-items-center"
       >
         {logos.map((logo, i) => (
           <div

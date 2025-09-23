@@ -75,14 +75,14 @@ const About = () => {
     }, []);
 
     return (
-        <section id="about" className="relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left">
+        <section id="about" className="relative z-50 mb-16 sm:mb-20 md:mb-32 text-white text-center sm:text-center md:text-left">
             <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">About</div>
             <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
                 Wondering what this is all about?
                 We’ve got you covered.
             </div>
-            <div ref={containerRef} className='flex flex-col sm:flex-col md:flex-row gap-6'>
-                <div ref={leftDivRef} className='bg-white/5 backdrop-blur-lg w-full flex flex-col justify-start p-6 sm:p-6 md:p-10'>
+            <div ref={containerRef} className='flex flex-col sm:flex-col md:flex-row gap-8 md:gap-10'>
+                <div ref={leftDivRef} className='bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 w-full flex flex-col justify-start p-6 sm:p-8 md:p-10 lg:p-12 hover:bg-white/10 transition-all duration-300'>
                     <div className="text-2xl sm:text-2xl md:text-3xl mb-2 sm:mb-2 md:mb-4">Description</div>
                     <div ref={leftTextRef} className="text-justify text-base sm:text-base md:text-xl leading-relaxed">
                         IEEE Student Branch of NSBM Green University is on a mission to
@@ -93,7 +93,7 @@ const About = () => {
                         the way for future leaders in technology.
                     </div>
                 </div>
-                <div ref={rightDivRef} className='bg-white/5 backdrop-blur-lg w-full flex flex-col justify-start p-6 lg:p-10'>
+                <div ref={rightDivRef} className='bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 w-full flex flex-col justify-start p-6 sm:p-8 md:p-10 lg:p-12 hover:bg-white/10 transition-all duration-300'>
                     <div className="text-2xl sm:text-2xl md:text-3xl mb-2 sm:mb-2 md:mb-4">Our History</div>
                     <div ref={rightTextRef} className="text-justify text-base sm:text-base md:text-xl leading-relaxed">
                         Since 2018, IEEE Day has united the community with events starting

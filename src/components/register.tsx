@@ -335,7 +335,7 @@ const Register = () => {
                 We’ll use this information to keep you updated.
             </div>
             <div className="flex justify-center">
-                <div className="bg-white/5 text-white backdrop-blur-lg flex flex-col p-8 sm:p-8 md:p-6">
+                <div className="bg-white/5 text-white backdrop-blur-lg rounded-2xl flex flex-col p-8 sm:p-8 md:p-6">
                     <form onSubmit={handleSubmit(onSubmit)} ref={containerFormRef} className="flex-1">
                         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 gap-6">
                             <div className="flex-1 items-center justify-center">

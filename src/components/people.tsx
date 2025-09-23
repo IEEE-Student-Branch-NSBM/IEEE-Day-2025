@@ -92,7 +92,7 @@ const People = () => {
                 Meet some of the faces behind IEEE Day 2025.
             </div>
             <div className="flex flex-col items-center justify-center ">
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 sm:gap-4 md:gap-6 w-full 2xl:w-[80%]">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 sm:gap-4 md:gap-6 w-full max-w-[1170px] mx-auto px-5 md:px-0">
                     {people.map((person, index) => <div key={index} className="md:hover:scale-105 transition-transform duration-500 flex items-center justify-center">
                         <div ref={(element) => { cardRefs.current[index] = element }} className="relative w-full max-w-sm h-80 sm:h-80 md:h-100">
                             <Image

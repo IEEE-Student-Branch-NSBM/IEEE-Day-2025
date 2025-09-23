@@ -127,15 +127,15 @@ const Chat = () => {
     };
 
     return (
-        <div id="chat" className='relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left'>
+        <div id="chat" className='relative z-50 mb-16 sm:mb-20 md:mb-32 text-white text-center sm:text-center md:text-left'>
             <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Chat</div>
             <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
                 Got questions?
                 Ask our chatbot anything about the event.
                 Your answers will appear right here.
             </div>
-            <div className="flex flex-col h-120 sm:h-120 md:h-160 w-full mx-auto bg-white/5 backdrop-blur-lg">
-                <div ref={containerRef} className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div className="flex flex-col h-120 sm:h-120 md:h-160 w-full mx-auto bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10">
+                <div ref={containerRef} className="flex-1 overflow-y-auto p-6 sm:p-8 md:p-10 space-y-4">
                     {messages.length === 0 && (
                         <div className='flex items-center justify-center h-full'>
                             <div ref={mainMessageRef} className='text-xl sm:text-xl md:text-3xl block'>Ask anything about the Event</div>
@@ -146,7 +146,7 @@ const Chat = () => {
                             key={message.id}
                             className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                         >
-                            <div className={`max-w-xs sm:max-w-xs md:max-w-md px-2 sm:px-2 md:px-4 py-1 sm:py-1 md:py-2 text-left ${message.role === 'user' ? 'bg-teal-500/50' : 'bg-white/10'}`}>
+                            <div className={`max-w-xs sm:max-w-xs md:max-w-md px-3 sm:px-4 md:px-5 py-2 sm:py-3 md:py-4 text-left rounded-xl ${message.role === 'user' ? 'bg-teal-500/50' : 'bg-white/10'}`}>
                                 <div className='text-sm sm:text-sm md:text-lg whitespace-pre-wrap'>{message.content}</div>
                                 <div className='text-xs'>
                                     {new Date(message.timestamp).toLocaleTimeString([], {

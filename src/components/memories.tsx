@@ -55,16 +55,16 @@ function Memories() {
   }, []);
 
   return (
-    <section id="memories" className="relative z-50 mb-10 sm:mb-10 md:mb-0 flex flex-col text-white text-center sm:text-center md:text-left">
+    <section id="memories" className="relative z-50 mb-16 sm:mb-20 md:mb-32 flex flex-col text-white text-center sm:text-center md:text-left">
 
       <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Memories</div>
       <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
         This isn’t our first time.
         Take a look back at some unforgettable moments from past events.
       </div>
-      <div ref={containerRef} className="bg-white/5 backdrop-blur-lg grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4">
-        {images.map((image, i) => (<div key={i} ref={(el) => { cardRefs.current[i] = el; }}>
-          <Image src={image} alt="" height={400} width={400} className="hover:scale-95 transition-transform duration-500 cursor-pointer" />
+      <div ref={containerRef} className="bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 p-6 sm:p-8 md:p-10 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+        {images.map((image, i) => (<div key={i} ref={(el) => { cardRefs.current[i] = el; }} className="rounded-xl overflow-hidden">
+          <Image src={image} alt="" height={400} width={400} className="hover:scale-95 transition-transform duration-500 cursor-pointer w-full h-full object-cover" />
         </div>))}
       </div>
     </section>

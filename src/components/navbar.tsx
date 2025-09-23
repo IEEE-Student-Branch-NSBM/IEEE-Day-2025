@@ -43,14 +43,14 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="max-w-screen hidden sm:hidden fixed bg-white/5 backdrop-blur-lg top-0 right-1/2 translate-x-1/2 z-100 md:flex gap-6 2xl:gap-12 text-white transition-all duration-300 p-8">
+      <div className="max-w-screen hidden sm:hidden fixed bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 top-4 right-1/2 translate-x-1/2 z-100 md:flex gap-4 2xl:gap-6 text-white transition-all duration-300 px-6 py-3 md:px-8 md:py-4">
         {navItems.map((item) => (
           <Link
             key={item.section}
             href={item.href}
             className={`m-auto hover:scale-110 transition-all duration-300 ${activeSection === item.section
-              ? 'font-semibold text-2xl'
-              : 'text-xl'
+              ? 'font-semibold text-lg'
+              : 'text-base'
               }`}
           >
             {item.label}
@@ -58,7 +58,7 @@ const Navbar = () => {
         ))}
       </div>
       <div
-        className={`block sm:block md:hidden fixed bottom-0 left-1/2 -translate-x-1/2 z-100 h-10 bg-white/5 backdrop-blur-lg transition-all duration-500 text-white ${isExpanded ? "h-screen w-screen" : "w-10"}`}
+        className={`block sm:block md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-100 h-12 bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 transition-all duration-500 text-white ${isExpanded ? "h-screen w-screen rounded-none border-none" : "w-12"}`}
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <svg className={`${isExpanded ? "hidden" : "block"} p-1 m-auto`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg>

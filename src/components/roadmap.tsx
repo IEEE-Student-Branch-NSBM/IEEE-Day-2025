@@ -64,7 +64,7 @@ const Flow = () => {
     <section
       id="flow"
       ref={containerRef}
-      className="relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left"
+      className="relative z-50 mb-16 sm:mb-20 md:mb-32 text-white text-center sm:text-center md:text-left"
     >
       <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Flow</div>
       <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
@@ -75,7 +75,7 @@ const Flow = () => {
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 text-center gap-4 sm:gap-4 md:gap-6 w-full">
           {flow.map((flowItem, i) => (
             <div key={flowItem.id}
-              className="flex flex-col items-center justify-center bg-white/5 backdrop-blur-lg h-80 sm:h-80 md:h-100 w-full p-4"
+              className="flex flex-col items-center justify-center bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 h-80 sm:h-80 md:h-100 w-full p-6 sm:p-8 md:p-10"
               ref={(el) => { cardRefs.current[i] = el; }}
             >
               <div>
