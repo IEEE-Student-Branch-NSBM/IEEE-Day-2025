@@ -57,7 +57,7 @@ Guidelines:
 
     return NextResponse.json({
       answer:
-        "I'm experiencing some technical difficulties right now. For immediate assistance, please check our website or contact the IEEE NSBM organizers directly. IEEE Day 2025 is happening on October 1st, 2025 at NSBM Green University!",
+        "I'm experiencing some technical difficulties right now. For immediate assistance, please check our website or contact the IEEE NSBM organizers directly. IEEE Day 2025 is happening on October 7st, 2025 at NSBM Green University!",
     });
   }
 }
