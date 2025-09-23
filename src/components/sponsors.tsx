@@ -1,10 +1,13 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 import DimoLogo from "../../public/sponsors/dimo-logo.png";
 import KotmaleLogo from "../../public/sponsors/kotmale-logo.png";
 import AfsaanLogo from "../../public/sponsors/afsaan-logo.png";
@@ -19,8 +22,23 @@ gsap.registerPlugin(ScrollTrigger);
 const Sponsors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const logoRefs = useRef<HTMLDivElement[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
 
   const logos = [NsbmLogo, RhinoLogo, KotmaleLogo, AfsaanLogo, CodeGenLogo, NagarroLogo, DimoLogo, RoboticGenLogo];
+  
+  // Check if we're in a mobile viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
 
   useGSAP(() => {
     const animationConfig = {
@@ -82,44 +100,109 @@ const Sponsors = () => {
     });
   }, []);
 
+  // Group logos into groups of 4 for the mobile carousel (2 rows of 2)
+  const logoGroups = [];
+  for (let i = 0; i < logos.length; i += 4) {
+    logoGroups.push(logos.slice(i, Math.min(i + 4, logos.length)));
+  }
+
+  // Slider settings for mobile carousel
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: false
+  };
+
+  const renderLogo = (logo: any, i: number, isMobileView: boolean = false) => (
+    <div
+      key={i}
+      className={`${isMobileView ? 'w-full h-24' : 'w-fit h-30 sm:h-30 md:h-40'} p-2 sm:p-2 md:p-4 flex items-center justify-center overflow-hidden`}
+    >
+      <div
+        ref={(el) => {
+          if (el) logoRefs.current[i] = el;
+        }}
+        className="w-full h-full flex items-center justify-center"
+      >
+        {isMobileView ? (
+          // Mobile view - completely standardized logo display
+          <div className="w-full h-full flex items-center justify-center" style={{ position: 'relative' }}>
+            <Image
+              src={logo}
+              alt={`Sponsor logo ${i+1}`}
+              width={160}
+              height={80}
+              style={{
+                objectFit: 'contain',
+                width: '100%',
+                height: '70px',
+                maxWidth: '100%',
+                maxHeight: '100%',
+              }}
+              quality={100}
+              priority={true}
+            />
+          </div>
+        ) : (
+          // Desktop view - existing different scales
+          <Image
+            src={logo}
+            alt={`Sponsor logo ${i+1}`}
+            width={200}
+            height={200}
+            className={
+              logo === AfsaanLogo
+                ? "scale-[40%] sm:scale-[40%] md:scale-[60%]"
+                : logo === RhinoLogo
+                  ? "scale-[80%] sm:scale-[80%] md:scale-[115%]"
+                  : "scale-[60%] sm:scale-[60%] md:scale-[90%]"
+            }
+          />
+        )}
+      </div>
+    </div>
+  );
+
   return (
     <section id="sponsor" className="relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left">
       <div className="text-xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4 font-semibold">Sponsors</div>
       <div className="max-w-full md:max-w-3xl text-sm sm:text-base md:text-xl mb-4 sm:mb-6 md:mb-8 opacity-90">
-        This event wouldn’t be possible without our sponsors.
-        Here’s a spotlight on the organizations powering our event.
+        This event wouldn't be possible without our sponsors.
+        Here's a spotlight on the organizations powering our event.
       </div>
-      <div
-        ref={containerRef}
-        className="grid bg-white/5 p-4 sm:p-6 md:p-8 lg:p-12 backdrop-blur-lg rounded-2xl border border-white/10 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full justify-items-center"
-      >
-        {logos.map((logo, i) => (
-          <div
-            key={i}
-            className="w-fit h-30 sm:h-30 md:h-40 p-2 sm:p-2 md:p-4 flex items-center justify-center overflow-hidden"
-          >
-            <div
-              ref={(el) => {
-                logoRefs.current[i] = el!;
-              }}
-            >
-              <Image
-                src={logo}
-                alt={`logo-${i}`}
-                width={200}
-                height={200}
-                className={
-                  logo === AfsaanLogo
-                    ? "scale-[40%] sm:scale-[40%] md:scale-[60%]"
-                    : logo === RhinoLogo
-                      ? "scale-[80%] sm:scale-[80%] md:scale-[115%]"
-                      : "scale-[60%] sm:scale-[60%] md:scale-[90%]"
-                }
-              />
-            </div>
-          </div>
-        ))}
-      </div>
+      
+      {isMobile ? (
+        <div ref={containerRef} className="bg-white/5 p-4 backdrop-blur-lg rounded-2xl border border-white/10 w-full">
+          <Slider {...sliderSettings}>
+            {logoGroups.map((group, index) => (
+              <div key={index} className="p-4">
+                {/* First row of logos */}
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                  {group.slice(0, 2).map((logo, i) => renderLogo(logo, index * 4 + i, true))}
+                </div>
+                {/* Second row of logos - only render if we have more logos in this group */}
+                {group.length > 2 && (
+                  <div className="grid grid-cols-2 gap-4">
+                    {group.slice(2).map((logo, i) => renderLogo(logo, index * 4 + 2 + i, true))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </Slider>
+        </div>
+      ) : (
+        <div
+          ref={containerRef}
+          className="grid bg-white/5 p-4 sm:p-6 md:p-8 lg:p-12 backdrop-blur-lg rounded-2xl border border-white/10 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full justify-items-center"
+        >
+          {logos.map((logo, i) => renderLogo(logo, i))}
+        </div>
+      )}
     </section>
   );
 };

@@ -9,7 +9,11 @@ import IeeeDayLogo from "../../public/logos/ieee-day-logo-2025.png";
 
 const Footer = () => {
     
-    const chapterLogos = [SbLogo, CsLogo, WieLogo];
+    const chapterLogos = [
+        { src: SbLogo, alt: "IEEE NSBM Student Branch Logo" },
+        { src: CsLogo, alt: "IEEE NSBM Computer Society Logo" },
+        { src: WieLogo, alt: "IEEE NSBM Women in Engineering Logo" }
+    ];
     
     const socialLinks = [
         { 
@@ -163,7 +167,7 @@ const Footer = () => {
                                             href={link.href}
                                             className="text-white/70 hover:text-white transition-colors duration-300 text-sm flex items-center"
                                         >
-                                            <span className="mr-1.5">→</span> {link.name}
+                                            <span className="mr-1.5">•</span> {link.name}
                                         </Link>
                                     </li>
                                 ))}
@@ -205,17 +209,26 @@ const Footer = () => {
                     
                     {/* Chapter Logos */}
                     <div className="pt-8 border-t border-white/10">
-                        <h3 className="text-white text-center text-lg font-medium mb-6">IEEE NSBM Chapters</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-3 items-center justify-items-center h-full gap-6 sm:gap-8 md:gap-12">
                             {chapterLogos.map((logo, index) => (
-                                <div key={index} className="flex items-center justify-center w-full h-16 sm:h-20 md:h-24 bg-white/5 rounded-xl p-3 sm:p-4 md:p-5 hover:bg-white/10 transition-all duration-300">
-                                    <Image
-                                        src={logo}
-                                        alt=""
-                                        width={200}
-                                        height={200}
-                                        className="object-contain max-w-full max-h-full w-auto h-auto scale-90 sm:scale-95 md:scale-100"
-                                    />
+                                <div key={index} className="flex items-center justify-center w-full">
+                                    <div className="w-[200px] h-[100px] relative flex items-center justify-center">
+                                        <Image
+                                            src={logo.src}
+                                            alt={logo.alt}
+                                            width={180}
+                                            height={90}
+                                            quality={100}
+                                            priority={true}
+                                            style={{
+                                                maxWidth: '100%',
+                                                maxHeight: '100%',
+                                                objectFit: 'contain',
+                                                width: 'auto',
+                                                height: 'auto'
+                                            }}
+                                        />
+                                    </div>
                                 </div>
                             ))}
                         </div>

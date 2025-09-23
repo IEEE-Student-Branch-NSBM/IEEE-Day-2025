@@ -39,17 +39,7 @@ const People = () => {
             linkedIn: "",
             facebook: ""
         },
-        // {
-        //     name: "Pasandi Samarasinghe",
-        //     contribution:
-        //         "Chair - IEEE Women In Engineering NSBM",
-        //     image: pasindi,
-        //     animations: {
-        //         y: 400,
-        //     },
-        //     linkedIn: "",
-        //     facebook: ""
-        // },
+
         {
             name: "Sithum Sankajith",
             contribution:
@@ -86,7 +76,7 @@ const People = () => {
 
     return (
         <section id="people" ref={containerRef} className="relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left">
-            <div className="text-xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4 font-semibold">People</div>
+            <div className="text-xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4 font-semibold">Contacts</div>
             <div className="max-w-full md:max-w-3xl text-sm sm:text-base md:text-xl mb-4 sm:mb-6 md:mb-8 opacity-90">
                 Organizing an event of this scale is no small feat.
                 Meet some of the faces behind IEEE Day 2025.
@@ -94,14 +84,14 @@ const People = () => {
             <div className="flex flex-col items-center justify-center ">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6 w-full max-w-[1170px] mx-auto px-4 sm:px-5 md:px-0">
                     {people.map((person, index) => <div key={index} className="md:hover:scale-105 transition-transform duration-500 flex items-center justify-center">
-                        <div ref={(element) => { cardRefs.current[index] = element }} className="relative w-full max-w-sm h-80 sm:h-80 md:h-100">
+                        <div ref={(element) => { cardRefs.current[index] = element }} className="relative w-full max-w-sm h-96 sm:h-96 md:h-100 rounded-2xl overflow-hidden">
                             <Image
                                 src={person.image.src}
                                 alt=""
                                 fill
-                                className="brightness-90 object-cover"
+                                className="brightness-90 object-cover rounded-2xl"
                             />
-                            <div className="absolute inset-0 flex flex-col self-end z-10 text-center bg-black/20 backdrop-blur-lg p-4">
+                            <div className="absolute inset-0 flex flex-col self-end z-10 text-center bg-black/20 backdrop-blur-lg p-4 rounded-2xl">
                                 <div className="text-lg sm:text-lg md:text-xl">{person.name}</div>
                                 <div className="text-sm sm:text-sm md:text-base">{person.contribution}</div>
                                 <div className="m-auto flex gap-1 sm:gap-1 md:gap-2">
