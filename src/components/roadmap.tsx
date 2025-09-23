@@ -66,14 +66,10 @@ const Flow = () => {
       ref={containerRef}
       className="relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left"
     >
-      <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Flow</div>
-      <div className="md:max-w-3xl text-lg sm:text-lg md:text-xl mb-4 sm:mb-4 md:mb-4">
-        <div>
-          We’ve lined up an exciting program for the day.
-        </div>
-        <div>
-          Here’s a quick look at what’s in store.
-        </div>
+      <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Flow</div>
+      <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
+        We’ve lined up an exciting program for the day.
+        Here’s a quick look at what’s in store.
       </div>
       <div className="flex items-center justify-center">
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 text-center gap-4 sm:gap-4 md:gap-6 w-full">

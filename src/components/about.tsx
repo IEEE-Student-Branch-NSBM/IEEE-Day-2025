@@ -76,14 +76,10 @@ const About = () => {
 
     return (
         <section id="about" className="relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left">
-            <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-4 md:mb-4">About</div>
-            <div className="md:max-w-3xl text-lg sm:text-lg md:text-xl mb-4 sm:mb-4 md:mb-4">
-                <div>
-                    Wondering what this is all about?
-                </div>
-                <div>
-                    We’ve got you covered.
-                </div>
+            <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">About</div>
+            <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
+                Wondering what this is all about?
+                We’ve got you covered.
             </div>
             <div ref={containerRef} className='flex flex-col sm:flex-col md:flex-row gap-6'>
                 <div ref={leftDivRef} className='bg-white/5 backdrop-blur-lg w-full flex flex-col justify-start p-6 sm:p-6 md:p-10'>

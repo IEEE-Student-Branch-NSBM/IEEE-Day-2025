@@ -84,14 +84,10 @@ const Sponsors = () => {
 
   return (
     <section id="sponsor" className="relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left">
-      <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Sponsors</div>
-      <div className="md:max-w-3xl text-lg sm:text-lg md:text-xl mb-4 sm:mb-4 md:mb-4">
-        <div>
-          This event wouldn’t be possible without our sponsors.
-        </div>
-        <div>
-          Here’s a spotlight on the organizations powering IEEE Day 2025.
-        </div>
+      <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Sponsors</div>
+      <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
+        This event wouldn’t be possible without our sponsors.
+        Here’s a spotlight on the organizations powering our event.
       </div>
       <div
         ref={containerRef}

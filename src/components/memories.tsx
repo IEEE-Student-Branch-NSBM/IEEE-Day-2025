@@ -57,14 +57,10 @@ function Memories() {
   return (
     <section id="memories" className="relative z-50 mb-10 sm:mb-10 md:mb-0 flex flex-col text-white text-center sm:text-center md:text-left">
 
-      <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Memories</div>
-      <div className="md:max-w-3xl text-lg sm:text-lg md:text-xl mb-4 sm:mb-4 md:mb-4">
-        <div>
-          This isn’t our first time.
-        </div>
-        <div>
-          Take a look back at some unforgettable moments from past events.
-        </div>
+      <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Memories</div>
+      <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
+        This isn’t our first time.
+        Take a look back at some unforgettable moments from past events.
       </div>
       <div ref={containerRef} className="bg-white/5 backdrop-blur-lg grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4">
         {images.map((image, i) => (<div key={i} ref={(el) => { cardRefs.current[i] = el; }}>

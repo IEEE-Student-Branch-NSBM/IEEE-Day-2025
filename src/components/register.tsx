@@ -329,14 +329,10 @@ const Register = () => {
 
     return (
         <section id="register" className="relative z-50 mb-20 sm:mb-20 md:mb-40 text-white text-center sm:text-center md:text-left">
-            <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Register</div>
-            <div className="md:max-w-3xl text-lg sm:text-lg md:text-xl mb-4 sm:mb-4 md:mb-4">
-                <div>
-                    Fill in your details below to secure your spot.
-                </div>
-                <div>
-                    We’ll use this information to keep you updated.
-                </div>
+            <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Register</div>
+            <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
+                Fill in your details below to secure your spot.
+                We’ll use this information to keep you updated.
             </div>
             <div className="flex justify-center">
                 <div className="bg-white/5 text-white backdrop-blur-lg flex flex-col p-8 sm:p-8 md:p-6">

@@ -128,17 +128,11 @@ const Chat = () => {
 
     return (
         <div id="chat" className='relative z-50 mb-10 sm:mb-10 md:mb-20 text-white text-center sm:text-center md:text-left'>
-            <div className="text-3xl sm:text-3xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Chat</div>
-            <div className="md:max-w-3xl text-lg sm:text-lg md:text-xl mb-4 sm:mb-4 md:mb-4">
-                <div>
-                    Got questions?
-                </div>
-                <div>
-                    Ask our chatbot anything about the event.
-                </div>
-                <div>
-                    Your answers will appear right here.
-                </div>
+            <div className="text-2xl sm:text-2xl md:text-4xl mb-2 sm:mb-4 md:mb-4">Chat</div>
+            <div className="md:max-w-3xl text-base sm:text-base md:text-xl mb-4 sm:mb-4 md:mb-4">
+                Got questions?
+                Ask our chatbot anything about the event.
+                Your answers will appear right here.
             </div>
             <div className="flex flex-col h-120 sm:h-120 md:h-160 w-full mx-auto bg-white/5 backdrop-blur-lg">
                 <div ref={containerRef} className="flex-1 overflow-y-auto p-4 space-y-4">

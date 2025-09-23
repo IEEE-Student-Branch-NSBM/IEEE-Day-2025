@@ -50,24 +50,11 @@ const Hero = () => {
     gsap.set(cardsRef.current, { opacity: 0 });
 
     const desktopPositions: { x: number; y: number }[] = [
-      { x: 15, y: 20 },
-      { x: 85, y: 15 },
-      { x: 10, y: 45 },
-      { x: 90, y: 40 },
-      { x: 20, y: 75 },
-      { x: 80, y: 80 },
-      { x: 15, y: 60 },
-      { x: 85, y: 65 },
-      { x: 12, y: 30 },
-      { x: 88, y: 25 },
-    ];
-
-    const akshithaPositions: { x: number; y: number }[] = [
       { x: 12, y: 26 },
       { x: 82, y: 28 },
-      { x: 16, y: 60 },
-      { x: 90, y: 70 },
-      { x: 20, y: 86 },
+      { x: 16, y: 72 },
+      { x: 86, y: 70 },
+      { x: 84, y: 26 },
       { x: 14, y: 28 },
       { x: 15, y: 60 },
       { x: 85, y: 65 },
@@ -76,12 +63,12 @@ const Hero = () => {
     ];
 
     const mobilePositions: { x: number; y: number }[] = [
-      { x: 36, y: 12 },
-      { x: 78, y: 82 },
-      { x: 80, y: 18 },
-      { x: 34, y: 88 },
+      { x: 36, y: 10 },
+      { x: 64, y: 84 },
+      { x: 62, y: 16 },
+      { x: 32, y: 86 },
       { x: 34, y: 16 },
-      { x: 76, y: 78 },
+      { x: 66, y: 80 },
       { x: 36, y: 8 },
       { x: 75, y: 85 },
       { x: 25, y: 92 },
@@ -90,7 +77,6 @@ const Hero = () => {
 
     let predefinedPositions
     if (window.innerWidth < 768) predefinedPositions = mobilePositions
-    else if (window.innerWidth < 1536) predefinedPositions = akshithaPositions
     else predefinedPositions = desktopPositions
 
     const positions: { x: number; y: number }[] = [];
@@ -202,7 +188,7 @@ const Hero = () => {
         alt="IEEE Day Logo Outer"
         height={760}
         width={760}
-        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2 scale-90 sm:scale-90 md:scale-80 2xl:scale-100"
+        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2 scale-90 sm:scale-90 md:scale-[70%] 2xl:scale-100"
       />
       <Countdown />
       <Image
@@ -211,13 +197,13 @@ const Hero = () => {
         alt="IEEE Day Logo Inner"
         height={400}
         width={400}
-        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2 scale-[48%] sm:scale-[48%] md:scale-80 2xl:scale-100"
+        className="absolute left-1/2 top-1/2 bottom-1/2 -translate-y-1/2 -translate-x-1/2 scale-[48%] sm:scale-[48%] md:scale-[70%] 2xl:scale-100"
       />
       {testimonials.map((testimonial, index) =>
         <div
           key={testimonial.id}
           ref={(el) => { cardsRef.current[index] = el }}
-          className="z-50 absolute bg-white/5 backdrop-blur-lg text-white py-2 sm:py-2 md:py-4 px-3 sm:px-3 md:px-5 max-w-xs transform -translate-x-1/2 -translate-y-1/2"
+          className="z-50 absolute bg-white/5 backdrop-blur-lg text-white py-2 sm:py-2 md:py-4 px-3 sm:px-3 md:px-5 w-3xs sm:w-3xs md:w-xs transform -translate-x-1/2 -translate-y-1/2"
         >
           <div className="text-center font-semibold sm:font-semibold md:font-bold text-base sm:text-base md:text-xl mb-1 sm:mb-1 md:mb-2">{testimonial.name}</div>
           <div className="text-center text-sm sm:text-sm md:text-lg">{testimonial.description}</div>

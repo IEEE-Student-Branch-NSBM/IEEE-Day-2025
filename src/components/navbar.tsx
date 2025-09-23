@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="hidden sm:hidden fixed bg-white/5 backdrop-blur-lg top-0 right-1/2 translate-x-1/2 z-100 md:flex gap-12 text-white transition-all duration-300 p-8">
+      <div className="max-w-screen hidden sm:hidden fixed bg-white/5 backdrop-blur-lg top-0 right-1/2 translate-x-1/2 z-100 md:flex gap-6 2xl:gap-12 text-white transition-all duration-300 p-8">
         {navItems.map((item) => (
           <Link
             key={item.section}
