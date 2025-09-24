@@ -118,9 +118,9 @@ const Footer = () => {
                 {/* Main Footer Content */}
                 <div className="bg-white/5 backdrop-blur-lg rounded-2xl border border-white/10 p-6 sm:p-8 md:p-10">
                     {/* Top Section */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mb-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10 mb-10">
                         {/* About Section */}
-                        <div className="flex flex-col space-y-4">
+                        <div className="flex flex-col space-y-4 lg:order-1">
                             <div className="flex items-center mb-2">
                                 <Image 
                                     src={IeeeDayLogo} 
@@ -151,25 +151,8 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        {/* Quick Links */}
-                        <div className="flex flex-col space-y-4">
-                            <h3 className="text-white text-lg font-medium border-b border-white/10 pb-2">Quick Links</h3>
-                            <ul className="space-y-2">
-                                {quickLinks.map((link, index) => (
-                                    <li key={index}>
-                                        <Link 
-                                            href={link.href}
-                                            className="text-white/70 hover:text-white transition-colors duration-300 text-sm flex items-center"
-                                        >
-                                            <span className="mr-1.5">•</span> {link.name}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* Contact Info */}
-                        <div className="flex flex-col space-y-4">
+                        {/* Contact Info - Order 2 on tablet, Order 3 on desktop */}
+                        <div className="flex flex-col space-y-4 md:order-2 lg:order-3">
                             <h3 className="text-white text-lg font-medium border-b border-white/10 pb-2">Contact Us</h3>
                             <ul className="space-y-3">
                                 {contactInfo.map((contact, index) => (
@@ -195,6 +178,23 @@ const Footer = () => {
                                                 <p className="text-white text-sm">{contact.value}</p>
                                             )}
                                         </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Quick Links - Order 3 on tablet, Order 2 on desktop */}
+                        <div className="flex flex-col space-y-4 md:order-3 lg:order-2">
+                            <h3 className="text-white text-lg font-medium border-b border-white/10 pb-2">Quick Links</h3>
+                            <ul className="space-y-2">
+                                {quickLinks.map((link, index) => (
+                                    <li key={index}>
+                                        <Link 
+                                            href={link.href}
+                                            className="text-white/70 hover:text-white transition-colors duration-300 text-sm flex items-center"
+                                        >
+                                            <span className="mr-1.5">•</span> {link.name}
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>

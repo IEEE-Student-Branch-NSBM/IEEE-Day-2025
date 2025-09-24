@@ -39,28 +39,27 @@ const People = () => {
             linkedIn: "",
             facebook: ""
         },
-
-        {
-            name: "Sithum Sankajith",
-            contribution:
-                "Ambassador - IEEE Day 2025 NSBM",
-            image: sithum,
-            animations: {
-                y: 200,
-            },
-            linkedIn: "https://www.linkedin.com/in/sithum-sankajith",
-            facebook: "https://facebook.com/sithum.sankajith.1"
-        },
         {
             name: "Pasandi Samarasinghe",
             contribution:
                 "Chair - IEEE Women In Engineering NSBM",
             image: pasindi,
             animations: {
-                y: -200,
+                y: 200,
             },
             linkedIn: "",
             facebook: ""
+        },
+        {
+            name: "Sithum Sankajith",
+            contribution:
+                "Ambassador - IEEE Day 2025 NSBM",
+            image: sithum,
+            animations: {
+                y: -200,
+            },
+            linkedIn: "https://www.linkedin.com/in/sithum-sankajith",
+            facebook: "https://facebook.com/sithum.sankajith.1"
         },
     ];
 

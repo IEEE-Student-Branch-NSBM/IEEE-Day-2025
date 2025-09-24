@@ -22,14 +22,14 @@ gsap.registerPlugin(ScrollTrigger);
 const Sponsors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const logoRefs = useRef<HTMLDivElement[]>([]);
-  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+  const [isMobileTabletOrIpad, setIsMobileTabletOrIpad] = useState(false);
 
   const logos = [NsbmLogo, RhinoLogo, KotmaleLogo, AfsaanLogo, CodeGenLogo, NagarroLogo, DimoLogo, RoboticGenLogo];
   
-  // Check if we're in a mobile or tablet viewport
+  // Check if we're in a mobile, tablet, or iPad Pro viewport
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobileOrTablet(window.innerWidth < 1024);
+      setIsMobileTabletOrIpad(window.innerWidth < 1200);
     };
     
     checkMobile();
@@ -100,13 +100,13 @@ const Sponsors = () => {
     });
   }, []);
 
-  // Group logos into groups of 4 for the mobile/tablet carousel (2 rows of 2)
+  // Group logos into groups of 4 for the mobile/tablet/iPad carousel (2 rows of 2)
   const logoGroups = [];
   for (let i = 0; i < logos.length; i += 4) {
     logoGroups.push(logos.slice(i, Math.min(i + 4, logos.length)));
   }
 
-  // Slider settings for mobile/tablet carousel
+  // Slider settings for mobile/tablet/iPad carousel
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -130,7 +130,7 @@ const Sponsors = () => {
         className="w-full h-full flex items-center justify-center"
       >
         {isCarouselView ? (
-          // Mobile/tablet view - completely standardized logo display
+          // Mobile/tablet/iPad view - completely standardized logo display
           <div className="w-full h-full flex items-center justify-center" style={{ position: 'relative' }}>
             <Image
               src={logo}
@@ -176,7 +176,7 @@ const Sponsors = () => {
         Here's a spotlight on the organizations powering our event.
       </div>
       
-      {isMobileOrTablet ? (
+      {isMobileTabletOrIpad ? (
         <div ref={containerRef} className="bg-white/5 p-4 backdrop-blur-lg rounded-2xl border border-white/10 w-full">
           <Slider {...sliderSettings}>
             {logoGroups.map((group, index) => (
