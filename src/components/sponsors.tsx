@@ -22,14 +22,14 @@ gsap.registerPlugin(ScrollTrigger);
 const Sponsors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const logoRefs = useRef<HTMLDivElement[]>([]);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
 
   const logos = [NsbmLogo, RhinoLogo, KotmaleLogo, AfsaanLogo, CodeGenLogo, NagarroLogo, DimoLogo, RoboticGenLogo];
   
-  // Check if we're in a mobile viewport
+  // Check if we're in a mobile or tablet viewport
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobileOrTablet(window.innerWidth < 1024);
     };
     
     checkMobile();
@@ -100,13 +100,13 @@ const Sponsors = () => {
     });
   }, []);
 
-  // Group logos into groups of 4 for the mobile carousel (2 rows of 2)
+  // Group logos into groups of 4 for the mobile/tablet carousel (2 rows of 2)
   const logoGroups = [];
   for (let i = 0; i < logos.length; i += 4) {
     logoGroups.push(logos.slice(i, Math.min(i + 4, logos.length)));
   }
 
-  // Slider settings for mobile carousel
+  // Slider settings for mobile/tablet carousel
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -118,10 +118,10 @@ const Sponsors = () => {
     arrows: false
   };
 
-  const renderLogo = (logo: any, i: number, isMobileView: boolean = false) => (
+  const renderLogo = (logo: any, i: number, isCarouselView: boolean = false) => (
     <div
       key={i}
-      className={`${isMobileView ? 'w-full h-24' : 'w-fit h-30 sm:h-30 md:h-40'} p-2 sm:p-2 md:p-4 flex items-center justify-center overflow-hidden`}
+      className={`${isCarouselView ? 'w-full h-24' : 'w-fit h-30 sm:h-30 md:h-40'} p-2 sm:p-2 md:p-4 flex items-center justify-center overflow-hidden`}
     >
       <div
         ref={(el) => {
@@ -129,8 +129,8 @@ const Sponsors = () => {
         }}
         className="w-full h-full flex items-center justify-center"
       >
-        {isMobileView ? (
-          // Mobile view - completely standardized logo display
+        {isCarouselView ? (
+          // Mobile/tablet view - completely standardized logo display
           <div className="w-full h-full flex items-center justify-center" style={{ position: 'relative' }}>
             <Image
               src={logo}
@@ -140,7 +140,7 @@ const Sponsors = () => {
               style={{
                 objectFit: 'contain',
                 width: '100%',
-                height: '70px',
+                height: '60px',
                 maxWidth: '100%',
                 maxHeight: '100%',
               }}
@@ -176,7 +176,7 @@ const Sponsors = () => {
         Here's a spotlight on the organizations powering our event.
       </div>
       
-      {isMobile ? (
+      {isMobileOrTablet ? (
         <div ref={containerRef} className="bg-white/5 p-4 backdrop-blur-lg rounded-2xl border border-white/10 w-full">
           <Slider {...sliderSettings}>
             {logoGroups.map((group, index) => (

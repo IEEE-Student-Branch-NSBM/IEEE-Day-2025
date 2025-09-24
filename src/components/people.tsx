@@ -23,7 +23,7 @@ const People = () => {
                 "Chair - IEEE Student Branch NSBM",
             image: geeth,
             animations: {
-                y: 400,
+                y: 200,
             },
             linkedIn: "https://www.linkedin.com/in/geethinduwara/",
             facebook: "https://web.facebook.com/geethinduwara.online"
@@ -34,7 +34,7 @@ const People = () => {
                 "Vice Chair - IEEE Student Branch NSBM",
             image: jayasanka,
             animations: {
-                y: -400,
+                y: -200,
             },
             linkedIn: "",
             facebook: ""
@@ -46,7 +46,7 @@ const People = () => {
                 "Ambassador - IEEE Day 2025 NSBM",
             image: sithum,
             animations: {
-                y: 400,
+                y: 200,
             },
             linkedIn: "https://www.linkedin.com/in/sithum-sankajith",
             facebook: "https://facebook.com/sithum.sankajith.1"
@@ -57,7 +57,7 @@ const People = () => {
                 "Chair - IEEE Women In Engineering NSBM",
             image: pasindi,
             animations: {
-                y: 400,
+                y: -200,
             },
             linkedIn: "",
             facebook: ""
@@ -73,13 +73,15 @@ const People = () => {
                 {
                     ...people[i].animations,
                     opacity: 0,
-                    duration: 1,
-                    ease: "power3.out",
+                    duration: 0.8,
+                    delay: i * 0.15, // Stagger the animations
+                    ease: "power2.out",
                     scrollTrigger: {
                         trigger: containerRef.current,
                         start: "top 80%",
                         end: "bottom 20%",
-                        toggleActions: "play reverse play reverse",
+                        toggleActions: "play none none none",
+                        once: true
                     }
                 });
         });
@@ -93,7 +95,7 @@ const People = () => {
                 Meet some of the faces behind IEEE Day 2025.
             </div>
             <div className="flex flex-col items-center justify-center ">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6 w-full max-w-[1170px] mx-auto px-4 sm:px-5 md:px-0">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 w-full max-w-[1170px] mx-auto px-4 sm:px-5 md:px-0">
                     {people.map((person, index) => <div key={index} className="md:hover:scale-105 transition-transform duration-500 flex items-center justify-center">
                         <div ref={(element) => { cardRefs.current[index] = element }} className="relative w-full max-w-sm h-96 sm:h-96 md:h-100 rounded-2xl overflow-hidden">
                             <Image
