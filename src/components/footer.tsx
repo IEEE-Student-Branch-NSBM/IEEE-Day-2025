@@ -9,12 +9,6 @@ import IeeeDayLogo from "../../public/logos/ieee-day-logo-2025.png";
 
 const Footer = () => {
     
-    const chapterLogos = [
-        { src: SbLogo, alt: "IEEE NSBM Student Branch Logo" },
-        { src: CsLogo, alt: "IEEE NSBM Computer Society Logo" },
-        { src: WieLogo, alt: "IEEE NSBM Women in Engineering Logo" }
-    ];
-    
     const socialLinks = [
         { 
             name: "Facebook", 
@@ -210,27 +204,68 @@ const Footer = () => {
                     {/* Chapter Logos */}
                     <div className="pt-8 border-t border-white/10">
                         <div className="grid grid-cols-1 sm:grid-cols-3 items-center justify-items-center h-full gap-6 sm:gap-8 md:gap-12">
-                            {chapterLogos.map((logo, index) => (
-                                <div key={index} className="flex items-center justify-center w-full">
-                                    <div className="w-[200px] h-[100px] relative flex items-center justify-center">
-                                        <Image
-                                            src={logo.src}
-                                            alt={logo.alt}
-                                            width={180}
-                                            height={90}
-                                            quality={100}
-                                            priority={true}
-                                            style={{
-                                                maxWidth: '100%',
-                                                maxHeight: '100%',
-                                                objectFit: 'contain',
-                                                width: 'auto',
-                                                height: 'auto'
-                                            }}
-                                        />
-                                    </div>
+                            {/* Student Branch Logo */}
+                            <div className="flex items-center justify-center w-full">
+                                <div className="w-[220px] h-[120px] relative flex items-center justify-center">
+                                    <Image
+                                        src={SbLogo}
+                                        alt="IEEE NSBM Student Branch Logo"
+                                        width={200}
+                                        height={100}
+                                        quality={100}
+                                        priority={true}
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '200px',
+                                            height: '100px',
+                                            margin: '0 auto'
+                                        }}
+                                        className="mix-blend-normal"
+                                    />
                                 </div>
-                            ))}
+                            </div>
+                            
+                            {/* Computer Society Logo */}
+                            <div className="flex items-center justify-center w-full">
+                                <div className="w-[220px] h-[120px] relative flex items-center justify-center">
+                                    <Image
+                                        src={CsLogo}
+                                        alt="IEEE NSBM Computer Society Logo"
+                                        width={120}
+                                        height={50}
+                                        quality={100}
+                                        priority={true}
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '120px',
+                                            height: '50px',
+                                            margin: '0 auto'
+                                        }}
+                                        className="mix-blend-normal"
+                                    />
+                                </div>
+                            </div>
+                            
+                            {/* WIE Logo */}
+                            <div className="flex items-center justify-center w-full">
+                                <div className="w-[220px] h-[120px] relative flex items-center justify-center">
+                                    <Image
+                                        src={WieLogo}
+                                        alt="IEEE NSBM Women in Engineering Logo"
+                                        width={200}
+                                        height={100}
+                                        quality={100}
+                                        priority={true}
+                                        style={{
+                                            objectFit: 'contain',
+                                            width: '200px',
+                                            height: '100px',
+                                            margin: '0 auto'
+                                        }}
+                                        className="mix-blend-normal"
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

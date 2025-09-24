@@ -8,7 +8,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import geeth from "../../public/people/chair.jpg"
 import jayasanka from "../../public/people/vice-chair.jpg"
 import sithum from "../../public/people/ambassador.jpg"
-// import pasindi from "../../public/people/wie-chair.jpg"
+import pasindi from "../../public/people/wie-chair.jpg"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,6 +50,17 @@ const People = () => {
             },
             linkedIn: "https://www.linkedin.com/in/sithum-sankajith",
             facebook: "https://facebook.com/sithum.sankajith.1"
+        },
+        {
+            name: "Pasandi Samarasinghe",
+            contribution:
+                "Chair - IEEE Women In Engineering NSBM",
+            image: pasindi,
+            animations: {
+                y: 400,
+            },
+            linkedIn: "",
+            facebook: ""
         },
     ];
 
