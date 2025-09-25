@@ -58,7 +58,7 @@ const Navbar = () => {
         ))}
       </div>
       <div
-        className={`block sm:block md:hidden fixed bottom-0 left-1/2 -translate-x-1/2 z-100 h-10 bg-white/5 backdrop-blur-lg transition-all duration-500 text-white ${isExpanded ? "h-screen w-screen" : "w-10"}`}
+        className={`block sm:block md:hidden fixed z-100 h-10 bg-white/5 backdrop-blur-lg transition-all duration-500 text-white ${isExpanded ? "h-screen w-screen" : "w-10 top-4 left-4"}`}
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <svg className={`${isExpanded ? "hidden" : "block"} p-1 m-auto`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg>

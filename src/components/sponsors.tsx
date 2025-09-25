@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -20,7 +20,40 @@ const Sponsors = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const logoRefs = useRef<HTMLDivElement[]>([]);
 
-  const logos = [NsbmLogo, RhinoLogo, KotmaleLogo, AfsaanLogo, CodeGenLogo, NagarroLogo, DimoLogo, RoboticGenLogo];
+  const logos: { image: StaticImageData, description: string }[] = [
+    {
+      image: NsbmLogo,
+      description: "Title Partner",
+    },
+    {
+      image: DimoLogo,
+      description: "Platinum Partner",
+    },
+    {
+      image: AfsaanLogo,
+      description: "Bronze Partner",
+    },
+    {
+      image: KotmaleLogo,
+      description: "Beverage Partner",
+    },
+    {
+      image: RhinoLogo,
+      description: "Knowledge Partner",
+    },
+    {
+      image: CodeGenLogo,
+      description: "Knowledge Partner",
+    },
+    {
+      image: NagarroLogo,
+      description: "Knowledge Partner"
+    },
+    {
+      image: RoboticGenLogo,
+      description: "Knowledge Partner",
+    }
+  ]
 
   useGSAP(() => {
     const animationConfig = {
@@ -104,17 +137,17 @@ const Sponsors = () => {
               }}
             >
               <Image
-                src={logo}
+                src={logo.image}
                 alt={`logo-${i}`}
                 width={200}
                 height={200}
-                className={
-                  logo === AfsaanLogo
+                className={`
+                  ${logo.image === AfsaanLogo
                     ? "scale-[40%] sm:scale-[40%] md:scale-[60%]"
-                    : logo === RhinoLogo
+                    : logo.image === RhinoLogo
                       ? "scale-[80%] sm:scale-[80%] md:scale-[115%]"
-                      : "scale-[60%] sm:scale-[60%] md:scale-[90%]"
-                }
+                      : "scale-[60%] sm:scale-[60%] md:scale-[90%]"}
+                `}
               />
             </div>
           </div>
