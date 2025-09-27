@@ -49,19 +49,19 @@ const fields = [
     },
     {
         "id": 6,
-        "field_name": "food_preference",
-        "type": "select",
-        "optional": false,
-        "label": "Food Preference",
-        "options": ["Vegetarian", "Non-vegetarian"]
-    },
-    {
-        "id": 7,
         "field_name": "gender",
         "type": "select",
         "optional": false,
         "label": "Gender",
         "options": ["Male", "Female"]
+    },
+    {
+        "id": 7,
+        "field_name": "food_preference",
+        "type": "select",
+        "optional": false,
+        "label": "Food Preference",
+        "options": ["Vegetarian", "Non-vegetarian"]
     },
     {
         "id": 8,
@@ -98,7 +98,8 @@ const fields = [
             "South Eastern University of Sri Lanka",
             "National Institute of Business Management",
             "National School of Business Management",
-            "CINEC Campus"
+            "CINEC Campus",
+            "Other"
         ]
     },
     {
@@ -106,7 +107,7 @@ const fields = [
         "field_name": "preferred_track_session_1",
         "type": "select",
         "optional": false,
-        "label": "Track Session - Preference 1",
+        "label": "Track Session - Choice 1",
         "options": ["Quantum Computing", "Data Science & Analytics with AI", "AI & Robotics in Industry 4.0", "AI in Cybersecurity", "AI in Cloud Computing"]
     },
     {
@@ -114,7 +115,7 @@ const fields = [
         "field_name": "preferred_track_session_2",
         "type": "select",
         "optional": false,
-        "label": "Track Session - Preference 2",
+        "label": "Track Session - Choice 2",
         "options": ["Quantum Computing", "Data Science & Analytics with AI", "AI & Robotics in Industry 4.0", "AI in Cybersecurity", "AI in Cloud Computing"]
     },
     {
@@ -122,7 +123,7 @@ const fields = [
         "field_name": "preferred_track_session_3",
         "type": "select",
         "optional": false,
-        "label": "Track Session - Preference 3",
+        "label": "Track Session - Choice 3",
         "options": ["Quantum Computing", "Data Science & Analytics with AI", "AI & Robotics in Industry 4.0", "AI in Cybersecurity", "AI in Cloud Computing"]
     },
     {
@@ -153,6 +154,7 @@ const Register = () => {
 
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error' | null, message: string }>({ type: null, message: '' });
+    const [isOtherUniversity, setIsOtherUniversity] = useState<boolean>(false);
 
     const {
         register,
@@ -172,6 +174,7 @@ const Register = () => {
             gender: undefined,
             nic: "",
             university_name: "",
+            other_university: "",
             ieee_membership_id: "",
             preferred_track_session_1: undefined,
             preferred_track_session_2: undefined,
@@ -191,7 +194,7 @@ const Register = () => {
             console.log(data);
             const result = await createUser(data);
             if (result) {
-                setSubmitMessage({ type: 'success', message: 'Registration successful! Use the credentials to login to the platform.' });
+                setSubmitMessage({ type: 'success', message: 'Registration successful! Your passport will be issued through the email you provided.' });
             } else {
                 setSubmitMessage({ type: 'error', message: 'Registration failed. Please try again.' });
             }
@@ -211,6 +214,56 @@ const Register = () => {
         const isValid = !error && hasValue;
 
         if (field.type === 'select') {
+            if (field.field_name === 'university_name') {
+                const otherUniversityError = errors.other_university;
+                const otherUniversityValue = watchedValues.other_university;
+                const isOtherSelected = watchedValues.university_name === 'Other';
+
+                return (
+                    <div className={`w-full ${isOtherSelected ? 'h-36 sm:h-36 md:h-48' : 'h-28 sm:h-28 md:h-40'}`} key={field.id}>
+                        <label className="text-base sm:text-base md:text-lg flex flex-col h-full">
+                            <div className="mb-1 flex items-center justify-between">
+                                <div>
+                                    {field.label}
+                                    {isRequired && <span className="text-red-400 ml-1">*</span>}
+                                </div>
+                            </div>
+                            <select
+                                {...register(fieldName, {
+                                    onChange: (e) => {
+                                        setIsOtherUniversity(e.target.value === 'Other');
+                                    }
+                                })}
+                                className={`${error ? 'bg-red-400/10' : hasValue && isValid ? 'bg-teal-400/10' : 'bg-white/10'} p-2 mt-1 focus:outline-none focus:ring-2 ${error ? 'focus:ring-red-400' : 'focus:ring-teal-400'} transition-all duration-200 text-sm sm:text-sm md:text-base w-full`}
+                            >
+                                <option value="" className="bg-gray-800">Select {field.label}</option>
+                                {field.options?.map((option: string) => (
+                                    <option key={option} value={option} className="bg-gray-800">
+                                        {option}
+                                    </option>
+                                ))}
+                            </select>
+                            <input
+                                type="text"
+                                {...register('other_university')}
+                                placeholder="Enter your university name"
+                                className={`${otherUniversityError ? 'bg-red-400/10' : (otherUniversityValue && isOtherSelected) ? 'bg-teal-400/10' : 'bg-white/10'} p-2 mt-2 focus:outline-none focus:ring-2 ${otherUniversityError ? 'focus:ring-red-400' : 'focus:ring-teal-400'} transition-all duration-200 text-sm sm:text-sm md:text-base w-full ${!isOtherSelected ? 'hidden' : ''}`}
+                            />
+                            <div className="flex-1 mt-1 w-full overflow-hidden flex items-start">
+                                {(error || otherUniversityError) && (
+                                    <span className="text-red-400 text-xs sm:text-xs md:text-sm flex items-center">
+                                        <svg className="w-3 sm:w-3 md:w-4 h-3 sm:h-3 md:h-4 mr-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                                        </svg>
+                                        <span className="truncate">{error?.message || otherUniversityError?.message}</span>
+                                    </span>
+                                )}
+                            </div>
+                        </label>
+                    </div>
+                );
+            }
+
             return (
                 <div className="w-full h-28 sm:h-28 md:h-40" key={field.id}>
                     <label className="text-base sm:text-base md:text-lg flex flex-col h-full">
@@ -336,7 +389,7 @@ const Register = () => {
             </div>
             <div className="flex justify-center">
                 <div className="bg-white/5 text-white backdrop-blur-lg flex flex-col p-8 sm:p-8 md:p-6">
-                    <form onSubmit={handleSubmit(onSubmit)} ref={containerFormRef} className="flex-1">
+                    <form onSubmit={handleSubmit(onSubmit)} ref={containerFormRef} className="flex-1 mb-8 md:mb-0">
                         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 gap-6">
                             <div className="flex-1 items-center justify-center">
                                 {fields.slice(0, 3).map((field) => renderFormField(field))}

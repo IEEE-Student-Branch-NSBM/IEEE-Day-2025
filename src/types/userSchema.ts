@@ -40,6 +40,11 @@ export const UserSchema = z
       .min(2, "University name must be at least 2 characters")
       .max(100, "University name must be less than 100 characters")
       .or(z.literal("")),
+    other_university: z
+      .string()
+      .max(100, "University name must be less than 100 characters")
+      .optional()
+      .or(z.literal("")),
     ieee_membership_id: z
       .string()
       .regex(/^[0-9]{8,10}$/, "IEEE Membership ID must be 8-10 digits")
