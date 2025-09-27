@@ -62,14 +62,14 @@ const Countdown = () => {
         <div className="relative text-white h-screen">
             <div ref={countdownRef} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div>
-                    <h1 className="text-3xl sm:text-3xl md:text-4xl 2xl:text-6xl font-semibold">
+                    <h1 className="text-2xl sm:text-2xl md:text-4xl 2xl:text-6xl font-semibold">
                         {formatTime(timeLeft)}
                     </h1>
-                    <div className="text-center text-base sm:text-base md:text-lg 2xl:text-xl">
+                    <div className="text-center text-sm sm:text-sm md:text-lg 2xl:text-xl">
                         until Oct 07, 2025
                     </div>
                 </div>
-                <div className="flex flex-row justify-center gap-2 sm:gap-2 md:gap-4 2xl:gap-8 text-base sm:text-base md:text-lg 2xl:text-2xl font-bold">
+                <div className="flex flex-row justify-center gap-1 sm:gap-1 md:gap-4 2xl:gap-8 text-base sm:text-base md:text-lg 2xl:text-2xl font-bold">
                     <span>DAYS</span>
                     <span>HRS</span>
                     <span>MIN</span>

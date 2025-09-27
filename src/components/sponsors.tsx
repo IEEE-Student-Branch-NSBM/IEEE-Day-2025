@@ -41,18 +41,18 @@ const Sponsors = () => {
       image: RhinoLogo,
       description: "Knowledge Partner",
     },
-    {
-      image: CodeGenLogo,
-      description: "Knowledge Partner",
-    },
-    {
-      image: NagarroLogo,
-      description: "Knowledge Partner"
-    },
-    {
-      image: RoboticGenLogo,
-      description: "Knowledge Partner",
-    }
+    // {
+    //   image: CodeGenLogo,
+    //   description: "Knowledge Partner",
+    // },
+    // {
+    //   image: NagarroLogo,
+    //   description: "Knowledge Partner"
+    // },
+    // {
+    //   image: RoboticGenLogo,
+    //   description: "Knowledge Partner",
+    // }
   ]
 
   useGSAP(() => {
@@ -124,7 +124,7 @@ const Sponsors = () => {
       </div>
       <div
         ref={containerRef}
-        className="grid bg-white/5 p-4 sm:p-4 md:p-10 backdrop-blur-lg grid-cols-1 sm:grid-cols-1 md:grid-cols-4 gap-4 sm:gap-4 md:gap-10 w-full justify-items-center"
+        className="grid bg-white/5 p-4 sm:p-4 md:p-10 backdrop-blur-lg grid-cols-1 sm:grid-cols-1 md:grid-cols-5 gap-4 sm:gap-4 md:gap-10 w-full justify-items-center"
       >
         {logos.map((logo, i) => (
           <div

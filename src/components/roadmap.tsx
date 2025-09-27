@@ -28,7 +28,7 @@ const Flow = () => {
     {
       id: 3,
       name: "Track Sessions + Lunch Break",
-      time: "01:30 pm - 3:00 pm",
+      time: "01:00 pm - 3:00 pm",
       details: "The sessions will cover Quantum Computing, AI in Data Science, Industry 4.0, Cybersecurity, and Cloud Computing, focusing on applications, challenges, and career opportunities. Speakers will be announced soon."
     },
   ];

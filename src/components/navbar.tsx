@@ -51,7 +51,10 @@ const Navbar = () => {
             className={`m-auto hover:scale-110 transition-all duration-300 ${activeSection === item.section
               ? 'font-semibold text-2xl'
               : 'text-xl'
-              }`}
+              }
+              ${item.label == 'Register' && "animate-pulse"}
+              `
+            }
           >
             {item.label}
           </Link>

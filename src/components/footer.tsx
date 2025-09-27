@@ -77,7 +77,7 @@ const Footer = () => {
         },
         {
             label: "Location",
-            value: "NSBM Green University, Homagama, Sri Lanka",
+            value: "NSBM Green University, Sri Lanka",
             href: "https://maps.google.com/?q=NSBM+Green+University+Homagama+Sri+Lanka",
             isLink: true,
             icon: (
@@ -156,7 +156,11 @@ const Footer = () => {
                                         alt=""
                                         width={400}
                                         height={400}
-                                        className="object-cover scale-50 md:scale-75"
+                                        className={`
+                  ${logo === CsLogo
+                                                ? "scale-[40%] sm:scale-[40%] md:scale-[60%]"
+                                                : "scale-[60%] sm:scale-[60%] md:scale-[90%]"}
+                `}
                                     />
                                 </div>
                             ))}

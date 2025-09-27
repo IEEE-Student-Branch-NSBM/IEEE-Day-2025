@@ -8,7 +8,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import geeth from "../../public/people/chair.jpg"
 import jayasanka from "../../public/people/vice-chair.jpg"
 import sithum from "../../public/people/ambassador.jpg"
-// import pasindi from "../../public/people/wie-chair.jpg"
+import pasindi from "../../public/people/wie-chair.jpg"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,40 +26,44 @@ const People = () => {
                 y: 400,
             },
             linkedIn: "https://www.linkedin.com/in/geethinduwara/",
-            facebook: "https://web.facebook.com/geethinduwara.online"
+            facebook: "https://web.facebook.com/geethinduwara.online",
+            phone_number: "+94 77 362 3718"
         },
         {
             name: "Jayasanka Ariyarathna",
             contribution:
-                "Vice Chair - IEEE Student Branch NSBM",
+                "Chair - IEEE Computer Society NSBM",
             image: jayasanka,
             animations: {
                 y: -400,
             },
             linkedIn: "",
-            facebook: ""
+            facebook: "",
+            phone_number: "+94 70 482 1254"
         },
-        // {
-        //     name: "Pasandi Samarasinghe",
-        //     contribution:
-        //         "Chair - IEEE Women In Engineering NSBM",
-        //     image: pasindi,
-        //     animations: {
-        //         y: 400,
-        //     },
-        //     linkedIn: "",
-        //     facebook: ""
-        // },
+        {
+            name: "Pasandi Samarasinghe",
+            contribution:
+                "Chair - Women in Engineering NSBM",
+            image: pasindi,
+            animations: {
+                y: 400,
+            },
+            linkedIn: "",
+            facebook: "",
+            phone_number: "+94 71 147 6371"
+        },
         {
             name: "Sithum Sankajith",
             contribution:
                 "Ambassador - IEEE Day 2025 NSBM",
             image: sithum,
             animations: {
-                y: 400,
+                y: -400,
             },
             linkedIn: "https://www.linkedin.com/in/sithum-sankajith",
-            facebook: "https://facebook.com/sithum.sankajith.1"
+            facebook: "https://facebook.com/sithum.sankajith.1",
+            phone_number: "+94 77 552 4461"
         },
     ];
 
@@ -92,7 +96,7 @@ const People = () => {
                 Meet some of the faces behind IEEE Day 2025.
             </div>
             <div className="flex flex-col items-center justify-center ">
-                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 sm:gap-4 md:gap-6 w-full 2xl:w-[80%]">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 gap-4 sm:gap-4 md:gap-6 w-full">
                     {people.map((person, index) => <div key={index} className="md:hover:scale-105 transition-transform duration-500 flex items-center justify-center">
                         <div ref={(element) => { cardRefs.current[index] = element }} className="relative w-full max-w-sm h-80 sm:h-80 md:h-100">
                             <Image
@@ -105,6 +109,9 @@ const People = () => {
                                 <div className="text-lg sm:text-lg md:text-xl">{person.name}</div>
                                 <div className="text-sm sm:text-sm md:text-base">{person.contribution}</div>
                                 <div className="mt-2 flex justify-center gap-1 sm:gap-1 md:gap-2">
+                                    <a href={`tel:${person.phone_number}`}>
+                                        <svg className="h-6 sm:h-6 md:h-8 w-6 sm:w-6 md:w-8 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21 16.42V19.9561C21 20.4811 20.5941 20.9167 20.0705 20.9537C19.6331 20.9846 19.2763 21 19 21C10.1634 21 3 13.8366 3 5C3 4.72371 3.01545 4.36687 3.04635 3.9295C3.08337 3.40588 3.51894 3 4.04386 3H7.5801C7.83678 3 8.05176 3.19442 8.07753 3.4498C8.10067 3.67907 8.12218 3.86314 8.14207 4.00202C8.34435 5.41472 8.75753 6.75936 9.3487 8.00303C9.44359 8.20265 9.38171 8.44159 9.20185 8.57006L7.04355 10.1118C8.35752 13.1811 10.8189 15.6425 13.8882 16.9565L15.4271 14.8019C15.5572 14.6199 15.799 14.5573 16.001 14.6532C17.2446 15.2439 18.5891 15.6566 20.0016 15.8584C20.1396 15.8782 20.3225 15.8995 20.5502 15.9225C20.8056 15.9483 21 16.1633 21 16.42Z"></path></svg>
+                                    </a>
                                     <a href={person.facebook}>
                                         <svg className="h-6 sm:h-6 md:h-8 w-6 sm:w-6 md:w-8 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M15.4024 21V14.0344H17.7347L18.0838 11.3265H15.4024V9.59765C15.4024 8.81364 15.62 8.27934 16.7443 8.27934L18.1783 8.27867V5.85676C17.9302 5.82382 17.0791 5.75006 16.0888 5.75006C14.0213 5.75006 12.606 7.01198 12.606 9.32952V11.3265H10.2677V14.0344H12.606V21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H15.4024Z"></path></svg>
                                     </a>
