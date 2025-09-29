@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="max-w-screen hidden sm:hidden fixed bg-white/5 backdrop-blur-lg top-0 right-1/2 translate-x-1/2 z-100 md:flex gap-6 2xl:gap-12 text-white transition-all duration-300 p-8">
+      <div className="max-w-screen hidden sm:hidden fixed bg-white/5 backdrop-blur-lg top-2 right-1/2 translate-x-1/2 z-100 md:flex gap-6 2xl:gap-8 text-white transition-all duration-300 px-10 py-6">
         {navItems.map((item) => (
           <Link
             key={item.section}
@@ -52,7 +52,7 @@ const Navbar = () => {
               ? 'font-semibold text-2xl'
               : 'text-xl'
               }
-              ${item.label == 'Register' && "animate-pulse"}
+              ${item.label == 'Register' && "bg-white text-black px-3 py-2"}
               `
             }
           >
@@ -73,7 +73,9 @@ const Navbar = () => {
               className={`m-auto hover:scale-110 transition-all duration-300 ${activeSection === item.section
                 ? 'font-semibold text-2xl'
                 : 'text-xl'
-                } ${isExpanded ? "block" : "hidden"}`}
+                } ${isExpanded ? "block" : "hidden"}
+                ${item.label == 'Register' && "bg-white text-black px-3 py-2"}
+              `}
             >
               {item.label}
             </Link>

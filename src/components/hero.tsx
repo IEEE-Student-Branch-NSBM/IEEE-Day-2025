@@ -50,26 +50,26 @@ const Hero = () => {
     gsap.set(cardsRef.current, { opacity: 0 });
 
     const desktopPositions: { x: number; y: number }[] = [
-      { x: 12, y: 26 },
+      { x: 16, y: 26 },
       { x: 82, y: 28 },
       { x: 16, y: 72 },
       { x: 86, y: 70 },
       { x: 84, y: 26 },
-      { x: 14, y: 28 },
-      { x: 15, y: 60 },
+      { x: 18, y: 28 },
+      { x: 18, y: 68 },
       { x: 85, y: 65 },
       { x: 12, y: 30 },
       { x: 88, y: 25 },
     ];
 
     const mobilePositions: { x: number; y: number }[] = [
-      { x: 36, y: 10 },
-      { x: 64, y: 84 },
       { x: 62, y: 16 },
-      { x: 32, y: 86 },
+      { x: 64, y: 84 },
+      { x: 42, y: 10 },
+      { x: 36, y: 86 },
       { x: 34, y: 16 },
-      { x: 66, y: 80 },
-      { x: 36, y: 8 },
+      { x: 64, y: 82 },
+      { x: 42, y: 14 },
       { x: 75, y: 85 },
       { x: 25, y: 92 },
       { x: 70, y: 15 },
