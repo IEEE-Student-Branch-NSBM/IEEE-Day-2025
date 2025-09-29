@@ -93,6 +93,15 @@ export const UserSchema = z
   .refine((data) => data.password === data.confirm_password, {
     message: "Passwords don't match",
     path: ["confirm_password"],
+  })
+  .refine((data) => {
+    if (data.university_name === "Other") {
+      return data.other_university && data.other_university.trim().length >= 2;
+    }
+    return true;
+  }, {
+    message: "Please enter your university name",
+    path: ["other_university"],
   });
 
 export type User = z.infer<typeof UserSchema>;
