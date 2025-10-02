@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${saira.variable} scroll-smooth select-none`}>
+    <html lang="en" className={`${saira.variable} scroll-smooth select-none`} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen antialiased bg-mintwhite">
         <Navbar />
         <main className="flex-1">{children}</main>

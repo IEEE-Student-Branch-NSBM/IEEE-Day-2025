@@ -6,7 +6,7 @@ import About from "@/components/about";
 import People from "@/components/people";
 import Chat from "@/components/chat";
 import Register from "@/components/register";
-import ParticlesBg from "@/components/particlesBg";
+import ParticlesBg from "@/components/particles-bg";
 import Flow from "@/components/roadmap";
 
 const HomePage = () => {
