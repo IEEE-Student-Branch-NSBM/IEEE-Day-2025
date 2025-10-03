@@ -1,81 +1,111 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import Image from "next/image";
-import gsap from "gsap";
 import Countdown from "./countdown";
+import IeeeDayLogoInner from "../../public/logos/ieee-day-logo-inner.svg";
 import IeeeDayLogoRegister from "../../public/logos/ieee-day-logo-register.svg";
 import IeeeDayLogoBlank from "../../public/logos/ieee-day-logo-blank.svg";
 
 const HeroCenter = () => {
-  const [showCountdown, setShowCountdown] = useState(false);
-  const registerRef = useRef(null);
-  const countdownRef = useRef(null);
+  const ieeeLogoRef = useRef<HTMLDivElement>(null);
+  const registerLogoRef = useRef<HTMLDivElement>(null);
+  const countdownRef = useRef<HTMLDivElement>(null);
+
+  let logoArrange = [ieeeLogoRef, registerLogoRef, countdownRef];
+  // 1 - iee day
+  // 2 - register now
+  // 3 - countdown
 
   useEffect(() => {
-    const tl = gsap.timeline({ repeat: -1 }); // infinite loop
+    const refs = logoArrange.map((ref) => ref.current);
 
-    tl
-      // Show Register Now (fade in)
-      .fromTo(
-        registerRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: "power2.out" }
-      )
-      // Hold Register Now for 5s
-      .to(registerRef.current, { duration: 5 })
-      // Fade out Register Now
-      .to(registerRef.current, {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.in",
-        onComplete: () => setShowCountdown(true),
-      })
-      // Show Countdown (fade in)
-      .fromTo(
-        countdownRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: "power2.out" }
-      )
-      // Hold Countdown for 5s
-      .to(countdownRef.current, { duration: 5 })
-      // Fade out Countdown
-      .to(countdownRef.current, {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.in",
-        onComplete: () => setShowCountdown(false),
+    gsap.set(refs.slice(1), { opacity: 0 });
+    gsap.set(refs[0], { opacity: 1 });
+
+    const animateTransition = () => {
+      const tl = gsap.timeline();
+
+      tl.to({}, { duration: 8 });
+
+      logoArrange.forEach((currentRef, index) => {
+        const nextIndex = (index + 1) % logoArrange.length;
+        const currentElement = currentRef.current;
+        const nextElement = logoArrange[nextIndex].current;
+
+        if (currentElement && nextElement) {
+          tl.to(currentElement, {
+            opacity: 0,
+            duration: 1,
+            ease: "power2.inOut",
+          })
+            .to(
+              nextElement,
+              { opacity: 1, duration: 1, ease: "power2.inOut" },
+              "-=0.5"
+            )
+            .to({}, { duration: 8 });
+        }
       });
 
+      return tl;
+    };
+
+    const masterTimeline = gsap.timeline({ repeat: -1 });
+    masterTimeline.add(animateTransition());
+
     return () => {
-      tl.kill(); // cleanup
+      masterTimeline.kill();
     };
   }, []);
 
   return (
     <div className="relative min-h-screen flex items-center justify-center">
-      {/* Countdown or Register Now */}
-      <div className="z-20">
-        <div ref={registerRef} style={{ display: showCountdown ? "none" : "block" }}>
-          <Image
-            src={IeeeDayLogoRegister}
-            alt="Register Now"
-            height={400}
-            width={400}
-            className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 scale-[48%] sm:scale-[48%] md:scale-[70%] 2xl:scale-100"
-          />
-        </div>
-        <div ref={countdownRef} style={{ display: showCountdown ? "block" : "none" }}>
+      {/* 1 - ieee day */}
+      <div
+        ref={ieeeLogoRef}
+        className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
+      >
+        <Image
+          src={IeeeDayLogoInner}
+          alt="IEEE Day 2025"
+          height={400}
+          width={400}
+          className="scale-[48%] sm:scale-[48%] md:scale-[70%] 2xl:scale-100"
+        />
+      </div>
+
+      {/* 2 - register now */}
+      <div
+        ref={registerLogoRef}
+        className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
+      >
+        <Image
+          src={IeeeDayLogoRegister}
+          alt="Register Now"
+          height={400}
+          width={400}
+          className="scale-[48%] sm:scale-[48%] md:scale-[70%] 2xl:scale-100"
+        />
+      </div>
+
+      {/* 3 - countdown */}
+      <div
+        ref={countdownRef}
+        className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
+      >
+        <Image
+          src={IeeeDayLogoBlank}
+          alt="IEEE Day Logo Background"
+          height={400}
+          width={400}
+          className="scale-[48%] sm:scale-[48%] md:scale-[70%] 2xl:scale-100"
+        />
+        <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-white">
           <Countdown />
         </div>
       </div>
-      {/* Background logo */}
-      <Image
-        src={IeeeDayLogoBlank}
-        alt="IEEE Day Logo Background"
-        height={400}
-        width={400}
-        className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 scale-[48%] sm:scale-[48%] md:scale-[70%] 2xl:scale-100"
-      />
     </div>
   );
 };
