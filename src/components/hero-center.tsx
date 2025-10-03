@@ -63,44 +63,35 @@ const HeroCenter = () => {
   return (
     <div className="relative min-h-screen flex items-center justify-center">
       {/* 1 - ieee day */}
-      <div
-        ref={ieeeLogoRef}
-        className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
-      >
+      <div ref={ieeeLogoRef}>
         <Image
           src={IeeeDayLogoInner}
           alt="IEEE Day 2025"
           height={400}
           width={400}
-          className="scale-[48%] sm:scale-[48%] md:scale-[70%] 2xl:scale-100"
+          className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 scale-[48%] sm:scale-[48%] md:scale-[70%] 2xl:scale-100"
         />
       </div>
 
       {/* 2 - register now */}
-      <div
-        ref={registerLogoRef}
-        className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
-      >
+      <div ref={registerLogoRef}>
         <Image
           src={IeeeDayLogoRegister}
           alt="Register Now"
           height={400}
           width={400}
-          className="scale-[48%] sm:scale-[48%] md:scale-[70%] 2xl:scale-100"
+          className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 scale-[48%] sm:scale-[48%] md:scale-[70%] 2xl:scale-100"
         />
       </div>
 
       {/* 3 - countdown */}
-      <div
-        ref={countdownRef}
-        className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2"
-      >
+      <div ref={countdownRef}>
         <Image
           src={IeeeDayLogoBlank}
           alt="IEEE Day Logo Background"
           height={400}
           width={400}
-          className="scale-[48%] sm:scale-[48%] md:scale-[70%] 2xl:scale-100"
+          className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 scale-[48%] sm:scale-[48%] md:scale-[70%] 2xl:scale-100"
         />
         <div className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 text-white">
           <Countdown />

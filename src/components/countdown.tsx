@@ -13,15 +13,22 @@ const Countdown = () => {
     );
   };
 
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
+  const [timeLeft, setTimeLeft] = useState<number | null>(null);
 
   useEffect(() => {
+    setTimeLeft(calculateTimeLeft()); // first calculation after client mounts
+
     const interval = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
     return () => clearInterval(interval);
   }, []);
+
+  if (timeLeft === null) {
+    // Avoid mismatch by rendering nothing until client-side mounts
+    return null;
+  }
 
   const formatTime = (time: number) => {
     const days = Math.floor(time / (24 * 3600));
@@ -45,7 +52,7 @@ const Countdown = () => {
         {formatTime(timeLeft)}
       </h1>
       <p className="text-sm md:text-lg 2xl:text-xl">until Oct 07, 2025</p>
-      <div className="flex justify-center gap-2 md:gap-4 2xl:gap-8 text-base md:text-lg 2xl:text-2xl font-bold">
+      <div className="flex justify-center gap-2 md:gap-4 2xl:gap-8 text-sm md:text-lg 2xl:text-2xl font-bold">
         <span>DAYS</span>
         <span>HRS</span>
         <span>MIN</span>
